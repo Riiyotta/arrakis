@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 205 180" height="180" width="205">
+<mask fill="white" id="path-1-inside-1_1134_2702">
+<path d="M0 12H12V0H0V12Z"></path>
+</mask>
+<path mask="url(#path-1-inside-1_1134_2702)" fill="#54504E" d="M0 0H-1V-1H0V0ZM12 0V1H0V0V-1H12V0ZM0 0H1V12H0H-1V0H0Z"></path>
+<mask fill="white" id="path-3-inside-2_1134_2702">
+<path d="M205 12H193V0H205V12Z"></path>
+</mask>
+<path mask="url(#path-3-inside-2_1134_2702)" fill="#54504E" d="M205 0H206V-1H205V0ZM193 0V1H205V0V-1H193V0ZM205 0H204V12H205H206V0H205Z"></path>
+<mask fill="white" id="path-5-inside-3_1134_2702">
+<path d="M0 168H12V180H0V168Z"></path>
+</mask>
+<path mask="url(#path-5-inside-3_1134_2702)" fill="#54504E" d="M0 180H-1V181H0V180ZM12 180V179H0V180V181H12V180ZM0 180H1V168H0H-1V180H0Z"></path>
+<mask fill="white" id="path-7-inside-4_1134_2702">
+<path d="M205 168H193V180H205V168Z"></path>
+</mask>
+<path mask="url(#path-7-inside-4_1134_2702)" fill="#54504E" d="M205 180H206V181H205V180ZM193 180V179H205V180V181H193V180ZM205 180H204V168H205H206V180H205Z"></path>
+<circle stroke-width="0.5" stroke="white" r="43.9949" cy="65.6741" cx="103.111"></circle>
+<circle stroke-width="0.5" stroke="white" r="43.9949" cy="114.326" cx="73.7825"></circle>
+<circle stroke-width="0.5" stroke="white" r="43.9949" cy="114.326" cx="131.218"></circle>
+<circle fill="#FBF6EC" r="2.47147" cy="96.8753" cx="102.499"></circle>
+<path stroke-dasharray="1.59 1.59" stroke-width="0.5" stroke="white" d="M103.111 21.6792L37.0386 136.12H169.184L103.111 21.6792Z"></path>
+</svg>

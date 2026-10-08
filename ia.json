@@ -1,0 +1,363 @@
+{
+  "meta": {
+    "source": "Pixel-faithful clone of https://www.arrakis.tech/ — React 18 + Vite 5 + Tailwind v3 + framer-motion. Structure derived from src/App.jsx (routes), src/pages/*.jsx and src/components/IndustryPage.jsx (section order), cross-checked against the five Playwright-measured CLONE_SPEC*.md files.",
+    "status": "measured-from-source",
+    "totalRoutes": 12,
+    "totalTemplates": 8,
+    "notes": [
+      "Section order per template was read from the real JSX render order, not inferred from the specs.",
+      "'chrome' is uniform ('full') on every template — the persistent Header/Footer/CookieNotice come from src/components/Layout.jsx. The axis that actually varies is 'headerTheme'.",
+      "template.not-found has routeCount 0 deliberately: it is the react-router '*' catch-all and matches no enumerable site path, so it is excluded from totalRoutes."
+    ]
+  },
+  "categories": {
+    "SHELL": "Persistent chrome rendered by Layout.jsx on every route, outside the page body.",
+    "MASTHEAD": "The top-of-page introduction block that opens a template.",
+    "NARRATIVE": "Long-form, scroll-driven storytelling blocks — including the two scroll-pinned sections.",
+    "PROOF": "Third-party or quantitative validation: press, partner logos, metrics, people.",
+    "FEATURE": "Product capability explainers — accordions, panel stacks, icon grids, callouts.",
+    "CONVERSION": "Surfaces whose purpose is to get the reader to act or apply.",
+    "LEGAL": "Long-form policy prose with no marketing furniture.",
+    "UTILITY": "Non-marketing functional pages."
+  },
+  "sections": {
+    "shell.header": {
+      "category": "SHELL",
+      "description": "Sticky header: wordmark, four nav items (two of which open hover-triggered mega-menu panels), a mailto CTA, and a burger that opens the mobile drawer below lg. Has three measured states — default, scrolled (scrollY>300, collapses 86->64px) and menu-open (inverts to white at unchanged height).",
+      "scope": "All 12 routes, via Layout.jsx.",
+      "implementedBy": "Header.jsx (+ MegaMenu.jsx, MobileDrawer.jsx)"
+    },
+    "shell.footer": {
+      "category": "SHELL",
+      "description": "Dark footer: CTA card over a background image, three link columns, a centre mark, and a bottom bar with copyright and a LinkedIn link. Carries a mask+blend 'light leak' box that paints nothing on the original either.",
+      "scope": "All 12 routes, via Layout.jsx.",
+      "implementedBy": "Footer.jsx"
+    },
+    "shell.cookie-notice": {
+      "category": "SHELL",
+      "description": "Dismissible bottom-right cookie notice, persisted to localStorage. Deliberately has no shadow — the original references a shadow-layer class that is undefined in its shipped CSS.",
+      "scope": "Mounted by Layout.jsx on all 12 routes. Note: the original was observed not rendering it on the two legal routes in a fresh context — unresolved, may be dismissal state rather than a render rule.",
+      "implementedBy": "CookieNotice.jsx"
+    },
+    "masthead.home-two-column": {
+      "category": "MASTHEAD",
+      "description": "Homepage hero: two-column masthead with an h1, body copy and CTA on the left, and on the right a frame cycling five industry videos on an 8000ms rotation with a progress bar, status pill and live stat. Below it a logo banner cycles seven logos through five slots.",
+      "scope": "The home route only.",
+      "implementedBy": "Hero.jsx (+ LogoBanner.jsx)"
+    },
+    "masthead.industry-nav": {
+      "category": "MASTHEAD",
+      "description": "Industry masthead: an industry switcher dropdown, a two-run headline, a solid CTA, and a hero visual that is a Rive canvas on shipping and a static SVG on the other five.",
+      "scope": "All 6 industry routes.",
+      "implementedBy": "industry/NavMasthead.jsx"
+    },
+    "masthead.platform-stacked": {
+      "category": "MASTHEAD",
+      "description": "Platform masthead: headline, a 282-character scroll-linked letter reveal across three paragraphs, a flare image with screen blend, and an eagerly-mounted Rive canvas.",
+      "scope": "The platform route only.",
+      "implementedBy": "platform/StackedMasthead.jsx"
+    },
+    "narrative.orbit-showcase": {
+      "category": "NARRATIVE",
+      "description": "Orbit section: two arc SVGs with gradient-stroked rings and end dots, two Rive canvases, a blurred glow ellipse, and a 190-character scroll-linked letter reveal that is linear in scroll and spring-smoothed.",
+      "scope": "The home route only; carries the #orbitshowcase anchor.",
+      "implementedBy": "OrbitShowcase.jsx"
+    },
+    "narrative.text-card-dashboard": {
+      "category": "NARRATIVE",
+      "description": "Centred text card above a large Rive dashboard canvas with a bottom fade, on a white-to-dust gradient.",
+      "scope": "The home route only.",
+      "implementedBy": "TextCardDashboard.jsx"
+    },
+    "narrative.feature-asset-swap": {
+      "category": "NARRATIVE",
+      "description": "Scroll-pinned feature swap: a 400vh track with a sticky three-column stage, five bracketed feature items whose active state drives a central Rive canvas. Pins at 768px and up; below that it becomes a draggable label rail with a crossfading description and asset.",
+      "scope": "The home route only.",
+      "implementedBy": "FeatureAssetSwap.jsx"
+    },
+    "narrative.statement-showcase": {
+      "category": "NARRATIVE",
+      "description": "Scroll-pinned statement showcase: a fixed 2775px track at every viewport, with spring-smoothed title translation across four plateaus, a 32-line tick ruler that does not exist in the DOM below 960px, and inactive copy held at 0.1 opacity.",
+      "scope": "The about route only.",
+      "implementedBy": "sections/StatementShowcase.jsx"
+    },
+    "narrative.numbered-list": {
+      "category": "NARRATIVE",
+      "description": "Numbered list of principles, each a heading plus body copy with a monospace index.",
+      "scope": "The about route only.",
+      "implementedBy": "sections/NumberedList.jsx"
+    },
+    "narrative.sticky-aside-list": {
+      "category": "NARRATIVE",
+      "description": "Two-column list with a sticky left aside heading offset by calc(var(--header-height) + 2.5rem) and a scrolling right-hand item list.",
+      "scope": "The about route only.",
+      "implementedBy": "sections/StickyAsideList.jsx"
+    },
+    "proof.press-banner": {
+      "category": "PROOF",
+      "description": "'As covered by' banner: a centred heading above a single static row of four press logos, each an external link at 0.6 opacity rising to 1 on hover.",
+      "scope": "The home route only.",
+      "implementedBy": "PressBanner.jsx"
+    },
+    "proof.stats-grid": {
+      "category": "PROOF",
+      "description": "Stats block: a heading column beside a two-column grid of six bracketed metric cards driven by number-flow counters, plus a decorative 2x11 bar matrix hidden below md.",
+      "scope": "The home route only.",
+      "implementedBy": "StatsGrid.jsx"
+    },
+    "proof.logo-showcase": {
+      "category": "PROOF",
+      "description": "Partner logo showcase: a heading, a four-tab category grid, and a vertical Embla marquee stepping 248px every 3000ms with a scaled centre tile.",
+      "scope": "All 6 industry routes.",
+      "implementedBy": "industry/LogoShowcase.jsx"
+    },
+    "proof.employee-grid": {
+      "category": "PROOF",
+      "description": "Renders a centred h2 and nothing else — the CMS block carries no employees field, so there is deliberately no grid. Kept as a distinct section because the original emits the block. Do not build a team grid here.",
+      "scope": "The about route only.",
+      "implementedBy": "sections/EmployeeGrid.jsx"
+    },
+    "feature.integrations-panels": {
+      "category": "FEATURE",
+      "description": "Paginated integration panels: a heading, a stat, a two-column feature list, and a panel card holding a vertical Swiper logo marquee with top and bottom fades, switchable across four category tabs.",
+      "scope": "The home route only; carries the #integrations anchor.",
+      "implementedBy": "Integrations.jsx"
+    },
+    "feature.icon-slider": {
+      "category": "FEATURE",
+      "description": "Horizontal Embla card slider with a 6000ms autoplay, an odometer-style counter, and a pager that renders five dots while only three snaps are reachable at desktop width.",
+      "scope": "All 6 industry routes.",
+      "implementedBy": "industry/IconSlider.jsx"
+    },
+    "feature.accordion-industry": {
+      "category": "FEATURE",
+      "description": "Four-step delivery accordion on a twilight-to-dawn two-layer background, auto-advancing every 8000ms with a linear translateX progress bar, a lazily-mounted Rive canvas, and panel height animating over 300ms while opacity snaps at height-end.",
+      "scope": "All 6 industry routes.",
+      "implementedBy": "industry/FeatureAccordion.jsx"
+    },
+    "feature.accordion-security": {
+      "category": "FEATURE",
+      "description": "Security's own four-item accordion. Shares the industry accordion's 8000ms mechanics but uses a static image rather than Rive, emits no ellipse decoration, and sits on a black-to-twilight-white gradient whose stops interpolate in sRGB rather than oklab.",
+      "scope": "The security route only.",
+      "implementedBy": "sections/SecurityFeatureAccordion.jsx"
+    },
+    "feature.detail-cards": {
+      "category": "FEATURE",
+      "description": "Three feature detail cards on a near-white card background. The third item's subheading is a single space in the CMS, so it emits an empty h6 of zero height that still contributes its 24px margin — the card sits 24px lower by design.",
+      "scope": "The shipping route only; hideSection is true on the other five industry routes.",
+      "implementedBy": "industry/FeatureDetail.jsx"
+    },
+    "feature.text-card-asset": {
+      "category": "FEATURE",
+      "description": "A centred text card fused with a wide asset block beneath it, on a dust-to-white gradient.",
+      "scope": "The shipping route only — this slot does not exist in the other five industry routes' section arrays.",
+      "implementedBy": "industry/TextCardAsset.jsx"
+    },
+    "feature.text-card-security": {
+      "category": "FEATURE",
+      "description": "Security's text card. Its body renders the original's invalid markup faithfully — two unclosed h3 elements inside a p — which produces a deliberate React validateDOMNesting warning in development.",
+      "scope": "The security route only.",
+      "implementedBy": "sections/SecurityTextCard.jsx"
+    },
+    "feature.stacked-panels": {
+      "category": "FEATURE",
+      "description": "Four stacked capability panels with a sticky scroll-spy nav whose active item is hysteretic — a different panel activates scrolling up than scrolling down. The whole section inverts black-to-white via a class swap over 1300ms once its scroll progress passes 0.55. Each panel lazily mounts its own Rive canvas.",
+      "scope": "The platform route only; carries the #build anchor.",
+      "implementedBy": "platform/StackedPanels.jsx"
+    },
+    "feature.callout-shield": {
+      "category": "FEATURE",
+      "description": "Feature callout: a three-row table of security claims beside a shield PNG that rotates on rotateY from -45deg to 0 as it scrolls, over a pure-CSS blurred ellipse decoration.",
+      "scope": "The platform route only; carries the #security anchor.",
+      "implementedBy": "platform/FeatureCallout.jsx"
+    },
+    "feature.icon-grid": {
+      "category": "FEATURE",
+      "description": "Four bracketed cells, each an icon above a short label. Has a light variant (optional heading, dust background) and a dark variant (heading present, black background). The two variants use eight distinct icon files with baked-in colours, not four recoloured ones.",
+      "scope": "The security and about routes — the only section shared between those two templates.",
+      "implementedBy": "sections/IconGrid.jsx"
+    },
+    "conversion.career-listings": {
+      "category": "CONVERSION",
+      "description": "Careers conversion block: a heading, a mailto CTA, and an inline orbital SVG whose six parts reveal in a timed one-shot sequence on intersection, completing in about 1.65s.",
+      "scope": "The about route only.",
+      "implementedBy": "sections/CareerListings.jsx"
+    },
+    "legal.policy-body": {
+      "category": "LEGAL",
+      "description": "Long-form policy body on black: an h1, a 'Last updated' line, and a sequence of heading-plus-prose blocks. Deliberately carries no prose styling system — paragraphs have zero margin and lists have no bullets or indentation, so list items are visually indistinguishable from paragraphs. All vertical rhythm comes from two flex row-gaps. Terms of Service carries 24 blocks; the Cookie Policy carries 8.",
+      "scope": "Both legal routes, each with its own block array.",
+      "implementedBy": "LegalPage.jsx"
+    },
+    "utility.not-found-body": {
+      "category": "UTILITY",
+      "description": "Catch-all 404 body. Minimal: a heading and a line of copy. The original's own /industries and /careers paths 404, and those routes are deliberately not recreated in the clone.",
+      "scope": "The react-router '*' catch-all; matches no enumerable site path.",
+      "implementedBy": "pages/NotFound.jsx"
+    }
+  },
+  "templates": [
+    {
+      "id": "template.home",
+      "name": "Homepage",
+      "routeCount": 1,
+      "routes": [
+        "/"
+      ],
+      "routePattern": null,
+      "chrome": "full",
+      "headerTheme": "dark",
+      "sections": [
+        "shell.header",
+        "masthead.home-two-column",
+        "narrative.orbit-showcase",
+        "narrative.text-card-dashboard",
+        "proof.press-banner",
+        "proof.stats-grid",
+        "narrative.feature-asset-swap",
+        "feature.integrations-panels",
+        "shell.footer",
+        "shell.cookie-notice"
+      ]
+    },
+    {
+      "id": "template.platform",
+      "name": "Platform",
+      "routeCount": 1,
+      "routes": [
+        "/platform"
+      ],
+      "routePattern": null,
+      "chrome": "full",
+      "headerTheme": "white",
+      "sections": [
+        "shell.header",
+        "masthead.platform-stacked",
+        "feature.stacked-panels",
+        "feature.callout-shield",
+        "shell.footer",
+        "shell.cookie-notice"
+      ]
+    },
+    {
+      "id": "template.security",
+      "name": "Security",
+      "routeCount": 1,
+      "routes": [
+        "/security"
+      ],
+      "routePattern": null,
+      "chrome": "full",
+      "headerTheme": "dark",
+      "sections": [
+        "shell.header",
+        "feature.accordion-security",
+        "feature.text-card-security",
+        "feature.icon-grid",
+        "shell.footer",
+        "shell.cookie-notice"
+      ]
+    },
+    {
+      "id": "template.about",
+      "name": "About",
+      "routeCount": 1,
+      "routes": [
+        "/about"
+      ],
+      "routePattern": null,
+      "chrome": "full",
+      "headerTheme": "dark",
+      "sections": [
+        "shell.header",
+        "narrative.statement-showcase",
+        "feature.icon-grid",
+        "narrative.numbered-list",
+        "proof.employee-grid",
+        "narrative.sticky-aside-list",
+        "conversion.career-listings",
+        "shell.footer",
+        "shell.cookie-notice"
+      ]
+    },
+    {
+      "id": "template.industry",
+      "name": "Industry (standard)",
+      "routeCount": 5,
+      "routes": [
+        "/aerospace-and-defense",
+        "/chemicals",
+        "/energy-commodities",
+        "/engineering-construction",
+        "/telecommunications"
+      ],
+      "routePattern": null,
+      "chrome": "full",
+      "headerTheme": "white",
+      "sections": [
+        "shell.header",
+        "masthead.industry-nav",
+        "feature.icon-slider",
+        "feature.accordion-industry",
+        "proof.logo-showcase",
+        "shell.footer",
+        "shell.cookie-notice"
+      ]
+    },
+    {
+      "id": "template.industry-extended",
+      "name": "Industry (extended — shipping)",
+      "routeCount": 1,
+      "routes": [
+        "/shipping"
+      ],
+      "routePattern": null,
+      "chrome": "full",
+      "headerTheme": "white",
+      "sections": [
+        "shell.header",
+        "masthead.industry-nav",
+        "feature.icon-slider",
+        "feature.text-card-asset",
+        "feature.detail-cards",
+        "feature.accordion-industry",
+        "proof.logo-showcase",
+        "shell.footer",
+        "shell.cookie-notice"
+      ]
+    },
+    {
+      "id": "template.legal",
+      "name": "Legal / policy",
+      "routeCount": 2,
+      "routes": [
+        "/terms-of-service",
+        "/cookie-policy"
+      ],
+      "routePattern": null,
+      "chrome": "full",
+      "headerTheme": "dark",
+      "sections": [
+        "shell.header",
+        "legal.policy-body",
+        "shell.footer",
+        "shell.cookie-notice"
+      ]
+    },
+    {
+      "id": "template.not-found",
+      "name": "404 catch-all",
+      "routeCount": 0,
+      "routes": [],
+      "routePattern": null,
+      "chrome": "full",
+      "headerTheme": "dark",
+      "sections": [
+        "shell.header",
+        "utility.not-found-body",
+        "shell.footer",
+        "shell.cookie-notice"
+      ]
+    }
+  ]
+}

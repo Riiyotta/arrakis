@@ -1,0 +1,31 @@
+section,category,templates,routes,Homepage,Platform,Security,About,Industry (standard),Industry (extended — shipping),Legal / policy,404 catch-all
+shell.header,SHELL,8,12,x,x,x,x,x,x,x,x
+shell.footer,SHELL,8,12,x,x,x,x,x,x,x,x
+shell.cookie-notice,SHELL,8,12,x,x,x,x,x,x,x,x
+masthead.industry-nav,MASTHEAD,2,6,,,,,x,x,,
+proof.logo-showcase,PROOF,2,6,,,,,x,x,,
+feature.icon-slider,FEATURE,2,6,,,,,x,x,,
+feature.accordion-industry,FEATURE,2,6,,,,,x,x,,
+feature.icon-grid,FEATURE,2,2,,,x,x,,,,
+legal.policy-body,LEGAL,1,2,,,,,,,x,
+masthead.home-two-column,MASTHEAD,1,1,x,,,,,,,
+masthead.platform-stacked,MASTHEAD,1,1,,x,,,,,,
+narrative.orbit-showcase,NARRATIVE,1,1,x,,,,,,,
+narrative.text-card-dashboard,NARRATIVE,1,1,x,,,,,,,
+narrative.feature-asset-swap,NARRATIVE,1,1,x,,,,,,,
+narrative.statement-showcase,NARRATIVE,1,1,,,,x,,,,
+narrative.numbered-list,NARRATIVE,1,1,,,,x,,,,
+narrative.sticky-aside-list,NARRATIVE,1,1,,,,x,,,,
+proof.press-banner,PROOF,1,1,x,,,,,,,
+proof.stats-grid,PROOF,1,1,x,,,,,,,
+proof.employee-grid,PROOF,1,1,,,,x,,,,
+feature.integrations-panels,FEATURE,1,1,x,,,,,,,
+feature.accordion-security,FEATURE,1,1,,,x,,,,,
+feature.detail-cards,FEATURE,1,1,,,,,,x,,
+feature.text-card-asset,FEATURE,1,1,,,,,,x,,
+feature.text-card-security,FEATURE,1,1,,,x,,,,,
+feature.stacked-panels,FEATURE,1,1,,x,,,,,,
+feature.callout-shield,FEATURE,1,1,,x,,,,,,
+conversion.career-listings,CONVERSION,1,1,,,,x,,,,
+utility.not-found-body,UTILITY,1,0,,,,,,,,x
+ROUTE COUNT,,,12,1,1,1,1,5,1,2,0

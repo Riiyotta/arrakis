@@ -1,0 +1,79 @@
+<svg width="672" height="600" viewBox="0 0 672 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect x="86" y="123" width="501" height="170" rx="4" fill="#0F0C0B"></rect>
+<rect x="86.5" y="123.5" width="500" height="169" rx="3.5" stroke="white" stroke-opacity="0.1"></rect>
+<circle cx="114" cy="158.5" r="4" fill="#FF8B3E"></circle>
+
+<g opacity="0.5">
+<path d="M328 164.333C331.221 164.333 333.833 161.721 333.833 158.5C333.833 155.278 331.221 152.667 328 152.667C324.778 152.667 322.167 155.278 322.167 158.5C322.167 161.721 324.778 164.333 328 164.333Z" stroke="white" stroke-width="0.875"></path>
+<path d="M328 155.583V158.5L329.458 159.958" stroke="white" stroke-width="0.875"></path>
+</g>
+<rect x="510.5" y="147.5" width="52" height="22" rx="1.5" stroke="white" stroke-opacity="0.2"></rect>
+
+<path opacity="0.1" d="M110 185H563" stroke="white" stroke-width="0.6"></path>
+
+<mask id="path-12-inside-1_1249_54395" fill="white">
+<path d="M270 200.222C270 198.443 271.443 197 273.222 197H301.778C303.557 197 305 198.443 305 200.222V212.778C305 214.557 303.557 216 301.778 216H273.222C271.443 216 270 214.557 270 212.778V200.222Z"></path>
+</mask>
+<path d="M270 200.222C270 198.443 271.443 197 273.222 197H301.778C303.557 197 305 198.443 305 200.222V212.778C305 214.557 303.557 216 301.778 216H273.222C271.443 216 270 214.557 270 212.778V200.222Z" fill="#401D0E" fill-opacity="0.5"></path>
+<path d="M273.222 197V197.806H301.778V197V196.194H273.222V197ZM305 200.222H304.194V212.778H305H305.806V200.222H305ZM301.778 216V215.194H273.222V216V216.806H301.778V216ZM270 212.778H270.806V200.222H270H269.194V212.778H270ZM273.222 216V215.194C271.888 215.194 270.806 214.112 270.806 212.778H270H269.194C269.194 215.002 270.998 216.806 273.222 216.806V216ZM305 212.778H304.194C304.194 214.112 303.112 215.194 301.778 215.194V216V216.806C304.002 216.806 305.806 215.002 305.806 212.778H305ZM301.778 197V197.806C303.112 197.806 304.194 198.888 304.194 200.222H305H305.806C305.806 197.998 304.002 196.194 301.778 196.194V197ZM273.222 197V196.194C270.998 196.194 269.194 197.998 269.194 200.222H270H270.806C270.806 198.888 271.888 197.806 273.222 197.806V197Z" fill="white" fill-opacity="0.1" mask="url(#path-12-inside-1_1249_54395)"></path>
+
+<rect x="110" y="236" width="453" height="33" rx="4" fill="#FEAC5A" fill-opacity="0.2"></rect>
+<rect x="110.5" y="236.5" width="452" height="32" rx="3.5" stroke="#FEAC5A" stroke-opacity="0.5"></rect>
+<path d="M132.667 252.5L126 245.833L119.333 252.5L126 259.167L132.667 252.5Z" stroke="#FFDBAD"></path>
+<path d="M126 249.833V252.5" stroke="#FFDBAD"></path>
+<path d="M126.083 255H126M126.167 255C126.167 255.092 126.092 255.167 126 255.167C125.908 255.167 125.833 255.092 125.833 255C125.833 254.908 125.908 254.833 126 254.833C126.092 254.833 126.167 254.908 126.167 255Z" stroke="#FFDBAD"></path>
+
+
+<rect x="86" y="308" width="501" height="170" rx="4" fill="#0F0C0B"></rect>
+<rect x="86.5" y="308.5" width="500" height="169" rx="3.5" stroke="white" stroke-opacity="0.1"></rect>
+<circle cx="114" cy="343.5" r="4" fill="#3FAE43"></circle>
+
+<g opacity="0.5">
+<path d="M358 349.333C361.221 349.333 363.833 346.721 363.833 343.5C363.833 340.278 361.221 337.667 358 337.667C354.778 337.667 352.167 340.278 352.167 343.5C352.167 346.721 354.778 349.333 358 349.333Z" stroke="white" stroke-width="0.875"></path>
+<path d="M358 340.583V343.5L359.458 344.958" stroke="white" stroke-width="0.875"></path>
+</g>
+<rect x="510.5" y="332.5" width="52" height="22" rx="1.5" stroke="white" stroke-opacity="0.2"></rect>
+
+<path opacity="0.1" d="M110 370H563" stroke="white" stroke-width="0.6"></path>
+
+
+
+<rect x="110" y="421" width="453" height="33" rx="4" fill="#3FAE43" fill-opacity="0.15"></rect>
+<rect x="110.5" y="421.5" width="452" height="32" rx="3.5" stroke="#3FAE43" stroke-opacity="0.2"></rect>
+<path d="M121.333 438.833L123.667 441.167L130.667 433.833" stroke="#3FAE43" stroke-width="1.33333" stroke-linecap="square"></path>
+
+  
+  <rect fill="#0F0C0B" height="21" width="90" y="149" x="250"></rect>
+  <rect fill="#0F0C0B" height="21" width="90" y="334" x="280"></rect>
+  
+  <rect fill="#0F0C0B" height="25" width="40" y="194" x="268"></rect>
+
+  
+  <g opacity="0.5">
+    <circle fill="none" stroke-width="0.875" stroke="white" r="5.8" cy="158.5" cx="262"></circle>
+    <path fill="none" stroke-linecap="round" stroke-width="0.875" stroke="white" d="M262 155.6V158.5L263.5 160"></path>
+  </g>
+
+  
+  <g opacity="0.5">
+    <circle fill="none" stroke-width="0.875" stroke="white" r="5.8" cy="343.5" cx="298"></circle>
+    <path fill="none" stroke-linecap="round" stroke-width="0.875" stroke="white" d="M298 340.6V343.5L299.5 345"></path>
+  </g>
+
+  
+  <rect fill-opacity="0.6" fill="#401D0E" rx="3" height="14" width="35" y="202" x="270"></rect>
+  <rect fill="none" stroke-opacity="0.4" stroke="#FF8B3E" rx="2.5" height="13" width="34" y="202.5" x="270.5"></rect>
+  <text text-anchor="middle" letter-spacing="0.6" font-weight="600" font-size="9" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" fill="#FF8B3E" y="213" x="287.5">LIVE</text>
+
+  <text font-weight="500" font-size="12.5" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" fill="white" y="163" x="132">Voyage P&amp;L Agent</text>
+  <text font-weight="400" font-size="12" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" fill="white" y="213" x="114">62 tankers P&amp;L updated</text>
+  <text text-anchor="middle" font-weight="400" font-size="11" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" fill="white" y="163" x="536">Review</text>
+  <text font-weight="600" font-size="11.5" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" fill="white" y="257" x="143">Action Required:</text>
+  <text font-weight="400" font-size="11.5" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" fill="white" y="257" x="239"> MV Pacific Star — fuel costs 12% above voyage estimate</text>
+
+  <text font-weight="500" font-size="12.5" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" fill="white" y="348" x="132">Contract Variance Agent</text>
+  <text font-weight="400" font-size="12" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" fill="white" y="397" x="110">Monitoring 62 active voyages</text>
+  <text font-weight="400" font-size="12" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" fill="#B1ACA6" y="397" x="295">  3m ago</text>
+  <text text-anchor="middle" font-weight="400" font-size="11" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" fill="white" y="348" x="536">Review</text>
+  <text font-weight="400" font-size="11.5" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" fill="white" y="442" x="145">47 voyages within margin tolerance</text>
+</svg>

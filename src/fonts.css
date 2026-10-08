@@ -1,0 +1,71 @@
+/* Self-hosted faces recovered from the original build.
+   Fallback families replicate the original's metric overrides so that
+   layout does not shift between fallback and webfont paint. */
+
+@font-face {
+  font-family: 'terraneSerif';
+  src: url('/assets/fonts/terrane-serif-300.woff2') format('woff2');
+  font-display: swap;
+  font-weight: 300;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'terraneSerif';
+  src: url('/assets/fonts/terrane-serif-400.woff2') format('woff2');
+  font-display: swap;
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'terraneSerif Fallback';
+  src: local('Arial');
+  ascent-override: 98.34%;
+  descent-override: 27.39%;
+  line-gap-override: 0%;
+  size-adjust: 101.49%;
+}
+
+@font-face {
+  font-family: 'terraneSans';
+  src: url('/assets/fonts/terrane-sans-300.woff2') format('woff2');
+  font-display: swap;
+  font-weight: 300;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'terraneSans';
+  src: url('/assets/fonts/terrane-sans-400.woff2') format('woff2');
+  font-display: swap;
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'terraneSans Fallback';
+  src: local('Arial');
+  ascent-override: 101.87%;
+  descent-override: 28.38%;
+  line-gap-override: 0%;
+  size-adjust: 97.97%;
+}
+
+@font-face {
+  font-family: 'pxGrotesk';
+  src: url('/assets/fonts/px-grotesk-400.woff2') format('woff2');
+  font-display: swap;
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'pxGrotesk Fallback';
+  src: local('Arial');
+  ascent-override: 69.18%;
+  descent-override: 19.14%;
+  line-gap-override: 0%;
+  size-adjust: 135.87%;
+}
+
+:root {
+  --font-heading: 'terraneSerif', 'terraneSerif Fallback';
+  --font-body: 'terraneSans', 'terraneSans Fallback';
+  --font-mono: 'pxGrotesk', 'pxGrotesk Fallback';
+}

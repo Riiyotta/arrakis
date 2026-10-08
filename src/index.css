@@ -1,0 +1,220 @@
+@import './fonts.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --header-height: 4rem; /* 64px */
+    --number-flow-mask-height: 0em;
+  }
+  @media (min-width: 640px) {
+    :root {
+      --header-height: 5.375rem; /* 86px */
+    }
+  }
+
+  html {
+    font-size: 16px;
+    font-family: var(--font-body);
+    color: #1b1613;
+    background-color: #ffffff;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    margin: 0;
+  }
+
+  /* Global rule shipped by the original */
+  img {
+    -webkit-user-drag: none;
+    user-drag: none;
+  }
+}
+
+@layer components {
+  .container {
+    --container-width: 84rem;
+    max-width: calc(84rem + 2.5rem); /* 1384px */
+    margin-inline: auto;
+    padding-inline: 1.25rem; /* 20px */
+    width: 100%;
+  }
+  @media screen and (min-width: 1024px) {
+    .container {
+      max-width: calc(84rem + 6rem); /* 1440px */
+      padding-inline: 3rem; /* 48px */
+    }
+  }
+  .container .container {
+    padding-inline: 0;
+  }
+
+  .container-padding-x {
+    padding-inline: 1.25rem;
+  }
+  @media screen and (min-width: 1024px) {
+    .container-padding-x {
+      padding-inline: 3rem;
+    }
+  }
+}
+
+@layer utilities {
+  /* ── The site's signature "square bracket" hairline primitive (~40 uses) ── */
+  .square-bracket-border-t,
+  .square-bracket-border-b {
+    height: 8px;
+    border-color: currentColor;
+    position: relative;
+  }
+  /* The original's rule only sets `border-color`; its border WIDTH comes from
+     elsewhere in the v4 bundle. Under v3's preflight (`border-width: 0`) that
+     left the horizontal hairline invisible across the whole site — only the
+     1px ::before/::after end ticks rendered. Measured on the original:
+     `-t` is `border-top: 1px solid`, `-b` is `border-bottom: 1px solid`. */
+  .square-bracket-border-t {
+    border-top-width: 1px;
+    border-top-style: solid;
+  }
+  .square-bracket-border-b {
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+  }
+  @media (min-width: 40rem) {
+    .square-bracket-border-t,
+    .square-bracket-border-b {
+      height: 12px;
+    }
+  }
+  .square-bracket-border-t::before,
+  .square-bracket-border-t::after,
+  .square-bracket-border-b::before,
+  .square-bracket-border-b::after {
+    content: '';
+    background-color: currentColor;
+    width: 1px;
+    height: 100%;
+    position: absolute;
+  }
+  .square-bracket-border-t::after,
+  .square-bracket-border-b::after {
+    right: 0;
+  }
+  .square-bracket-border-t::before,
+  .square-bracket-border-t::after {
+    top: 0;
+  }
+  .square-bracket-border-b::before,
+  .square-bracket-border-b::after {
+    bottom: 0;
+  }
+
+  .square-bracket--lines-lg .square-bracket-border-t,
+  .square-bracket--lines-lg .square-bracket-border-b {
+    height: 12px;
+  }
+  @media (min-width: 40rem) {
+    .square-bracket--lines-lg .square-bracket-border-t,
+    .square-bracket--lines-lg .square-bracket-border-b {
+      height: 16px;
+    }
+  }
+  .square-bracket--lines-force-lg .square-bracket-border-t,
+  .square-bracket--lines-force-lg .square-bracket-border-b {
+    height: 16px !important;
+  }
+
+  .square-bracket-border-l,
+  .square-bracket-border-r {
+    z-index: 10;
+    width: 12px;
+    border-color: currentColor;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+  }
+  @media (min-width: 40rem) {
+    .square-bracket-side--lines-lg .square-bracket-border-l,
+    .square-bracket-side--lines-lg .square-bracket-border-r {
+      width: 16px;
+    }
+  }
+  .square-bracket-border-l {
+    border-left: 1px solid;
+    left: 0;
+  }
+  .square-bracket-border-r {
+    border-right: 1px solid;
+    right: 0;
+  }
+
+  .square-bracket-divider {
+    position: absolute;
+    left: 50%;
+    width: 1px;
+    height: 100%;
+    background-color: currentColor;
+    transform: translateX(-50%);
+  }
+  .square-bracket--hide-line-t .square-bracket-border-t {
+    border-top-color: transparent;
+  }
+
+  /* burger variant: 1px horizontal rules instead of vertical */
+  .square-bracket-burger-border-l::before,
+  .square-bracket-burger-border-l::after,
+  .square-bracket-burger-border-r::before,
+  .square-bracket-burger-border-r::after {
+    content: '';
+    background-color: currentColor;
+    width: 100%;
+    height: 1px;
+    position: absolute;
+    left: 0;
+  }
+  .square-bracket-burger-border-l::after,
+  .square-bracket-burger-border-r::after {
+    bottom: 0;
+  }
+  .square-bracket-burger-border-r {
+    border-right: 1px solid;
+    right: 0;
+  }
+
+  /* Absolute-positioned bracket variant (mega-menu list cells).
+     Verbatim from the original bundle — the hairlines are pinned to the
+     cell's edges, NOT laid out by flex. */
+  .square-bracket--absolute .square-bracket-border-t,
+  .square-bracket--absolute .square-bracket-border-b {
+    inset-inline: 0;
+    position: absolute !important;
+  }
+  .square-bracket--absolute .square-bracket-border-t {
+    top: 0;
+  }
+  .square-bracket--absolute .square-bracket-border-b {
+    bottom: 0;
+  }
+
+  /* number-flow counter parts (stats grid) */
+  .stat-number-flow::part(prefix),
+  .stat-number-flow::part(suffix) {
+    font-size: 0.7143em;
+  }
+  .stat-number-flow::part(prefix) {
+    margin-right: 0.25rem;
+  }
+  .stat-number-flow::part(suffix) {
+    margin-left: 0.25rem;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .letter-reveal-char {
+      opacity: 1 !important;
+    }
+  }
+}

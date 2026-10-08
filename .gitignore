@@ -1,0 +1,17 @@
+# deps / build output
+node_modules
+dist
+
+# packaged design-repo artifact — regenerated fresh, never committed
+# alongside the live folder it's built from
+design-repo.zip
+
+# local scratch
+.playwright-mcp/
+*.log
+clone-hero-1440.png
+.DS_Store
+
+# verbatim saved mirror of the original site (source material, not source code)
+AI transformation for mission-critical industries _ Arrakis.html
+AI transformation for mission-critical industries _ Arrakis_files/
