@@ -1,0 +1,21 @@
+{
+  "id": "primitive.logo-mark",
+  "kind": "primitive",
+  "source": "src/components/Header.jsx; src/components/Footer.jsx",
+  "evidenceKey": "primitive.logo-mark",
+  "description": "The Arrakis wordmark (header, inline SVG path) and icon-only mark (footer). BOTH ARE A REAL COMPANY TRADEMARK.",
+  "props": {
+    "variant": {
+      "enum": [
+        "wordmark",
+        "icon"
+      ]
+    },
+    "color": {
+      "type": "string",
+      "default": "currentColor"
+    }
+  },
+  "assetRole": "brand.logo-primary",
+  "licensing": "MUST NOT be reproduced in generated output. See assets/asset-roles.json role `brand.logo-primary` (generationPolicy must-not-fabricate-real-brand)."
+}

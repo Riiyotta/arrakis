@@ -1,0 +1,22 @@
+{
+  "id": "primitive.corner-brackets",
+  "kind": "primitive",
+  "source": "src/components/SquareBracket.jsx",
+  "evidenceKey": "primitive.corner-brackets",
+  "description": "Four 12x12 corner marks, each a single 1px L-shaped border, absolutely positioned at the corners of a media frame. Used around the hero video frame and the pinned Rive frame.",
+  "props": {
+    "color": {
+      "enum": [
+        "text-stroke-1",
+        "text-stroke-3"
+      ],
+      "default": "text-stroke-3"
+    },
+    "inset": {
+      "type": "string",
+      "default": "-0.68px",
+      "note": "a real sub-pixel inset measured on the original"
+    }
+  },
+  "aria": "aria-hidden=\"true\", pointer-events-none"
+}

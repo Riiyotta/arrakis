@@ -1,0 +1,49 @@
+{
+  "id": "component.text-column",
+  "kind": "component",
+  "source": "src/components/LegalPage.jsx; src/components/industry/TextCardAsset.jsx",
+  "evidenceKey": "component.text-column",
+  "description": "The site’s only text-block layout: a shrink-to-fit flex column with a max-width cap and a 12/16/20px row-gap between a heading and its body. There is NO prose/typography plugin anywhere — paragraph margins, list markers, list indentation and li gaps are all 0 via Tailwind preflight.",
+  "props": {
+    "align": {
+      "enum": [
+        "left",
+        "center"
+      ],
+      "default": "left"
+    },
+    "maxWidth": {
+      "type": "string",
+      "note": "860px on the legal pages, a literal CMS `section_max_width` px value elsewhere"
+    },
+    "headingRole": {
+      "enum": [
+        "heading-80",
+        "heading-56",
+        "heading-48",
+        "heading-40",
+        "heading-32",
+        "heading-28",
+        "heading-24"
+      ]
+    },
+    "bodyRole": {
+      "enum": [
+        "body-22-light",
+        "body-20-light",
+        "body-20-regular",
+        "body-18-light",
+        "body-18-regular",
+        "body-16-light"
+      ]
+    }
+  },
+  "gap": "gap-y-3 sm:gap-y-4 md:gap-y-5",
+  "forbidden": [
+    "prose",
+    "space-y-*",
+    "list-disc",
+    "pl-*",
+    "font-bold"
+  ]
+}

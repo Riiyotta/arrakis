@@ -1,0 +1,24 @@
+{
+  "id": "primitive.link-hover-fade",
+  "kind": "primitive",
+  "source": "src/components/LogoBanner.jsx; src/components/PressBanner.jsx; src/components/Footer.jsx",
+  "evidenceKey": "primitive.link-hover-fade",
+  "description": "The site-wide link affordance: opacity 60% at rest, 100% on hover/focus-visible. Used for every logo link and most footer links. There is no underline anywhere.",
+  "props": {
+    "restOpacity": {
+      "const": 0.6
+    },
+    "hoverOpacity": {
+      "const": 1.0
+    }
+  },
+  "motion": {
+    "property": "opacity",
+    "duration": "300ms",
+    "variant": "footer and nav links use {motion.duration.DEFAULT} (250ms) instead",
+    "easing": "{motion.easing.DEFAULT}"
+  },
+  "notes": [
+    "Two durations coexist in the real source: 300ms on logo/press links, 250ms on footer/nav links. Both are real; do not unify them."
+  ]
+}

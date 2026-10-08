@@ -1,0 +1,49 @@
+{
+  "id": "component.logo-row",
+  "kind": "component",
+  "source": "src/components/LogoBanner.jsx",
+  "evidenceKey": "component.logo-row",
+  "description": "Generic on purpose in the real source: N logos cycled through M fixed slots. The hero passes 7 logos into 5 rotating slots; the press banner passes 4 logos into 4 static slots (4 into 4 means no cycling, entrance animation only).",
+  "composes": [
+    "primitive.link-hover-fade"
+  ],
+  "props": {
+    "slots": {
+      "type": "integer",
+      "minimum": 3,
+      "maximum": 6
+    },
+    "logoCount": {
+      "type": "integer",
+      "minimum": 3,
+      "maximum": 8
+    },
+    "rotates": {
+      "type": "boolean",
+      "note": "derived: true only when logoCount > slots"
+    }
+  },
+  "motion": {
+    "reveal": {
+      "from": {
+        "y": 40,
+        "opacity": 0,
+        "filter": "blur(4px)"
+      },
+      "to": {
+        "y": 0,
+        "opacity": 1,
+        "filter": "blur(0)"
+      },
+      "duration": "500ms",
+      "easing": "ease-out",
+      "stagger": "80ms per slot",
+      "reverses": "re-runs in reverse when the row leaves the viewport"
+    },
+    "rotation": {
+      "period": "3000ms per slot swap",
+      "crossfade": "incoming and outgoing logos coexist for the 500ms of the same blur/fade animation"
+    }
+  },
+  "licensing": "Every logo in both real instances is a third-party trademark. See assets/asset-roles.json roles brand.partner-logo and brand.press-logo."
+}

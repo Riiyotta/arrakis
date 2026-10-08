@@ -1,0 +1,30 @@
+{
+  "id": "primitive.stat-counter",
+  "kind": "primitive",
+  "source": "src/components/StatsGrid.jsx; src/components/Integrations.jsx; src/components/Hero.jsx; src/index.css",
+  "evidenceKey": "primitive.stat-counter",
+  "description": "A <number-flow-react> custom element (@number-flow/react) that animates a numeral into place, with an optional prefix/suffix part styled at 0.7143em.",
+  "props": {
+    "value": {
+      "type": "number"
+    },
+    "prefix": {
+      "type": "string",
+      "maxWords": 1
+    },
+    "suffix": {
+      "enum": [
+        "+",
+        "%",
+        "x",
+        ""
+      ]
+    }
+  },
+  "tokens": [
+    "{component.numberFlow}",
+    "{typography.stat-56}",
+    "{typography.stat-48}"
+  ],
+  "lineHeightTrap": "The stat-56/stat-48 roles must carry line-height 1, not the 1.1 the shipped CSS declares — the shadow-root forces 1 on the host. See tokens/20-component/component.json#numberFlow."
+}

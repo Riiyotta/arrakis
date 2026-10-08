@@ -1,0 +1,226 @@
+{
+  "$id": "assets/asset-roles",
+  "version": "1.0.0",
+  "description": "CLOSED asset-role registry. Every media-bearing field in schema/pagespec.schema.json references `roleEnum` — there is no bare `image`/`src` string anywhere in the schema, so a generator cannot invent asset semantics.",
+  "sourceIsRealCompany": true,
+  "sourceSite": "https://www.arrakis.tech/ — a REAL, LIVE company website. Everything below follows from that fact and is a compliance constraint, not a style preference.",
+  "generationPolicyEnum": [
+    "may-generate-new",
+    "must-reuse-exact",
+    "must-not-fabricate-real-brand",
+    "must-not-fabricate-compliance-claim",
+    "must-not-redistribute"
+  ],
+  "roleEnum": [
+    "brand.logo-primary",
+    "brand.favicon",
+    "brand.partner-logo",
+    "brand.press-logo",
+    "brand.investor-logo",
+    "compliance.badge",
+    "illustration.feature-icon",
+    "illustration.value-scene",
+    "illustration.industry-masthead",
+    "media.product-screenshot",
+    "media.hero-video",
+    "motion.rive-scene",
+    "decoration.texture",
+    "typeface.webfont"
+  ],
+  "pinnedPolicies": {
+    "_why": "MASTER-GUIDE §3.23: membership-in-a-closed-set is a weaker claim than 'this specific role is pinned to this specific value'. These 8 roles carry real legal weight (a live company's trademark, third-party trademarks, audited compliance marks, commercially licensed typefaces, opaque binaries that cannot be regenerated). extraction/verify_all.py asserts each role's generationPolicy EQUALS the value below, so changing one to a different-but-still-valid enum member fails the run.",
+    "brand.logo-primary": "must-not-fabricate-real-brand",
+    "brand.favicon": "must-not-fabricate-real-brand",
+    "brand.partner-logo": "must-not-fabricate-real-brand",
+    "brand.press-logo": "must-not-fabricate-real-brand",
+    "brand.investor-logo": "must-not-fabricate-real-brand",
+    "compliance.badge": "must-not-fabricate-compliance-claim",
+    "typeface.webfont": "must-not-redistribute",
+    "motion.rive-scene": "must-reuse-exact"
+  },
+  "roles": {
+    "brand.logo-primary": {
+      "generationPolicy": "must-not-fabricate-real-brand",
+      "description": "The Arrakis wordmark (inline SVG path in Header.jsx) and the icon-only mark (Footer.jsx).",
+      "realInstances": [
+        "src/components/Header.jsx LOGO_PATH",
+        "src/components/Footer.jsx inline <path>"
+      ],
+      "aiGuidance": "A generated page MUST NOT reproduce this mark, its path data, or any mark styled to be mistaken for it. Substitute a clearly-placeholder wordmark for the page being generated."
+    },
+    "brand.favicon": {
+      "generationPolicy": "must-not-fabricate-real-brand",
+      "description": "public/favicons/* and public/favicon.ico — the real company's favicon set and web manifest.",
+      "realInstances": [
+        "public/favicons/favicon.svg",
+        "public/favicons/apple-touch-icon.png",
+        "public/favicons/site.webmanifest"
+      ],
+      "aiGuidance": "MUST NOT be reused. Generate or omit."
+    },
+    "brand.partner-logo": {
+      "generationPolicy": "must-not-fabricate-real-brand",
+      "description": "Third-party product/vendor trademarks shown as integration targets in industry.logo-showcase (4 tabs x 4-6 logos) and in integrations.paginated-panels.",
+      "realBrands": [
+        "SAP",
+        "Oracle",
+        "Infor",
+        "IBM",
+        "Workday",
+        "Anthropic",
+        "OpenAI",
+        "Gemini",
+        "Azure AI",
+        "Amazon Bedrock",
+        "xAI",
+        "Snowflake",
+        "Databricks",
+        "Amazon Redshift",
+        "PostgreSQL",
+        "Google BigQuery",
+        "SharePoint",
+        "Box",
+        "Dropbox",
+        "Google Cloud"
+      ],
+      "aiGuidance": "A generated page MUST NOT reproduce any of these trademarks, and MUST NOT assert an integration or partnership that the page's own subject does not actually have. Use neutral placeholder tiles."
+    },
+    "brand.press-logo": {
+      "generationPolicy": "must-not-fabricate-real-brand",
+      "description": "Publication mastheads in social.press-banner, each linked to a real article about the real company.",
+      "realBrands": [
+        "Fortune",
+        "Bloomberg",
+        "Sifted",
+        "Tech.eu"
+      ],
+      "realUrls": [
+        "https://fortune.com/2026/07/22/arrakis-a-startup-betting-ais-biggest-payoff-is-in-industrial-sectors-not-office-work-emerges-from-stealth-with-38-million-in-venture-funding/",
+        "https://www.bloomberg.com/news/newsletters/2026-07-29/palantir-s-new-rivals-in-europe-seize-the-sovereignty-opening",
+        "https://sifted.eu/articles/12-investors-who-recently-became-founders",
+        "https://tech.eu/2026/07/22/openai-and-datadog-leaders-back-ai-deployment-startup-arrakis/"
+      ],
+      "aiGuidance": "MUST NOT be reproduced, and a press banner MUST NOT be generated with fabricated coverage or fabricated article URLs. Omit the section rather than invent press."
+    },
+    "brand.investor-logo": {
+      "generationPolicy": "must-not-fabricate-real-brand",
+      "description": "Backer/customer marks in the hero logo banner (7 logos cycled through 5 slots).",
+      "realBrands": [
+        "Datadog",
+        "ASML",
+        "Accel",
+        "Revolut",
+        "Delivery Hero",
+        "OpenAI",
+        "Palantir"
+      ],
+      "aiGuidance": "MUST NOT be reproduced, and investor/customer logos MUST NOT be fabricated. Omit the row rather than invent backers."
+    },
+    "compliance.badge": {
+      "generationPolicy": "must-not-fabricate-compliance-claim",
+      "description": "Certification/regulation marks in shared.icon-grid on /security.",
+      "realBadges": [
+        "SOC 2 compliance",
+        "ISO 27001",
+        "GDPR",
+        "EU AI act"
+      ],
+      "aiGuidance": "A compliance badge asserts an audited, verifiable fact about a real organisation. A generated page MUST NOT emit one unless the fact is supplied and verified by the operator. Never generate a certification mark to fill a slot."
+    },
+    "illustration.feature-icon": {
+      "generationPolicy": "may-generate-new",
+      "description": "Abstract 40x40 stroke icons for shared.icon-grid and the industry icon-slider. 11 distinct files; light and dark variants are DISTINCT files, not CSS recolours.",
+      "aiGuidance": "Safe to generate new. Match: 40x40 viewBox, 1px-equivalent stroke, no fill, monochrome via currentColor, geometric/abstract — no logos, no literal objects, no text."
+    },
+    "illustration.value-scene": {
+      "generationPolicy": "may-generate-new",
+      "description": "Four 205x180 abstract SVG scenes for about.sticky-aside-list.",
+      "aiGuidance": "Safe to generate new. Match: 205x180, flat, warm neutral palette drawn from {color.dust}/{color.sand}/{color.stroke-1}, no photography, no people."
+    },
+    "illustration.industry-masthead": {
+      "generationPolicy": "may-generate-new",
+      "description": "Five 517x345 abstract industry SVGs for industry.nav-masthead on the non-shipping routes.",
+      "aiGuidance": "Safe to generate new at 517x345. Must stay abstract/diagrammatic — no recognisable real vessels, aircraft, plants or facilities that could read as a real customer's property."
+    },
+    "media.product-screenshot": {
+      "generationPolicy": "must-reuse-exact",
+      "description": "Raster captures of the real product UI (dashboard, governance console). Source HEIFs transcoded to WebP because HEIF does not decode in browsers.",
+      "realInstances": [
+        "public/assets/de836cbebbcbb7bf5e4ea52fa608f61c08a8fc0b-2328x1326.webp",
+        "public/assets/dashboard-fallback-2328x1326.webp",
+        "public/assets/shipping-assetblock-2690x1034.webp",
+        "public/assets/56b99117f27cb85f08cc8248722be79899f094fd-1548x1280.webp"
+      ],
+      "aiGuidance": "MUST NOT be fabricated: a synthesised product screenshot is a false claim about what the software does. Either reuse the exact file in a like-for-like clone, or omit the media and keep the layout's intrinsic ratio with a neutral placeholder. The intrinsic width/height is load-bearing — it sets the section height, there is no aspect-ratio wrapper."
+    },
+    "media.hero-video": {
+      "generationPolicy": "must-reuse-exact",
+      "description": "Five .webm clips in the hero's 8000ms rotation.",
+      "realInstances": [
+        "public/assets/video/*.webm (5 files)"
+      ],
+      "aiGuidance": "MUST NOT be fabricated. Reuse exact or omit; the hero degrades to the caption-only state."
+    },
+    "motion.rive-scene": {
+      "generationPolicy": "must-reuse-exact",
+      "description": "11 .riv binaries rendered to WebGL canvases by @rive-app/webgl2.",
+      "realInstances": [
+        "public/assets/rive/*.riv (11 files, 40-hex-char hash names)"
+      ],
+      "aiGuidance": "A .riv is an opaque compiled binary with named state machines and inputs. It CANNOT be generated or edited from text. Reuse exact, or substitute a static image and set the wrapper's aspect-ratio explicitly."
+    },
+    "decoration.texture": {
+      "generationPolicy": "may-generate-new",
+      "description": "Non-semantic background textures and flares.",
+      "realInstances": [
+        "public/assets/bottom-right-dune.png",
+        "public/assets/ellipse.avif",
+        "public/assets/stacked-masthead-flare.png",
+        "public/assets/footer-BG.jpg"
+      ],
+      "aiGuidance": "Safe to generate new. Keep them aria-hidden and pointer-events-none as the real source does."
+    },
+    "typeface.webfont": {
+      "generationPolicy": "must-not-redistribute",
+      "description": "terraneSerif (300, 400), terraneSans (300, 400), pxGrotesk (400) — five self-hosted .woff2 files in public/assets/fonts/.",
+      "realInstances": [
+        "public/assets/fonts/terrane-serif-300.woff2",
+        "public/assets/fonts/terrane-serif-400.woff2",
+        "public/assets/fonts/terrane-sans-300.woff2",
+        "public/assets/fonts/terrane-sans-400.woff2",
+        "public/assets/fonts/px-grotesk-400.woff2"
+      ],
+      "licensing": "ALL THREE TYPEFACES ARE COMMERCIALLY LICENSED. They are self-hosted in the clone for fidelity only; they are NOT redistributable and no licence for them ships with this design-repo. A derived or generated project MUST either hold its own licence or substitute. The @font-face blocks ship metric-override fallback families ('<name> Fallback', src: local('Arial') with ascent/descent/line-gap/size-adjust overrides) so the layout does not shift between the fallback and the webfont paint — substituting is therefore low-risk.",
+      "aiGuidance": "MUST NOT be redistributed. A generated or derived project either holds its own licence for these three families or substitutes. Substitution is low-risk here because the real @font-face blocks ship metric-override fallback families, so the layout does not shift. Never copy the .woff2 files into a new deliverable and never reference them from a public URL."
+    }
+  },
+  "nonAssetContentBans": {
+    "_why": "Not every reproduction risk is an image. These are the non-asset strings a generated page must not carry over.",
+    "realContactEmails": {
+      "policy": "must-not-reuse",
+      "values": [
+        "careers@arrakis.tech",
+        "demo@arrakis.tech",
+        "rafael@arrakistechnologies.ai",
+        "chester@arrakistechnologies.ai"
+      ],
+      "note": "Real, live mailboxes. A generated page MUST NOT send traffic to them."
+    },
+    "realSocialProfiles": {
+      "policy": "must-not-reuse",
+      "values": [
+        "https://www.linkedin.com/company/arrakis-corp/"
+      ]
+    },
+    "realLegalText": {
+      "policy": "must-not-reuse",
+      "description": "/terms-of-service and /cookie-policy reproduce the REAL company's real legal text verbatim (src/data/legal-terms.js, src/data/legal-cookie.js — 24 and 8 blocks). This is another organisation's legal instrument and is also factually wrong for any other operator.",
+      "aiGuidance": "The legal template's STRUCTURE is reusable. Its TEXT must be replaced wholesale, never reused or paraphrased. The template contract therefore sets `content.requiresOperatorSuppliedText: true`."
+    },
+    "realCompanyCopy": {
+      "policy": "must-not-reuse-as-fact",
+      "description": "Every heading, lede and stat in src/data/* is a real company's real claim (e.g. '8+ Countries Arrakis is live in', '100+ Agents in production', '6x Agent performance uplift on Arrakis Harness').",
+      "aiGuidance": "Copy budgets (maxWords) and tone are reusable. The claims are not. A generated page must not carry a stat, customer count or outcome figure over from this design-repo."
+    }
+  }
+}

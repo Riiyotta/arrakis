@@ -1,0 +1,40 @@
+{
+  "id": "about.employee-grid",
+  "kind": "section",
+  "scope": "body",
+  "category": "statement",
+  "evidenceKey": "section.about.employee-grid",
+  "source": "src/components/sections/EmployeeGrid.jsx; src/data/about.js",
+  "description": "/about slot 4: `employeeGrid`. The CMS block has a `heading` and NO employees field, so the live section is 646 characters of outerHTML with four descendants and ZERO <img>. A centred h2 is the whole section.",
+  "surface": "dark",
+  "content": {
+    "required": [
+      "heading"
+    ],
+    "additionalProperties": false,
+    "properties": {
+      "heading": {
+        "type": "string",
+        "maxWords": 10
+      }
+    }
+  },
+  "constraints": {
+    "onePerPage": true,
+    "routeAllowlist": [
+      "/about"
+    ]
+  },
+  "motion": {
+    "pattern": "none",
+    "reducedMotionFallback": "none"
+  },
+  "responsive": {
+    "base": "centred h2",
+    "note": "no layout change at any breakpoint beyond the section padding ramp"
+  },
+  "notes": [
+    "Deliberately empty of people. A generated page MUST NOT populate this with employee photos — there is no employees field and real employee likenesses are out of bounds (see assets/asset-roles.json)."
+  ],
+  "copyBudgetDerivation": "Each maxWords budget is max(measured+2, ceil(measured*1.25)). The measured maxima were computed by importing the real src/data/*.js modules and word-counting every string for that field across every route. See extraction/measured-values.json#copyBudgets."
+}

@@ -1,0 +1,14 @@
+{
+  "$id": "tokens/00-foundation/icon-size",
+  "layer": "foundation",
+  "description": "Icon/logo intrinsic sizes, taken from the real asset filenames (every Sanity asset is hash-named with its intrinsic WxH suffix) and the width/height attributes in src/data/*.",
+  "evidenceKey": "token.icon-size",
+  "tokens": {
+    "feature-icon":   { "$value": "40x40", "count": 11, "usage": "shared.icon-grid items on /security and /about (light and white-stroked variants are DISTINCT files, not recolours)" },
+    "compliance-badge": { "$value": "30x30 / 32x32 / 32x34", "usage": "/security iconGrid compliance marks (SOC 2, ISO 27001, GDPR, EU AI act)" },
+    "value-illustration": { "$value": "205x180", "count": 4, "usage": "about.sticky-aside-list item images" },
+    "integration-logo": { "$value": "variable, 50x20 to 143x16", "usage": "industry.logo-showcase tiles; tile box is a fixed 224px with a 24px gutter (step 248px)" },
+    "press-logo":     { "$value": "97x48 / 121x48 / 136x48 / 51x48", "usage": "social.press-banner, 4 slots" },
+    "industry-masthead": { "$value": "517x345", "count": 5, "usage": "industry.nav-masthead hero SVG on the 5 non-shipping routes" }
+  }
+}

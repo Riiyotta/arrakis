@@ -1,0 +1,22 @@
+{
+  "$id": "tokens/00-foundation/breakpoint",
+  "layer": "foundation",
+  "description": "Tailwind v3 defaults in use PLUS 7 bespoke min-width screens. The bespoke screens are all `min-<px>` named and are used for container/grid fine-tuning only.",
+  "evidenceKey": "token.breakpoint",
+  "defaults": {
+    "sm": "640px", "md": "768px", "lg": "1024px", "xl": "1280px", "2xl": "1536px"
+  },
+  "bespoke": {
+    "min-346": "346px", "min-960": "960px", "min-1218": "1218px",
+    "min-1328": "1328px", "min-1346": "1346px", "min-1440": "1440px", "min-1446": "1446px"
+  },
+  "bespokeCount": 7,
+  "loadBearingBreakpoints": {
+    "640": "header height 64px -> 86px (--header-height); square-bracket hairline height 8px -> 12px",
+    "768": "THE structural breakpoint. Type line-height steps here (6 of 27 roles). The homepage pinned feature section (`feature.asset-swap-pinned`) becomes pinned here. Stats-grid left/right columns go flex-col -> flex-row. The /about numberedList flips flex-col-reverse.",
+    "1024": "Container padding 20px -> 48px and max-width 1384px -> 1440px. Desktop nav appears / burger hides. Mega-menu becomes horizontal. Integrations panel flex-col -> flex-row and its dot nav appears. Footer link grid 2-col -> 3-col."
+  },
+  "correctedClaims": [
+    "CLONE_SPEC.md §3.3 and §6.5 both state the homepage pinned section pins at >=1024px. That is WRONG. The real source gates the pin on `window.matchMedia('(min-width: 768px)')` and records the measurement that settled it (pinned at 768 -> section 3976.56px; not pinned at 767 -> 1121.67px). The 1024 claim left the clone ~3072px short at 768."
+  ]
+}

@@ -1,0 +1,570 @@
+{
+  "pageSpecVersion": "1.0.0",
+  "route": "/shipping",
+  "template": "industry-page",
+  "theme": "light-surface",
+  "notes": "The most common template (6 of 12 real routes), instantiated with the /shipping content set because /shipping is the one route that exercises BOTH optional nodes. Every string is real copy read out of src/data/industries.js, including its real trailing spaces and the deliberately broken CMS nav list. All media carry provenance 'source-original': this example documents the existing clone, it is not generated output. Verified against schema/pagespec.schema.json with zero errors and against schema/semantic_validate.py with zero errors.",
+  "nodes": [
+    {
+      "section": "chrome.header",
+      "motion": {
+        "pattern": "header-theme-swap",
+        "reducedMotionFallback": "no-transition"
+      },
+      "content": {
+        "theme": "white",
+        "navItems": [
+          {
+            "label": "Platform",
+            "href": "/platform",
+            "megaMenu": "platform"
+          },
+          {
+            "label": "Industries",
+            "megaMenu": "industries"
+          },
+          {
+            "label": "Security",
+            "href": "/security"
+          },
+          {
+            "label": "About",
+            "href": "/about"
+          }
+        ],
+        "cta": {
+          "label": "Book a demo",
+          "href": "mailto:demo@arrakis.tech"
+        }
+      }
+    },
+    {
+      "section": "industry.nav-masthead",
+      "variant": "hero-rive",
+      "motion": {
+        "pattern": "none",
+        "reducedMotionFallback": "none"
+      },
+      "content": {
+        "heading": {
+          "lead": "Run complex shipping operations ",
+          "emphasis": "with AI agents that execute"
+        },
+        "hero": {
+          "assetRole": "motion.rive-scene",
+          "alt": "Shipping Operations",
+          "provenance": "source-original",
+          "src": "/assets/rive/bc2a3f37d7a5e5d5820822fc96685e762bc484aa.riv",
+          "aspectRatio": "666/670"
+        },
+        "navItems": [
+          {
+            "label": "Shipping",
+            "href": "/#"
+          },
+          {
+            "label": "Aerospace and Defense",
+            "href": "/#"
+          },
+          {
+            "label": "Energy",
+            "href": "/#"
+          },
+          {
+            "label": "Chemicals",
+            "href": "/#"
+          },
+          {
+            "label": "Manufacturing",
+            "href": "/#"
+          },
+          {
+            "label": "Telecommunications",
+            "href": "/#"
+          }
+        ],
+        "cta": {
+          "label": "Book a demo",
+          "href": "/#",
+          "variant": "heroSolid"
+        }
+      }
+    },
+    {
+      "section": "industry.icon-slider",
+      "variant": "bg-white",
+      "motion": {
+        "pattern": "embla-friction-carousel",
+        "reducedMotionFallback": "no-autoplay-first-slide-only"
+      },
+      "content": {
+        "background": "white",
+        "supportingText": "Accelerate execution at sea with AI Agents that streamline HQ coordination across systems, spreadsheets, and inboxes ",
+        "icons": [
+          {
+            "assetRole": "illustration.feature-icon",
+            "alt": "Workflows Icon",
+            "provenance": "source-original",
+            "src": "/assets/093ce9ae077b75d4ef329ba0242ec2992b3ce71a-40x40.svg",
+            "intrinsicWidth": 40,
+            "intrinsicHeight": 40
+          },
+          {
+            "assetRole": "illustration.feature-icon",
+            "alt": "Ingest Icon",
+            "provenance": "source-original",
+            "src": "/assets/05f904bc8a682b0c86a3193db636f549e6838e68-40x40.svg",
+            "intrinsicWidth": 40,
+            "intrinsicHeight": 40
+          },
+          {
+            "assetRole": "illustration.feature-icon",
+            "alt": "Increase Icon",
+            "provenance": "source-original",
+            "src": "/assets/5e4a36dc940035166a677f21e12db048fd2d8c9c-40x40.svg",
+            "intrinsicWidth": 40,
+            "intrinsicHeight": 40
+          },
+          {
+            "assetRole": "illustration.feature-icon",
+            "alt": "Surface Icon",
+            "provenance": "source-original",
+            "src": "/assets/4b65139d1ac74353494895e7749e97ca6c7f7452-40x40.svg",
+            "intrinsicWidth": 40,
+            "intrinsicHeight": 40
+          },
+          {
+            "assetRole": "illustration.feature-icon",
+            "alt": "Control Icon",
+            "provenance": "source-original",
+            "src": "/assets/d3732371ca1004ae608bd526545d9a4d2a1f7991-40x40.svg",
+            "intrinsicWidth": 40,
+            "intrinsicHeight": 40
+          }
+        ],
+        "items": [
+          [
+            "Execute complex workflows across chartering, operations, procurement, supply chain, and finance"
+          ],
+          [
+            "Ingest and structure data from emails, PDFs, and operational systems"
+          ],
+          [
+            "Increase operational ",
+            "coverage without increasing headcount"
+          ],
+          [
+            "Surface delays, risks, and discrepancies across vessels ",
+            "and suppliers in real time"
+          ],
+          [
+            "Maintain full control with ",
+            "approvals, audit trails, and governance"
+          ]
+        ]
+      }
+    },
+    {
+      "section": "industry.text-card-asset",
+      "motion": {
+        "pattern": "none",
+        "reducedMotionFallback": "none"
+      },
+      "content": {
+        "heading": "Built to keep shipping operations moving",
+        "maxWidth": 480,
+        "asset": {
+          "assetRole": "media.product-screenshot",
+          "alt": "Shipping Operations",
+          "provenance": "source-original",
+          "src": "/assets/shipping-assetblock-2690x1034.webp",
+          "intrinsicWidth": 2690,
+          "intrinsicHeight": 1034
+        }
+      }
+    },
+    {
+      "section": "industry.feature-detail",
+      "motion": {
+        "pattern": "none",
+        "reducedMotionFallback": "none"
+      },
+      "content": {
+        "items": [
+          {
+            "hasBackgroundColor": true,
+            "heading": "Monitor vessels in real time",
+            "content": "Monitoring individual vessels on a real-time basis to create an accurate operational view - reconciling estimates against actuals whilst cross-referencing contract terms.",
+            "asset": {
+              "assetRole": "illustration.industry-masthead",
+              "alt": "Monitor Disruptions",
+              "provenance": "source-original",
+              "src": "/assets/c0c121672ce6403215797ae6d27909cf3b51e94c-672x600.svg",
+              "intrinsicWidth": 672,
+              "intrinsicHeight": 600
+            },
+            "summary": {
+              "icon": {
+                "assetRole": "illustration.feature-icon",
+                "alt": "Bar Chart Icon",
+                "provenance": "source-original",
+                "src": "/assets/298fbfbe423ab05a8aebe9e77a90090ee216e7c1-32x32.svg",
+                "intrinsicWidth": 32,
+                "intrinsicHeight": 32
+              },
+              "content": "Reduce manual reconciliation by 85%"
+            },
+            "list": [
+              "Reconcile voyage estimates against actuals automatically, across every cost line",
+              "Flag variances the moment actuals diverge from agreed terms",
+              "Eliminate manual spreadsheets and end-of-month consolidation",
+              "Give operators a live margin view for every vessel in the fleet"
+            ]
+          },
+          {
+            "hasBackgroundColor": false,
+            "heading": "Automate procurement operations end-to-end",
+            "content": "AI agents manage the full Source-to-Pay lifecycle, parsing inbound quotes, comparing suppliers, and coordinating decisions across vessels, suppliers, and procurement teams.",
+            "asset": {
+              "assetRole": "illustration.industry-masthead",
+              "alt": "Automate Sourcing",
+              "provenance": "source-original",
+              "src": "/assets/662df59a8e184da7e964c1b52b826d22aead70b2-672x600.svg",
+              "intrinsicWidth": 672,
+              "intrinsicHeight": 600
+            },
+            "summary": {
+              "icon": {
+                "assetRole": "illustration.feature-icon",
+                "alt": "Bar Chart Icon",
+                "provenance": "source-original",
+                "src": "/assets/298fbfbe423ab05a8aebe9e77a90090ee216e7c1-32x32.svg",
+                "intrinsicWidth": 32,
+                "intrinsicHeight": 32
+              },
+              "content": "Reduce cycle times by up to 60% while reducing P&L leakage.\n"
+            },
+            "list": [
+              "Reduce manual coordination between vessels, procurement, and vendors",
+              "Streamline Source-to-Procure with AI-Augmented Buying",
+              "Increase supplier coverage and negotiation leverage ",
+              "Reduce leakage with continuous spend variance investigations"
+            ]
+          },
+          {
+            "hasBackgroundColor": true,
+            "subheading": " ",
+            "heading": "Unlock AI-enabled chartering intelligence",
+            "content": "Optimise voyage planning, commercial decisions, and contract extraction with Agents that run on demand across your systems.",
+            "asset": {
+              "assetRole": "illustration.industry-masthead",
+              "alt": "Streamline Invoice Processing",
+              "provenance": "source-original",
+              "src": "/assets/169f97d33e1251ade49b33847042bd8a9d3147a3-672x570.svg",
+              "intrinsicWidth": 672,
+              "intrinsicHeight": 570
+            },
+            "summary": {
+              "icon": {
+                "assetRole": "illustration.feature-icon",
+                "alt": "Bar Chart Icon",
+                "provenance": "source-original",
+                "src": "/assets/298fbfbe423ab05a8aebe9e77a90090ee216e7c1-32x32.svg",
+                "intrinsicWidth": 32,
+                "intrinsicHeight": 32
+              },
+              "content": "Achieve live visibility across your chartering operations."
+            },
+            "list": [
+              "Produce voyage plans in minutes and flag conflicts before they become operational fires",
+              "Score cargo opportunities against current fleet position",
+              "Get live pricing intelligence from your operations",
+              "Reduce manual data entry and reconciliation effort"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "section": "industry.feature-accordion",
+      "motion": {
+        "pattern": "auto-advance-accordion",
+        "reducedMotionFallback": "all-panels-open-no-autoplay"
+      },
+      "content": {
+        "heading": "Go from Chatbots to Human-Governed Autonomous Agents at warp speed",
+        "asset": {
+          "assetRole": "motion.rive-scene",
+          "alt": "Feature accordion scene",
+          "provenance": "source-original",
+          "src": "/assets/rive/5d13f5cc1bf4b08fd1b5628bf7b90bccd248acac.riv",
+          "aspectRatio": "799/617"
+        },
+        "items": [
+          {
+            "index": "01",
+            "subheading": "Deep dive",
+            "content": "We work with your team to identify the highest-impact workflows and understand how your operations actually run."
+          },
+          {
+            "index": "02",
+            "subheading": "Proof of value",
+            "content": "We build and test agents on your data, delivering real outcomes within weeks, not months."
+          },
+          {
+            "index": "03",
+            "subheading": "Production deployment",
+            "content": "Agents are deployed into your environment, executing real workflows alongside your teams."
+          },
+          {
+            "index": "04",
+            "subheading": "Scale",
+            "content": "We expand coverage across workflows, teams, and regions, turning early wins into company-wide impact."
+          }
+        ]
+      }
+    },
+    {
+      "section": "industry.logo-showcase",
+      "motion": {
+        "pattern": "discrete-step-marquee",
+        "reducedMotionFallback": "static-logo-row"
+      },
+      "content": {
+        "heading": "Arrakis connects with everything you already rely on",
+        "tabs": [
+          {
+            "label": "ERP Systems",
+            "logos": [
+              {
+                "assetRole": "brand.partner-logo",
+                "alt": "SAP Logo",
+                "provenance": "source-original",
+                "src": "/assets/ef48d70d8e189c0648e33d80e3ae625192b7d482-61x30.svg"
+              },
+              {
+                "assetRole": "brand.partner-logo",
+                "alt": "Oracle Logo",
+                "provenance": "source-original",
+                "src": "/assets/46dbf81d3427537e9fc3a8988c7bec57f3c0ab69-101x13.svg"
+              },
+              {
+                "assetRole": "brand.partner-logo",
+                "alt": "Infor Logo",
+                "provenance": "source-original",
+                "src": "/assets/4d74e6b139ff6aa96cd442cbf00acbfbfe9a2b32-36x33.svg"
+              },
+              {
+                "assetRole": "brand.partner-logo",
+                "alt": "IBM Logo",
+                "provenance": "source-original",
+                "src": "/assets/9dba3f11541ab40da64a37d3e07bcf424478077d-50x20.svg"
+              },
+              {
+                "assetRole": "brand.partner-logo",
+                "alt": "Workday Logo",
+                "provenance": "source-original",
+                "src": "/assets/f9e579ce3262f64a15c2ac5c59726c1c5bda5e32-69x33.svg"
+              }
+            ]
+          },
+          {
+            "label": "AI Models",
+            "logos": [
+              {
+                "assetRole": "brand.partner-logo",
+                "alt": "Anthropic Logo",
+                "provenance": "source-original",
+                "src": "/assets/90a622dcdd154e913f03d82afb5c97ba41cbfe2e-143x16.svg"
+              },
+              {
+                "assetRole": "brand.partner-logo",
+                "alt": "OpenAI Logo",
+                "provenance": "source-original",
+                "src": "/assets/4f39aad8d453b1f067e83b866f1b790f88e11ab3-90x24.svg"
+              },
+              {
+                "assetRole": "brand.partner-logo",
+                "alt": "Gemini Logo",
+                "provenance": "source-original",
+                "src": "/assets/95bdc41dc3a8d7d371fc153482b55b5886afe096-76x28.svg"
+              },
+              {
+                "assetRole": "brand.partner-logo",
+                "alt": "Azure AI Logo",
+                "provenance": "source-original",
+                "src": "/assets/60da1c5012680d59c5c4793adb46bd2acf7e2b6d-32x32.svg"
+              },
+              {
+                "assetRole": "brand.partner-logo",
+                "alt": "Amazon Bedrock Logo",
+                "provenance": "source-original",
+                "src": "/assets/14127d92ce6bcf140d5f6baef6cd14daff809593-143x16.svg"
+              },
+              {
+                "assetRole": "brand.partner-logo",
+                "alt": "xAI Logo",
+                "provenance": "source-original",
+                "src": "/assets/bd6f8b23b69f0f5df51dfb5b7920c997ec56ef73-28x30.svg"
+              }
+            ]
+          },
+          {
+            "label": "Warehouses",
+            "logos": [
+              {
+                "assetRole": "brand.partner-logo",
+                "alt": "Snowflake Logo",
+                "provenance": "source-original",
+                "src": "/assets/6c9704282ffd1793a165d68ab4c48fd60b8d4dd9-111x25.svg"
+              },
+              {
+                "assetRole": "brand.partner-logo",
+                "alt": "Databricks Logo",
+                "provenance": "source-original",
+                "src": "/assets/e9e6cf3628aae28931b68b888ac94360f09b9dfa-124x19.svg"
+              },
+              {
+                "assetRole": "brand.partner-logo",
+                "alt": "Amazon Redshift Logo",
+                "provenance": "source-original",
+                "src": "/assets/16c9d26e7724c723e28cc059c08ae2dcf01100eb-82x32.svg"
+              },
+              {
+                "assetRole": "brand.partner-logo",
+                "alt": "PostgreSQL Logo",
+                "provenance": "source-original",
+                "src": "/assets/e115ad9d8162db713b893707032a7d4f7dcbe05b-96x30.svg"
+              },
+              {
+                "assetRole": "brand.partner-logo",
+                "alt": "Google Big Query Logo",
+                "provenance": "source-original",
+                "src": "/assets/03faa9e1bcaeaf1d6e247ddcffbf7fd7639d79cf-76x26.svg"
+              }
+            ]
+          },
+          {
+            "label": "Repositories",
+            "logos": [
+              {
+                "assetRole": "brand.partner-logo",
+                "alt": "SharePoint Logo",
+                "provenance": "source-original",
+                "src": "/assets/8c21173ecbc041e726f21d8710b7b8a87098006d-32x34.svg"
+              },
+              {
+                "assetRole": "brand.partner-logo",
+                "alt": "Box Logo",
+                "provenance": "source-original",
+                "src": "/assets/c22311583831823716431dff7ea071395fd106cf-51x27.svg"
+              },
+              {
+                "assetRole": "brand.partner-logo",
+                "alt": "Dropbox Logo",
+                "provenance": "source-original",
+                "src": "/assets/fa4da87c1bd44e23608b3e701d040ac751d73dc1-112x22.svg"
+              },
+              {
+                "assetRole": "brand.partner-logo",
+                "alt": "Google Cloud Logo",
+                "provenance": "source-original",
+                "src": "/assets/ac4515ab88b1f50429a8e7b3836ecae9e1c001b5-141x22.svg"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "section": "chrome.footer",
+      "motion": {
+        "pattern": "link-hover-fade",
+        "reducedMotionFallback": "no-transition"
+      },
+      "content": {
+        "columns": [
+          {
+            "heading": "Platform",
+            "links": [
+              {
+                "label": "Consolidate",
+                "href": "/platform#build"
+              },
+              {
+                "label": "Build",
+                "href": "/platform#build"
+              },
+              {
+                "label": "Control",
+                "href": "/platform#build"
+              },
+              {
+                "label": "Scale",
+                "href": "/platform#build"
+              },
+              {
+                "label": "Integrations",
+                "href": "/platform#integrations"
+              }
+            ]
+          },
+          {
+            "heading": "Company",
+            "links": [
+              {
+                "label": "About",
+                "href": "/about"
+              },
+              {
+                "label": "Security",
+                "href": "/security"
+              }
+            ]
+          },
+          {
+            "heading": "Legal",
+            "links": [
+              {
+                "label": "Terms of Service",
+                "href": "/terms-of-service"
+              },
+              {
+                "label": "Cookie Policy",
+                "href": "/cookie-policy"
+              }
+            ]
+          }
+        ],
+        "contact": {
+          "email": "demo@arrakis.tech",
+          "social": [
+            "https://www.linkedin.com/company/arrakis-corp/"
+          ]
+        },
+        "background": {
+          "assetRole": "decoration.texture",
+          "alt": "Footer Background",
+          "provenance": "source-original",
+          "src": "/assets/footer-BG.jpg"
+        }
+      }
+    },
+    {
+      "section": "chrome.cookie-notice",
+      "motion": {
+        "pattern": "fade-in",
+        "reducedMotionFallback": "no-transition"
+      },
+      "content": {
+        "body": "We use cookies to improve your experience on our site.",
+        "accept": "Accept",
+        "decline": "Decline",
+        "policyLink": {
+          "label": "Cookie Policy",
+          "href": "/cookie-policy"
+        }
+      }
+    }
+  ]
+}

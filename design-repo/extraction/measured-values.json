@@ -1,0 +1,1115 @@
+{
+  "$id": "extraction/measured-values",
+  "description": "The citation ledger. Every token, section contract, template and graph rule in this design-repo traces to a real line range in the real source project. These paths are relative to the SOURCE PROJECT ROOT (the parent of design-repo/), not to this folder — so they resolve only when design-repo/ sits next to the project it measures. extraction/verify_all.py validates every range when that sibling tree is present and DEGRADES GRACEFULLY (a warning, not a failure) when it is not. This is deliberately NOT in registry.manifest.json#entryPoints: an entry point is a promise about this package's own contents (MASTER-GUIDE §3.9).",
+  "sourceProject": {
+    "name": "arrakis-clone",
+    "relativeLocation": "..",
+    "framework": "React 18.3.1 + Vite 5.4.11 + Tailwind 3.4.17 + framer-motion 14",
+    "note": "Versions re-read from the real package.json at build time, not carried over from a draft."
+  },
+  "citationFormat": "path:line  or  path:firstLine-lastLine, relative to sourceProject.relativeLocation",
+  "citationMethod": "Line numbers were LOCATED BY GREPPING the real file for a recorded `anchor` string rather than typed by hand, so a citation cannot be in-range-but-wrong by construction. Whole-file citations (1-N) are used where the entire file implements the thing cited.",
+  "citations": {
+    "token.color": [
+      {
+        "claim": "All 19 colors, verbatim",
+        "citation": "tailwind.config.js:106-127",
+        "anchor": "colors: {"
+      },
+      {
+        "claim": "ink/panel/matrix are ad-hoc hexes in the original markup, promoted to tokens",
+        "citation": "tailwind.config.js:123"
+      },
+      {
+        "claim": "bone has ZERO utility references anywhere in src/",
+        "method": "grep -rohE '(bg|text|border|fill|from|to|via|decoration|ring|shadow|outline)-bone(/[0-9]+)?\\b' src/ -> 0 matches",
+        "citation": null
+      },
+      {
+        "claim": "dawn is used only by the /platform masthead rail gradient",
+        "citation": "src/components/platform/StackedMasthead.jsx:20"
+      },
+      {
+        "claim": "desert is used only by two blur-ellipse decorations",
+        "citation": [
+          "src/components/platform/FeatureCallout.jsx:55",
+          "src/components/industry/EllipseDecoration.jsx:33"
+        ]
+      }
+    ],
+    "token.typography": [
+      {
+        "claim": "27 type roles, each a complete utility (family+size+line-height+weight+tracking)",
+        "citation": "tailwind.config.js:33-77",
+        "anchor": "const ROLES = {"
+      },
+      {
+        "claim": "Emitted by a plugin, NOT theme.fontSize — a v3 fontSize entry cannot set font-family",
+        "citation": "tailwind.config.js:154"
+      },
+      {
+        "claim": "font-size is a fluid clamp interpolating viewport 480 -> 1280",
+        "citation": "tailwind.config.js:22-27"
+      },
+      {
+        "claim": "line-height is a unitless ratio with a SINGLE step at 768px; 6 of 27 roles step",
+        "citation": "tailwind.config.js:97"
+      },
+      {
+        "claim": "stat-56/stat-48 render at ratio 1, not the declared 1.1 — the number-flow shadow root forces it",
+        "citation": "tailwind.config.js:42-49"
+      },
+      {
+        "claim": "Only weights 300 and 400 exist as webfonts; btn-link weight 500 synthesises",
+        "citation": [
+          "src/fonts.css:5",
+          "tailwind.config.js:67"
+        ]
+      },
+      {
+        "claim": "CORRECTION: CLONE_SPEC §2.4 presents one line-height column; that column is the MOBILE value.",
+        "citation": "tailwind.config.js:13"
+      }
+    ],
+    "token.spacing": [
+      {
+        "claim": "15 bespoke spacing steps",
+        "citation": "tailwind.config.js:129-134"
+      }
+    ],
+    "token.radius": [
+      {
+        "claim": "4 radii; only rounded-xs is actually used (Button)",
+        "citation": [
+          "tailwind.config.js:136",
+          "src/components/Button.jsx:7"
+        ]
+      }
+    ],
+    "token.breakpoint": [
+      {
+        "claim": "7 bespoke min-width screens",
+        "citation": "tailwind.config.js:144-148"
+      },
+      {
+        "claim": "640px: --header-height 64 -> 86px",
+        "citation": "src/index.css:14"
+      },
+      {
+        "claim": "CORRECTION: the pinned homepage section gates on 768, not the 1024 CLONE_SPEC §3.3/§6.5 claims",
+        "citation": [
+          "src/components/FeatureAssetSwap.jsx:64",
+          "src/components/FeatureAssetSwap.jsx:6-8"
+        ]
+      }
+    ],
+    "token.motion": [
+      {
+        "claim": "duration DEFAULT 250 / 350 / 1300; easing default cubic-bezier(.4,0,.2,1)",
+        "citation": "tailwind.config.js:137-142"
+      },
+      {
+        "claim": "The ONLY prefers-reduced-motion handling in the whole source is one rule for .letter-reveal-char",
+        "citation": "src/index.css:215-219"
+      }
+    ],
+    "token.elevation": [
+      {
+        "claim": "Exactly one boxShadow is declared, used only by the scrolled header",
+        "citation": [
+          "tailwind.config.js:143",
+          "src/components/Header.jsx:12"
+        ]
+      }
+    ],
+    "token.icon-size": [
+      {
+        "claim": "Intrinsic sizes come from the hash-named asset filenames and the width/height attrs in src/data/*",
+        "citation": "src/data/industries.js:13-19"
+      }
+    ],
+    "token.semantic": [
+      {
+        "claim": "Utility usage counts drive which colors get a semantic role",
+        "method": "grep -rohE '(bg|text|border|fill|from|to|via|decoration|ring|shadow|outline)-<name>(/[0-9]+)?\\b' over src/",
+        "citation": null
+      }
+    ],
+    "token.component": [
+      {
+        "claim": "Button: 5 variants, radius xs, px-3.5 py-[0.5625rem], 1px border",
+        "citation": "src/components/Button.jsx:10-21"
+      },
+      {
+        "claim": "heroSolid has no border, so it measures 36px not 38px",
+        "citation": "src/components/Button.jsx:16-18"
+      },
+      {
+        "claim": "Header scrolled threshold is scrollY > 300",
+        "citation": "src/components/Header.jsx:40"
+      },
+      {
+        "claim": "number-flow prefix/suffix parts at 0.7143em",
+        "citation": "src/index.css:204-208"
+      }
+    ],
+    "token.layout": [
+      {
+        "claim": "Container: 1384px / 20px padding, 1440px / 48px at >=1024; nested container has zero padding",
+        "citation": "src/index.css:39-55"
+      },
+      {
+        "claim": "No extracted <Section> component — each section component owns its own <section>",
+        "method": "grep -c '<section' over each of the 25 section-bearing components -> 1 each",
+        "citation": null
+      }
+    ],
+    "theme.light-surface": [
+      {
+        "claim": "No prefers-color-scheme handling and no theme switcher anywhere in src/",
+        "method": "grep -rn 'prefers-color-scheme\\|dark:' src/ -> 0 matches",
+        "citation": null
+      }
+    ],
+    "theme.dark-surface": [
+      {
+        "claim": "/about is flat bg-black end to end, not one gradient on the page",
+        "citation": "src/pages/About.jsx:11"
+      }
+    ],
+    "primitive.button": [
+      {
+        "claim": "whole component",
+        "citation": "src/components/Button.jsx:1-40"
+      }
+    ],
+    "primitive.link-hover-fade": [
+      {
+        "claim": "opacity-60 -> 100 over 300ms on logo links",
+        "citation": "src/components/LogoBanner.jsx:38"
+      },
+      {
+        "claim": "250ms variant on footer links",
+        "citation": "src/components/Footer.jsx:15"
+      }
+    ],
+    "primitive.square-bracket": [
+      {
+        "claim": "the hairline CSS system",
+        "citation": "src/index.css:68-115"
+      },
+      {
+        "claim": "React wrapper + hideBottom semantics",
+        "citation": "src/components/SquareBracket.jsx:1-49"
+      },
+      {
+        "claim": "the stray `hello` debug class, 5 instances",
+        "citation": [
+          "src/components/StatsGrid.jsx:76",
+          "src/components/MobileDrawer.jsx:105",
+          "src/components/sections/SecurityFeatureAccordion.jsx:181",
+          "src/components/industry/FeatureAccordion.jsx:169",
+          "src/components/platform/StackedPanels.jsx:218"
+        ]
+      }
+    ],
+    "primitive.corner-brackets": [
+      {
+        "claim": "four 12x12 L-shaped corner marks at inset -0.68px",
+        "citation": "src/components/SquareBracket.jsx:37-47"
+      }
+    ],
+    "primitive.logo-mark": [
+      {
+        "claim": "header wordmark inline SVG path",
+        "citation": "src/components/Header.jsx:19"
+      },
+      {
+        "claim": "footer icon mark inline SVG path",
+        "citation": "src/components/Footer.jsx:35"
+      }
+    ],
+    "primitive.pager-dots": [
+      {
+        "claim": "icon-slider pager: 5 dots, only 3 snaps reachable",
+        "citation": "src/components/industry/IconSlider.jsx:113-115"
+      },
+      {
+        "claim": "integrations pager: bg-sun active dot",
+        "citation": "src/components/Integrations.jsx:184"
+      }
+    ],
+    "primitive.stat-counter": [
+      {
+        "claim": "NumberFlow usage",
+        "citation": "src/components/StatsGrid.jsx:66-70"
+      }
+    ],
+    "primitive.rive-canvas": [
+      {
+        "claim": "whole wrapper, incl. the local-wasm note",
+        "citation": "src/components/RiveCanvas.jsx:1-136"
+      }
+    ],
+    "component.card-base": [
+      {
+        "claim": "bracket-t / body / bracket-b cell with -1px hairline merge",
+        "citation": "src/components/StatsGrid.jsx:60"
+      }
+    ],
+    "component.stat-block": [
+      {
+        "claim": "counter + description, space-y-1.5 sm:space-y-2.5",
+        "citation": "src/components/StatsGrid.jsx:65"
+      }
+    ],
+    "component.text-column": [
+      {
+        "claim": "max-w cap + gap-y-3/4/5 heading->body column; no prose system",
+        "citation": "src/components/LegalPage.jsx:7-13"
+      }
+    ],
+    "component.media-frame": [
+      {
+        "claim": "intrinsic ratio is load-bearing; no aspect-ratio wrapper",
+        "citation": "src/components/industry/TextCardAsset.jsx:29-31"
+      }
+    ],
+    "component.logo-row": [
+      {
+        "claim": "generic N logos into M slots; reveal + rotation timings",
+        "citation": "src/components/LogoBanner.jsx:5-12"
+      }
+    ],
+    "component.accordion-item": [
+      {
+        "claim": "panel height tweens 300ms, opacity SNAPS at height-end",
+        "citation": "src/components/industry/FeatureAccordion.jsx:24-31"
+      }
+    ],
+    "component.icon-feature": [
+      {
+        "claim": "40x40 icon + title + lines; light/dark use distinct files",
+        "citation": "src/data/about.js:45-47"
+      }
+    ],
+    "component.numbered-step": [
+      {
+        "claim": "02-digit index + title + description",
+        "citation": "src/data/about.js:87-95"
+      }
+    ],
+    "section.about.career-listings": [
+      {
+        "claim": "implementing source for this section contract",
+        "citation": "src/components/sections/CareerListings.jsx:1-327"
+      },
+      {
+        "claim": "implementing source for this section contract",
+        "citation": "src/data/about.js:1-172"
+      },
+      {
+        "claim": "six independently-delayed SVG layers, durations fitted to measured tails",
+        "citation": "src/components/sections/CareerListings.jsx:28-34",
+        "anchor": "dots: { delay: 0"
+      }
+    ],
+    "section.about.employee-grid": [
+      {
+        "claim": "implementing source for this section contract",
+        "citation": "src/components/sections/EmployeeGrid.jsx:1-31"
+      },
+      {
+        "claim": "implementing source for this section contract",
+        "citation": "src/data/about.js:1-172"
+      },
+      {
+        "claim": "CMS block has a heading and NO employees field; zero <img>",
+        "citation": "src/data/about.js:123-126",
+        "anchor": "employeeGrid. The CMS block has a `heading`"
+      }
+    ],
+    "section.about.numbered-list": [
+      {
+        "claim": "implementing source for this section contract",
+        "citation": "src/components/sections/NumberedList.jsx:1-68"
+      },
+      {
+        "claim": "implementing source for this section contract",
+        "citation": "src/data/about.js:1-172"
+      },
+      {
+        "claim": "flex-col-reverse below 1024 puts the image ABOVE the list",
+        "citation": "src/data/about.js:85-86",
+        "anchor": "flex-col-reverse` below 1024"
+      }
+    ],
+    "section.about.statement-showcase": [
+      {
+        "claim": "implementing source for this section contract",
+        "citation": "src/components/sections/StatementShowcase.jsx:1-267"
+      },
+      {
+        "claim": "implementing source for this section contract",
+        "citation": "src/data/about.js:1-172"
+      },
+      {
+        "claim": "/about has NO HERO: slot 0 arcMasthead is hideSection:true",
+        "citation": "src/pages/About.jsx:5-9",
+        "anchor": "There is NO HERO"
+      },
+      {
+        "claim": "broken class justify-center-scale-y-100 -> 6px bracket overflow",
+        "citation": "src/components/sections/StatementShowcase.jsx:54-57",
+        "anchor": "justify-center-scale-y-100"
+      }
+    ],
+    "section.about.sticky-aside-list": [
+      {
+        "claim": "implementing source for this section contract",
+        "citation": "src/components/sections/StickyAsideList.jsx:1-60"
+      },
+      {
+        "claim": "implementing source for this section contract",
+        "citation": "src/data/about.js:1-172"
+      }
+    ],
+    "section.chrome.cookie-notice": [
+      {
+        "claim": "implementing source for this section contract",
+        "citation": "src/components/CookieNotice.jsx:1-53"
+      },
+      {
+        "claim": "bg-midnight panel",
+        "citation": "src/components/CookieNotice.jsx:36",
+        "anchor": "bg-midnight"
+      }
+    ],
+    "section.chrome.footer": [
+      {
+        "claim": "implementing source for this section contract",
+        "citation": "src/components/Footer.jsx:1-194"
+      },
+      {
+        "claim": "FOUR links all point at /platform#build",
+        "citation": "src/components/Footer.jsx:48-51",
+        "anchor": "['Consolidate', '/platform#build']"
+      },
+      {
+        "claim": "Integrations -> /platform#integrations is a dead anchor",
+        "citation": "src/components/Footer.jsx:52",
+        "anchor": "['Integrations', '/platform#integrations']"
+      }
+    ],
+    "section.chrome.header": [
+      {
+        "claim": "implementing source for this section contract",
+        "citation": "src/components/Header.jsx:1-212"
+      },
+      {
+        "claim": "implementing source for this section contract",
+        "citation": "src/components/MegaMenu.jsx:1-183"
+      },
+      {
+        "claim": "implementing source for this section contract",
+        "citation": "src/components/MobileDrawer.jsx:1-122"
+      },
+      {
+        "claim": "implementing source for this section contract",
+        "citation": "src/components/Layout.jsx:1-134"
+      },
+      {
+        "claim": "three states; scrolled at scrollY > 300",
+        "citation": "src/components/Header.jsx:12",
+        "anchor": "scrolled     — bg #FFF"
+      },
+      {
+        "claim": "Platform mega-menu <ul> renders genuinely empty (linkList is null)",
+        "citation": "src/components/MegaMenu.jsx:47",
+        "anchor": "`linkList` is null"
+      },
+      {
+        "claim": "\"Telecommunications \" has a real trailing space",
+        "citation": "src/components/MegaMenu.jsx:44",
+        "anchor": "label: 'Telecommunications '"
+      }
+    ],
+    "section.feature.asset-swap-pinned": [
+      {
+        "claim": "implementing source for this section contract",
+        "citation": "src/components/FeatureAssetSwap.jsx:1-327"
+      },
+      {
+        "claim": "pin gated on 768, not 1024",
+        "citation": "src/components/FeatureAssetSwap.jsx:6-9",
+        "anchor": "MEASURED on the original: pinned at 768"
+      }
+    ],
+    "section.feature.text-card-dashboard": [
+      {
+        "claim": "implementing source for this section contract",
+        "citation": "src/components/TextCardDashboard.jsx:1-69"
+      },
+      {
+        "claim": "G2 / G6 gradients inline so `in oklab` survives",
+        "citation": "src/components/TextCardDashboard.jsx:7-10",
+        "anchor": "§2.2 G2 — section background"
+      }
+    ],
+    "section.hero.two-column-masthead": [
+      {
+        "claim": "implementing source for this section contract",
+        "citation": "src/components/Hero.jsx:1-249"
+      },
+      {
+        "claim": "implementing source for this section contract",
+        "citation": "src/components/LogoBanner.jsx:1-123"
+      },
+      {
+        "claim": "8000ms cycle / 700ms video crossfade / 500ms caption crossfade",
+        "citation": "src/components/Hero.jsx:11-14",
+        "anchor": "const CYCLE_MS = 8000"
+      }
+    ],
+    "section.industry.feature-accordion": [
+      {
+        "claim": "implementing source for this section contract",
+        "citation": "src/components/industry/FeatureAccordion.jsx:1-191"
+      },
+      {
+        "claim": "auto-advance measured exactly 8000ms",
+        "citation": "src/components/industry/FeatureAccordion.jsx:23",
+        "anchor": "const AUTO_ADVANCE_MS = 8000"
+      }
+    ],
+    "section.industry.feature-detail": [
+      {
+        "claim": "implementing source for this section contract",
+        "citation": "src/components/industry/FeatureDetail.jsx:1-89"
+      },
+      {
+        "claim": "slot exists on all six, hideSection:true on five",
+        "citation": "src/components/industry/FeatureDetail.jsx:2-4",
+        "anchor": "hideSection: true"
+      },
+      {
+        "claim": "item 3 subheading is a single space -> empty h6 of height 0 that still contributes mb-6",
+        "citation": "src/components/industry/FeatureDetail.jsx:22-24",
+        "anchor": "Item 3 stores `subheading"
+      }
+    ],
+    "section.industry.icon-slider": [
+      {
+        "claim": "implementing source for this section contract",
+        "citation": "src/components/industry/IconSlider.jsx:1-146"
+      },
+      {
+        "claim": "autoplay 6000ms (measured 5971 / 6037); embla duration 25",
+        "citation": "src/components/industry/IconSlider.jsx:18",
+        "anchor": "const AUTOPLAY_MS = 6000"
+      },
+      {
+        "claim": "/chemicals-only dustToWhite background",
+        "citation": "src/data/industries.js:300",
+        "anchor": "background: 'dustToWhite'"
+      }
+    ],
+    "section.industry.logo-showcase": [
+      {
+        "claim": "implementing source for this section contract",
+        "citation": "src/components/industry/LogoShowcase.jsx:1-146"
+      },
+      {
+        "claim": "DISCRETE marquee: 248px step (224 tile + 24 gutter), 3000ms period, ~1400ms move, ~1600ms dwell",
+        "citation": "src/components/industry/LogoShowcase.jsx:15-18",
+        "anchor": "Measured on the original: the marquee is DISCRETE"
+      }
+    ],
+    "section.industry.nav-masthead": [
+      {
+        "claim": "implementing source for this section contract",
+        "citation": "src/components/industry/NavMasthead.jsx:1-195"
+      },
+      {
+        "claim": "implementing source for this section contract",
+        "citation": "src/components/industry/EllipseDecoration.jsx:1-39"
+      },
+      {
+        "claim": "/shipping nav list: all hrefs /# and item 5 reads \"Manufacturing\"",
+        "citation": "src/data/industries.js:132-134",
+        "anchor": "/shipping's stored list is broken"
+      },
+      {
+        "claim": "dropdown matches on label, not href, because of that",
+        "citation": "src/components/industry/NavMasthead.jsx:89-90",
+        "anchor": "Matched on label, not href"
+      }
+    ],
+    "section.industry.text-card-asset": [
+      {
+        "claim": "implementing source for this section contract",
+        "citation": "src/components/industry/TextCardAsset.jsx:1-44"
+      },
+      {
+        "claim": "slot absent from the other five pages' sections[] entirely",
+        "citation": "src/components/industry/TextCardAsset.jsx:1-3",
+        "anchor": "§0.2 EXCEPTION 1"
+      }
+    ],
+    "section.integrations.paginated-panels": [
+      {
+        "claim": "implementing source for this section contract",
+        "citation": "src/components/Integrations.jsx:1-290"
+      },
+      {
+        "claim": "vertical marquee: 110px step, 3000ms period",
+        "citation": "src/components/Integrations.jsx:91-92",
+        "anchor": "§6.6 — vertical Swiper: 110px step"
+      }
+    ],
+    "section.legal.prose-blocks": [
+      {
+        "claim": "implementing source for this section contract",
+        "citation": "src/components/LegalPage.jsx:1-56"
+      },
+      {
+        "claim": "implementing source for this section contract",
+        "citation": "src/data/legal-terms.js:1-128"
+      },
+      {
+        "claim": "implementing source for this section contract",
+        "citation": "src/data/legal-cookie.js:1-48"
+      },
+      {
+        "claim": "no prose system; two flex row-gaps carry all rhythm",
+        "citation": "src/components/LegalPage.jsx:7-13",
+        "anchor": "No prose/typography system"
+      },
+      {
+        "claim": "zero motion: document.getAnimations() is [] on the original",
+        "citation": "src/components/LegalPage.jsx:12-13",
+        "anchor": "No motion of any kind"
+      },
+      {
+        "claim": "23 + 7 content blocks",
+        "citation": "src/pages/TermsOfService.jsx:4",
+        "anchor": "24 blocks"
+      }
+    ],
+    "section.platform.feature-callout": [
+      {
+        "claim": "implementing source for this section contract",
+        "citation": "src/components/platform/FeatureCallout.jsx:1-168"
+      },
+      {
+        "claim": "implementing source for this section contract",
+        "citation": "src/data/platform.js:1-108"
+      },
+      {
+        "claim": "ONE callout: heading, shield image, 3 tableItems, arrow link",
+        "citation": "src/data/platform.js:96",
+        "anchor": "PLATFORM_CALLOUT"
+      },
+      {
+        "claim": "scroll-linked shield rotateY -45deg -> 0, linear fit",
+        "citation": "src/components/platform/FeatureCallout.jsx:20-25",
+        "anchor": "§6.4 — linear fit over the clean region"
+      },
+      {
+        "claim": "deliberately asymmetric 768 padding (80 top vs 96 bottom)",
+        "citation": "src/components/platform/FeatureCallout.jsx:4-5",
+        "anchor": "deliberately ASYMMETRIC at 768"
+      }
+    ],
+    "section.platform.stacked-masthead": [
+      {
+        "claim": "implementing source for this section contract",
+        "citation": "src/components/platform/StackedMasthead.jsx:1-272"
+      },
+      {
+        "claim": "implementing source for this section contract",
+        "citation": "src/data/platform.js:1-108"
+      },
+      {
+        "claim": "paragraph grouping MEASURED as one <p> per line; [[0,1],[2]] dropped a 32px margin",
+        "citation": "src/data/platform.js:36-42",
+        "anchor": "Visible paragraph grouping"
+      },
+      {
+        "claim": "8 rail hairline opacities",
+        "citation": "src/data/platform.js:44",
+        "anchor": "railOpacities"
+      }
+    ],
+    "section.platform.stacked-panels": [
+      {
+        "claim": "implementing source for this section contract",
+        "citation": "src/components/platform/StackedPanels.jsx:1-229"
+      },
+      {
+        "claim": "implementing source for this section contract",
+        "citation": "src/data/platform.js:1-108"
+      },
+      {
+        "claim": "4 panels, sectionId build, transition-colors duration-1300",
+        "citation": "src/components/platform/StackedPanels.jsx:68",
+        "anchor": "transition-colors duration-1300"
+      }
+    ],
+    "section.security.feature-accordion": [
+      {
+        "claim": "implementing source for this section contract",
+        "citation": "src/components/sections/SecurityFeatureAccordion.jsx:1-208"
+      },
+      {
+        "claim": "implementing source for this section contract",
+        "citation": "src/data/security.js:1-109"
+      },
+      {
+        "claim": "auto-advance measured 7995 / 7912 two ways",
+        "citation": "src/components/sections/SecurityFeatureAccordion.jsx:38",
+        "anchor": "const AUTO_ADVANCE_MS = 8000"
+      }
+    ],
+    "section.security.text-card": [
+      {
+        "claim": "implementing source for this section contract",
+        "citation": "src/components/sections/SecurityTextCard.jsx:1-65"
+      },
+      {
+        "claim": "implementing source for this section contract",
+        "citation": "src/data/security.js:1-109"
+      },
+      {
+        "claim": "CMS value is <h3>...<h3> with BOTH tags opening; React emits a deliberate validateDOMNesting warning",
+        "citation": "src/components/sections/SecurityTextCard.jsx:43-51",
+        "anchor": "both tags are OPENING tags"
+      }
+    ],
+    "section.shared.icon-grid": [
+      {
+        "claim": "implementing source for this section contract",
+        "citation": "src/components/sections/IconGrid.jsx:1-108"
+      },
+      {
+        "claim": "implementing source for this section contract",
+        "citation": "src/data/security.js:1-109"
+      },
+      {
+        "claim": "implementing source for this section contract",
+        "citation": "src/data/about.js:1-172"
+      },
+      {
+        "claim": "heading is NULL on /security and present on /about",
+        "citation": "src/data/security.js:71",
+        "anchor": "SECURITY_ICON_GRID"
+      },
+      {
+        "claim": "/about variant uses the WHITE-stroked icon files",
+        "citation": "src/data/about.js:45",
+        "anchor": "the four icons are the WHITE-stroked files"
+      }
+    ],
+    "section.showcase.orbit": [
+      {
+        "claim": "implementing source for this section contract",
+        "citation": "src/components/OrbitShowcase.jsx:1-352"
+      },
+      {
+        "claim": "affine reveal span 0.34425*vh + 87.9px, start 0.900*vh",
+        "citation": "src/components/OrbitShowcase.jsx:130-132",
+        "anchor": "const REVEAL_START_FRAC = 0.9"
+      },
+      {
+        "claim": "spring stiffness 120 / damping 30, measured not approximate",
+        "citation": "src/components/OrbitShowcase.jsx:165-169",
+        "anchor": "Spring confirmed present on the original"
+      },
+      {
+        "claim": "linearity evidence table at vh 700/900/1100",
+        "citation": "src/components/OrbitShowcase.jsx:118-131",
+        "anchor": "| vh   | measured slope"
+      }
+    ],
+    "section.social.press-banner": [
+      {
+        "claim": "implementing source for this section contract",
+        "citation": "src/components/PressBanner.jsx:1-88"
+      },
+      {
+        "claim": "4 logos in 4 slots -> no cycling, entrance animation only",
+        "citation": "src/components/PressBanner.jsx:3-4",
+        "anchor": "no cycling"
+      }
+    ],
+    "section.stats.grid": [
+      {
+        "claim": "implementing source for this section contract",
+        "citation": "src/components/StatsGrid.jsx:1-85"
+      },
+      {
+        "claim": "right card grid is grid-cols-2 at EVERY viewport; §4.5 single-column @390 is wrong",
+        "citation": "src/components/StatsGrid.jsx:57-59",
+        "anchor": "grid-template-columns: 175px 175px"
+      },
+      {
+        "claim": "6 stat cells",
+        "citation": "src/components/StatsGrid.jsx:10-17",
+        "anchor": "const STATS = ["
+      }
+    ],
+    "section.system.not-found": [
+      {
+        "claim": "implementing source for this section contract",
+        "citation": "src/pages/NotFound.jsx:1-13"
+      },
+      {
+        "claim": "explicit STUB, never measured",
+        "citation": "src/pages/NotFound.jsx:1",
+        "anchor": "STUB — awaiting recon measurements"
+      },
+      {
+        "claim": "the only measured fact is the fallback <title>",
+        "citation": "src/components/Layout.jsx:35",
+        "anchor": "FALLBACK_TITLE"
+      }
+    ],
+    "templates": [
+      {
+        "claim": "the real route table, 12 routes + catch-all",
+        "citation": "src/App.jsx:1-40"
+      },
+      {
+        "claim": "homepage section order",
+        "citation": "src/pages/Home.jsx:1-23"
+      },
+      {
+        "claim": "one template, six content sets, two compositions",
+        "citation": "src/components/IndustryPage.jsx:1-48"
+      },
+      {
+        "claim": "/platform 3 slots",
+        "citation": "src/pages/Platform.jsx:1-32"
+      },
+      {
+        "claim": "/security 3 slots, unrelated CMS doc despite the shared <title>",
+        "citation": "src/pages/Security.jsx:1-29"
+      },
+      {
+        "claim": "/about 8 slots, 6 rendered, no hero",
+        "citation": "src/pages/About.jsx:1-39"
+      },
+      {
+        "claim": "both legal routes are the same wrapper markup",
+        "citation": "src/components/LegalPage.jsx:1-56"
+      },
+      {
+        "claim": "/industries and /careers deliberately absent (both 404 on the original)",
+        "citation": "src/App.jsx:18-19"
+      }
+    ],
+    "graph": [
+      {
+        "claim": "every rule was pre-checked against templates.json node sequences at write time",
+        "citation": null,
+        "method": "see graphRulePreCheck below"
+      }
+    ]
+  },
+  "routeComposition": {
+    "method": "MASTER-GUIDE §3.22. A first-party classifier was written that IMPORTS the real src/data/industries.js module and reproduces src/components/IndustryPage.jsx's own slot logic verbatim (lines 36-47), then enumerates every route's real ordered section sequence. The static pages' sequences come from their real page components; the one-<section>-per-component premise was independently verified (grep -c '<section' == 1 for each of the 25 section-bearing components).",
+    "classifierSource": "written for this build; its full output is recorded verbatim below so the conclusion is re-checkable without the sibling source tree",
+    "classifierOutput": [
+      "/                             7   hero.two-column-masthead > showcase.orbit > feature.text-card-dashboard > social.press-banner > stats.grid > feature.asset-swap-pinned > integrations.paginated-panels",
+      "/platform                     3   platform.stacked-masthead > platform.stacked-panels > platform.feature-callout",
+      "/security                     3   security.feature-accordion > security.text-card > shared.icon-grid",
+      "/about                        6   about.statement-showcase > shared.icon-grid > about.numbered-list > about.employee-grid > about.sticky-aside-list > about.career-listings",
+      "/aerospace-and-defense        4   industry.nav-masthead > industry.icon-slider > industry.feature-accordion > industry.logo-showcase",
+      "/chemicals                    4   industry.nav-masthead > industry.icon-slider > industry.feature-accordion > industry.logo-showcase",
+      "/energy-commodities           4   industry.nav-masthead > industry.icon-slider > industry.feature-accordion > industry.logo-showcase",
+      "/engineering-construction     4   industry.nav-masthead > industry.icon-slider > industry.feature-accordion > industry.logo-showcase",
+      "/shipping                     6   industry.nav-masthead > industry.icon-slider > industry.text-card-asset > industry.feature-detail > industry.feature-accordion > industry.logo-showcase",
+      "/telecommunications           4   industry.nav-masthead > industry.icon-slider > industry.feature-accordion > industry.logo-showcase",
+      "/terms-of-service             1   legal.prose-blocks",
+      "/cookie-policy                1   legal.prose-blocks",
+      "*                             1   system.not-found",
+      "",
+      "--- industry composition grouping ---",
+      "5 route(s): aerospace-and-defense, chemicals, energy-commodities, engineering-construction, telecommunications ",
+      "   -> industry.nav-masthead|industry.icon-slider|industry.feature-accordion|industry.logo-showcase",
+      "1 route(s): shipping ",
+      "   -> industry.nav-masthead|industry.icon-slider|industry.text-card-asset|industry.feature-detail|industry.feature-accordion|industry.logo-showcase",
+      "",
+      "--- per-industry differentiators (real data fields) ---",
+      "aerospace-and-defense        heroType=image iconSliderBg=white textCard=false featureDetails=0 iconSliderItems=5",
+      "chemicals                    heroType=image iconSliderBg=dustToWhite textCard=false featureDetails=0 iconSliderItems=5",
+      "energy-commodities           heroType=image iconSliderBg=white textCard=false featureDetails=0 iconSliderItems=5",
+      "engineering-construction     heroType=image iconSliderBg=white textCard=false featureDetails=0 iconSliderItems=5",
+      "shipping                     heroType=rive iconSliderBg=white textCard=true featureDetails=3 iconSliderItems=5",
+      "telecommunications           heroType=image iconSliderBg=white textCard=false featureDetails=0 iconSliderItems=5"
+    ],
+    "conclusion": "5 industry routes produce a 4-section sequence; /shipping produces a 6-section one whose extra two nodes sit in the middle at the same relative positions. The 4-node sequence is a strict ORDERED SUBSEQUENCE of the 6-node one, so it is ONE template with two optional, route-restricted nodes — not two templates. See templates/templates.json#templates.industry-page.compositionVariance."
+  },
+  "graphRulePreCheck": {
+    "method": "MASTER-GUIDE §3.18. Every compatibility/graph.json rule was executed against the real templates/templates.json node sequences at the moment it was written, not only at final verification. Output recorded verbatim.",
+    "output": [
+      "--- rule pre-check against real templates.json ---",
+      "hero sections: ['hero.two-column-masthead', 'industry.nav-masthead', 'platform.stacked-masthead']",
+      "hero-less templates: ['security', 'about', 'legal', 'not-found']",
+      "same-category-adjacency templates: ['industry-page', 'platform']",
+      "consecutive scroll stages: []",
+      "autoplaying sections per template: {'home': 2, 'industry-page': 3, 'platform': 0, 'security': 1, 'about': 0, 'legal': 0, 'not-found': 0}",
+      "sections missing reducedMotionFallback: []",
+      "anchors: {'home': ['orbitshowcase', 'integrations'], 'industry-page': [], 'platform': ['build', 'security'], 'security': [], 'about': [], 'legal': [], 'not-found': []}",
+      "hard problems: []"
+    ]
+  },
+  "copyBudgets": {
+    "method": "Every maxWords budget is derived from measurement, not chosen: the real src/data/*.js modules were imported and every string for each field word-counted across every route; the budget is max(measured+2, ceil(measured*1.25)). Two budgets were initially set by estimate and were caught by the validator's own MAX_WORDS check on the bundled example (industry.feature-detail content: real max 22 words vs an estimated budget of 20) — the measured pass replaced every estimate.",
+    "formula": "max(measuredMax + 2, ceil(measuredMax * 1.25))",
+    "perField": {
+      "industry.nav-masthead": {
+        "heading.lead": {
+          "measuredMaxWords": 6,
+          "budget": 8
+        },
+        "heading.emphasis": {
+          "measuredMaxWords": 5,
+          "budget": 7
+        },
+        "navItems.label": {
+          "measuredMaxWords": 3,
+          "budget": 5
+        },
+        "hero.alt": {
+          "measuredMaxWords": 4,
+          "budget": 6
+        }
+      },
+      "industry.icon-slider": {
+        "supportingText": {
+          "measuredMaxWords": 19,
+          "budget": 24
+        },
+        "": {
+          "measuredMaxWords": 12,
+          "budget": 15
+        },
+        "icons.alt": {
+          "measuredMaxWords": 4,
+          "budget": 6
+        }
+      },
+      "industry.text-card-asset": {
+        "heading": {
+          "measuredMaxWords": 6,
+          "budget": 8
+        },
+        "asset.alt": {
+          "measuredMaxWords": 4,
+          "budget": 6
+        }
+      },
+      "industry.feature-detail": {
+        "heading": {
+          "measuredMaxWords": 5,
+          "budget": 7
+        },
+        "content": {
+          "measuredMaxWords": 22,
+          "budget": 28
+        },
+        "subheading": {
+          "measuredMaxWords": 1,
+          "budget": 3
+        },
+        "summary.content": {
+          "measuredMaxWords": 11,
+          "budget": 14
+        },
+        "summary.icon.alt": {
+          "measuredMaxWords": 4,
+          "budget": 6
+        },
+        "list": {
+          "measuredMaxWords": 13,
+          "budget": 17
+        },
+        "asset.alt": {
+          "measuredMaxWords": 4,
+          "budget": 6
+        }
+      },
+      "industry.feature-accordion": {
+        "heading": {
+          "measuredMaxWords": 10,
+          "budget": 13
+        },
+        "subheading": {
+          "measuredMaxWords": 3,
+          "budget": 5
+        },
+        "content": {
+          "measuredMaxWords": 17,
+          "budget": 22
+        },
+        "asset.alt": {
+          "measuredMaxWords": 4,
+          "budget": 6
+        }
+      },
+      "industry.logo-showcase": {
+        "heading": {
+          "measuredMaxWords": 9,
+          "budget": 12
+        },
+        "tabs.label": {
+          "measuredMaxWords": 2,
+          "budget": 4
+        },
+        "tabs.logos.alt": {
+          "measuredMaxWords": 4,
+          "budget": 6
+        }
+      },
+      "platform.stacked-masthead": {
+        "subheading": {
+          "measuredMaxWords": 1,
+          "budget": 3
+        },
+        "heading": {
+          "measuredMaxWords": 6,
+          "budget": 8
+        },
+        "supportingLines": {
+          "measuredMaxWords": 23,
+          "budget": 29
+        }
+      },
+      "security.feature-accordion": {
+        "heading": {
+          "measuredMaxWords": 5,
+          "budget": 7
+        },
+        "subheading": {
+          "measuredMaxWords": 3,
+          "budget": 5
+        },
+        "content": {
+          "measuredMaxWords": 35,
+          "budget": 44
+        },
+        "asset.alt": {
+          "measuredMaxWords": 4,
+          "budget": 6
+        }
+      },
+      "security.text-card": {
+        "heading": {
+          "measuredMaxWords": 5,
+          "budget": 7
+        },
+        "content": {
+          "measuredMaxWords": 17,
+          "budget": 22
+        }
+      },
+      "shared.icon-grid": {
+        "heading": {
+          "measuredMaxWords": 5,
+          "budget": 7
+        },
+        "title": {
+          "measuredMaxWords": 7,
+          "budget": 9
+        },
+        "lines": {
+          "measuredMaxWords": 23,
+          "budget": 29
+        },
+        "icon.alt": {
+          "measuredMaxWords": 4,
+          "budget": 6
+        }
+      },
+      "about.statement-showcase": {
+        "eyebrow": {
+          "measuredMaxWords": 2,
+          "budget": 4
+        },
+        "heading": {
+          "measuredMaxWords": 5,
+          "budget": 7
+        },
+        "lede": {
+          "measuredMaxWords": 32,
+          "budget": 40
+        },
+        "steps.title": {
+          "measuredMaxWords": 5,
+          "budget": 7
+        },
+        "steps.description": {
+          "measuredMaxWords": 26,
+          "budget": 33
+        }
+      },
+      "about.numbered-list": {
+        "heading": {
+          "measuredMaxWords": 6,
+          "budget": 8
+        },
+        "title": {
+          "measuredMaxWords": 3,
+          "budget": 5
+        },
+        "description": {
+          "measuredMaxWords": 17,
+          "budget": 22
+        },
+        "image.alt": {
+          "measuredMaxWords": 4,
+          "budget": 6
+        }
+      },
+      "about.employee-grid": {
+        "heading": {
+          "measuredMaxWords": 8,
+          "budget": 10
+        }
+      },
+      "about.sticky-aside-list": {
+        "heading": {
+          "measuredMaxWords": 11,
+          "budget": 14
+        },
+        "title": {
+          "measuredMaxWords": 6,
+          "budget": 8
+        },
+        "description": {
+          "measuredMaxWords": 19,
+          "budget": 24
+        },
+        "image.alt": {
+          "measuredMaxWords": 4,
+          "budget": 6
+        }
+      },
+      "about.career-listings": {
+        "eyebrow": {
+          "measuredMaxWords": 2,
+          "budget": 4
+        },
+        "heading": {
+          "measuredMaxWords": 6,
+          "budget": 8
+        },
+        "cta.label": {
+          "measuredMaxWords": 3,
+          "budget": 5
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "id": "primitive.pager-dots",
+  "kind": "primitive",
+  "source": "src/components/industry/IconSlider.jsx; src/components/Integrations.jsx",
+  "evidenceKey": "primitive.pager-dots",
+  "description": "A row of small rectangular pager marks. Two real instances with different geometry.",
+  "props": {
+    "count": {
+      "type": "integer",
+      "minimum": 2,
+      "maximum": 5
+    },
+    "activeIndex": {
+      "type": "integer"
+    },
+    "geometry": {
+      "enum": [
+        "icon-slider",
+        "integrations"
+      ]
+    }
+  },
+  "geometryValues": {
+    "icon-slider": {
+      "dot": "h-3 w-1.5",
+      "gap": "gap-x-1.5",
+      "inactive": "bg-[rgba(15,12,11,0.5)] opacity-30"
+    },
+    "integrations": {
+      "dot": "h-1.5 w-3",
+      "active": "bg-sun"
+    }
+  },
+  "motion": {
+    "property": "opacity, background-color",
+    "duration": "{motion.duration.DEFAULT}",
+    "easing": "ease-in-out"
+  },
+  "knownUpstreamDefect": "On the industry iconSlider the pager renders FIVE dots while only the first three snaps are reachable, and the counter denominator is the ITEM count (5) rather than the snap count. Reproduced on purpose; generated pages must not copy this."
+}

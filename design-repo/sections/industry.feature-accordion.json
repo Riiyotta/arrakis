@@ -1,0 +1,130 @@
+{
+  "id": "industry.feature-accordion",
+  "kind": "section",
+  "scope": "body",
+  "category": "feature",
+  "evidenceKey": "section.industry.feature-accordion",
+  "source": "src/components/industry/FeatureAccordion.jsx",
+  "description": "Slot 3: a dark auto-advancing 4-item accordion beside a Rive scene, with a white ellipse decoration. Measures pixel-identical across all six industry routes.",
+  "surface": "dark",
+  "content": {
+    "required": [
+      "heading",
+      "items",
+      "asset"
+    ],
+    "additionalProperties": false,
+    "properties": {
+      "heading": {
+        "type": "string",
+        "maxWords": 13
+      },
+      "asset": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "assetRole",
+          "alt",
+          "provenance"
+        ],
+        "properties": {
+          "assetRole": {
+            "enum": [
+              "motion.rive-scene"
+            ]
+          },
+          "alt": {
+            "type": "string",
+            "maxWords": 6
+          },
+          "src": {
+            "type": "string"
+          },
+          "intrinsicWidth": {
+            "type": "integer"
+          },
+          "intrinsicHeight": {
+            "type": "integer"
+          },
+          "provenance": {
+            "enum": [
+              "source-original",
+              "operator-supplied",
+              "generated"
+            ],
+            "note": "Provenance of this asset in the page being specified. `generated` is FORBIDDEN for any assetRole whose generationPolicy is must-not-fabricate-real-brand or must-not-fabricate-compliance-claim, and for must-reuse-exact roles. Enforced by compatibility/graph.json#ASSET_PROVENANCE_POLICY and schema/semantic_validate.py."
+          },
+          "aspectRatio": {
+            "type": "string",
+            "note": "CSS aspect-ratio for the wrapper box (e.g. \"799/617\"). Used by Rive assets, which have no intrinsic pixel size, INSTEAD of intrinsicWidth/Height."
+          }
+        }
+      },
+      "items": {
+        "type": "array",
+        "minItems": 4,
+        "maxItems": 4,
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "index",
+            "subheading",
+            "content"
+          ],
+          "properties": {
+            "index": {
+              "type": "string",
+              "pattern": "^[0-9]{2}$"
+            },
+            "subheading": {
+              "type": "string",
+              "maxWords": 5
+            },
+            "content": {
+              "type": "string",
+              "maxWords": 22
+            }
+          }
+        }
+      }
+    }
+  },
+  "constraints": {
+    "onePerPage": true
+  },
+  "motion": {
+    "pattern": "auto-advance-accordion",
+    "reducedMotionFallback": "all-panels-open-no-autoplay",
+    "autoAdvanceMs": 8000,
+    "panelHeight": {
+      "duration": "300ms",
+      "easing": "cubic-bezier(.76,0,.24,1)"
+    },
+    "panelOpacity": {
+      "duration": "0ms",
+      "delay": "300ms",
+      "note": "MEASURED: opacity does NOT interpolate. It holds 0 for the whole height tween and FLIPS to 1 on the same frame the height lands. Implemented as duration 0 with a 300ms delay. Do not tween it."
+    },
+    "progressBar": {
+      "transform": "translateX(-100%) -> translateX(0%)",
+      "duration": "8000ms",
+      "easing": "linear",
+      "fill": "both",
+      "iterations": 1,
+      "driver": "WAAPI, no CSS easing on the element"
+    },
+    "notes": "Auto-advance measured at exactly 8000ms on the industry pages."
+  },
+  "responsive": {
+    "base": "accordion above asset",
+    "lg1024": "two columns"
+  },
+  "knownUpstreamDefects": [
+    "A stray `hello` class sits on each item’s bottom bracket."
+  ],
+  "notes": [
+    "heading, asset and all four items are BYTE-IDENTICAL on all six industry routes (src/data/industries.js FEATURE_ACCORDION). The section measures pixel-identical across all six."
+  ],
+  "copyBudgetDerivation": "Each maxWords budget is max(measured+2, ceil(measured*1.25)). The measured maxima were computed by importing the real src/data/*.js modules and word-counting every string for that field across every route. See extraction/measured-values.json#copyBudgets."
+}

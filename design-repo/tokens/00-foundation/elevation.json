@@ -1,0 +1,10 @@
+{
+  "$id": "tokens/00-foundation/elevation",
+  "layer": "foundation",
+  "description": "The site has essentially no elevation system. Exactly ONE boxShadow is declared and it is used only by the scrolled header.",
+  "evidenceKey": "token.elevation",
+  "tokens": {
+    "lg": { "$type": "shadow", "$value": "0 10px 15px -3px rgba(0,0,0,.1), 0 4px 6px -4px rgba(0,0,0,.1)", "usage": "header, scrolled state only" }
+  },
+  "note": "Depth on this site is carried by 1px hairlines (the square-bracket primitive, ~40 uses) and by background gradients, not by shadow. Do not add shadows to generated sections."
+}

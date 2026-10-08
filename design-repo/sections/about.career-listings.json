@@ -1,0 +1,99 @@
+{
+  "id": "about.career-listings",
+  "kind": "section",
+  "scope": "body",
+  "category": "conversion",
+  "evidenceKey": "section.about.career-listings",
+  "source": "src/components/sections/CareerListings.jsx; src/data/about.js",
+  "description": "/about slot 7 and the page’s last section: an eyebrow, a heading, a CTA, and a hand-authored inline-SVG orbit with side lines (no asset file).",
+  "surface": "dark",
+  "content": {
+    "required": [
+      "eyebrow",
+      "heading",
+      "cta"
+    ],
+    "additionalProperties": false,
+    "properties": {
+      "eyebrow": {
+        "type": "string",
+        "maxWords": 4
+      },
+      "heading": {
+        "type": "string",
+        "maxWords": 8
+      },
+      "cta": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "label"
+        ],
+        "properties": {
+          "label": {
+            "type": "string",
+            "maxWords": 5
+          },
+          "href": {
+            "type": "string",
+            "assetRolePolicy": "nonAssetContentBans.realContactEmails (must-not-reuse) — the real value is a mailto: to a live mailbox"
+          },
+          "variant": {
+            "enum": [
+              "light",
+              "day",
+              "dark"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "constraints": {
+    "onePerPage": true,
+    "mustBeLast": true,
+    "routeAllowlist": [
+      "/about"
+    ]
+  },
+  "motion": {
+    "pattern": "staggered-svg-reveal",
+    "reducedMotionFallback": "final-state-static",
+    "trigger": "on enter view",
+    "layers": {
+      "dots": {
+        "delayMs": 0,
+        "durationMs": 300
+      },
+      "main": {
+        "delayMs": 0,
+        "durationMs": 900
+      },
+      "top": {
+        "delayMs": 250,
+        "durationMs": 650
+      },
+      "bottom": {
+        "delayMs": 380,
+        "durationMs": 670
+      },
+      "leftLine": {
+        "delayMs": 580,
+        "durationMs": 770
+      },
+      "rightLine": {
+        "delayMs": 730,
+        "durationMs": 920
+      }
+    },
+    "notes": "Six independently-delayed layers. The durations are fitted to the MEASURED asymptotic tails on the original, not chosen."
+  },
+  "responsive": {
+    "base": "orbit SVG scaled down, CTA full width",
+    "md768": "orbit at full size"
+  },
+  "notes": [
+    "The CTA hover is bg-dust -> bg-sand over 250ms cubic-bezier(.4,0,.2,1)."
+  ],
+  "copyBudgetDerivation": "Each maxWords budget is max(measured+2, ceil(measured*1.25)). The measured maxima were computed by importing the real src/data/*.js modules and word-counting every string for that field across every route. See extraction/measured-values.json#copyBudgets."
+}

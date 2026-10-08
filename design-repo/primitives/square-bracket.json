@@ -1,0 +1,49 @@
+{
+  "id": "primitive.square-bracket",
+  "kind": "primitive",
+  "source": "src/index.css; src/components/SquareBracket.jsx",
+  "evidenceKey": "primitive.square-bracket",
+  "description": "The site's signature hairline primitive and its most-reused visual device (~40 call sites). A 1px rule with a 1px vertical end-tick at each end, drawn in currentColor, so callers set the colour with text-stroke-1 (light surfaces) or text-stroke-3 (dark surfaces).",
+  "props": {
+    "edge": {
+      "enum": [
+        "top",
+        "bottom",
+        "left",
+        "right",
+        "divider"
+      ],
+      "required": true
+    },
+    "color": {
+      "enum": [
+        "text-stroke-1",
+        "text-stroke-2",
+        "text-stroke-3",
+        "text-white/10"
+      ],
+      "default": "text-stroke-1"
+    },
+    "linesLg": {
+      "type": "boolean",
+      "default": false
+    },
+    "forceLg": {
+      "type": "boolean",
+      "default": false
+    },
+    "hideTop": {
+      "type": "boolean",
+      "default": false
+    },
+    "hideBottom": {
+      "type": "boolean",
+      "default": false,
+      "note": "When true the bottom element is OMITTED, not made transparent — its 16px box is part of the measured height."
+    }
+  },
+  "tokens": [
+    "{component.squareBracket}"
+  ],
+  "knownUpstreamDefect": "A stray `hello` class appears on 5 bracket instances in the real source (MobileDrawer, SecurityFeatureAccordion, StatsGrid, industry/FeatureAccordion, platform/StackedPanels). It is dead debug residue carried over from the original and is reproduced on purpose. Generated pages MUST NOT add it."
+}

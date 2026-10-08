@@ -1,0 +1,178 @@
+{
+  "id": "feature.asset-swap-pinned",
+  "kind": "section",
+  "scope": "body",
+  "category": "feature",
+  "evidenceKey": "section.feature.asset-swap-pinned",
+  "source": "src/components/FeatureAssetSwap.jsx",
+  "description": "`featureAssetSwap` — the scroll-pinned feature list. A native `position: sticky` stage inside an `h-[400vh]` track. No scroll-jacking and no smooth-scroll library.",
+  "surface": "light",
+  "content": {
+    "required": [
+      "items",
+      "cta"
+    ],
+    "additionalProperties": false,
+    "properties": {
+      "items": {
+        "type": "array",
+        "minItems": 4,
+        "maxItems": 5,
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "label",
+            "content"
+          ],
+          "properties": {
+            "label": {
+              "type": "string",
+              "maxWords": 4
+            },
+            "content": {
+              "type": "string",
+              "maxWords": 16
+            },
+            "asset": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "assetRole",
+                "alt",
+                "provenance"
+              ],
+              "properties": {
+                "assetRole": {
+                  "enum": [
+                    "motion.rive-scene",
+                    "media.product-screenshot"
+                  ]
+                },
+                "alt": {
+                  "type": "string",
+                  "maxWords": 6
+                },
+                "src": {
+                  "type": "string"
+                },
+                "intrinsicWidth": {
+                  "type": "integer"
+                },
+                "intrinsicHeight": {
+                  "type": "integer"
+                },
+                "provenance": {
+                  "enum": [
+                    "source-original",
+                    "operator-supplied",
+                    "generated"
+                  ],
+                  "note": "Provenance of this asset in the page being specified. `generated` is FORBIDDEN for any assetRole whose generationPolicy is must-not-fabricate-real-brand or must-not-fabricate-compliance-claim, and for must-reuse-exact roles. Enforced by compatibility/graph.json#ASSET_PROVENANCE_POLICY and schema/semantic_validate.py."
+                },
+                "aspectRatio": {
+                  "type": "string",
+                  "note": "CSS aspect-ratio for the wrapper box (e.g. \"799/617\"). Used by Rive assets, which have no intrinsic pixel size, INSTEAD of intrinsicWidth/Height."
+                }
+              }
+            }
+          }
+        }
+      },
+      "centerGraphic": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "assetRole",
+          "alt",
+          "provenance"
+        ],
+        "properties": {
+          "assetRole": {
+            "enum": [
+              "motion.rive-scene",
+              "media.product-screenshot"
+            ]
+          },
+          "alt": {
+            "type": "string",
+            "maxWords": 6
+          },
+          "src": {
+            "type": "string"
+          },
+          "intrinsicWidth": {
+            "type": "integer"
+          },
+          "intrinsicHeight": {
+            "type": "integer"
+          },
+          "provenance": {
+            "enum": [
+              "source-original",
+              "operator-supplied",
+              "generated"
+            ],
+            "note": "Provenance of this asset in the page being specified. `generated` is FORBIDDEN for any assetRole whose generationPolicy is must-not-fabricate-real-brand or must-not-fabricate-compliance-claim, and for must-reuse-exact roles. Enforced by compatibility/graph.json#ASSET_PROVENANCE_POLICY and schema/semantic_validate.py."
+          },
+          "aspectRatio": {
+            "type": "string",
+            "note": "CSS aspect-ratio for the wrapper box (e.g. \"799/617\"). Used by Rive assets, which have no intrinsic pixel size, INSTEAD of intrinsicWidth/Height."
+          }
+        },
+        "note": "aspect 634/760"
+      },
+      "cta": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "label"
+        ],
+        "properties": {
+          "label": {
+            "type": "string",
+            "maxWords": 4
+          },
+          "href": {
+            "type": "string"
+          },
+          "variant": {
+            "enum": [
+              "dark",
+              "light",
+              "day"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "constraints": {
+    "onePerPage": true
+  },
+  "motion": {
+    "pattern": "scroll-pinned-stage",
+    "reducedMotionFallback": "unpinned-stacked-list",
+    "pinMechanism": "native position:sticky inside an h-[400vh] track",
+    "pinnedAtMinWidthPx": 768,
+    "stageTransition": {
+      "duration": "300ms",
+      "easing": "cubic-bezier(.76,0,.24,1)",
+      "translateY": "52px"
+    },
+    "notes": "MEASURED: pinned at 768 (section 3976.56px), NOT pinned at 767 (section 1121.67px)."
+  },
+  "responsive": {
+    "base": "NOT pinned, h-[400vh] not applied, list renders stacked",
+    "md768": "pinned; grid 1fr 47.17% 1fr; 4 rows of 156.172px + 1 of 140.18px",
+    "gridAt1440": "355.016px 633.961px 355.023px",
+    "gridAt1280": "312.75px 558.492px 312.758px",
+    "gridAt768": "192.305px 343.391px 192.305px"
+  },
+  "correctedClaims": [
+    "CLONE_SPEC.md §3.3 and §6.5 both say this section pins at >=1024px. WRONG — the real gate is `matchMedia(\"(min-width: 768px)\")`. Building to 1024 left the clone ~3072px short at viewport 768."
+  ],
+  "knownUpstreamDefects": [
+    "Its CTA is one of the four homepage links that all point at `/platform#build`."
+  ]
+}

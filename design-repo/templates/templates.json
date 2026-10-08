@@ -1,0 +1,473 @@
+{
+  "$id": "templates/templates",
+  "description": "One entry per distinct PAGE SHAPE. Every node is a structured object so `required`/`repeatable`/`variant` are machine-enforceable rather than implicit conventions. Every real route maps to exactly one template.",
+  "evidenceKey": "templates",
+  "templateCount": 7,
+  "routeCount": 13,
+  "routeToTemplate": {
+    "*": "not-found",
+    "/": "home",
+    "/about": "about",
+    "/aerospace-and-defense": "industry-page",
+    "/chemicals": "industry-page",
+    "/cookie-policy": "legal",
+    "/energy-commodities": "industry-page",
+    "/engineering-construction": "industry-page",
+    "/platform": "platform",
+    "/security": "security",
+    "/shipping": "industry-page",
+    "/telecommunications": "industry-page",
+    "/terms-of-service": "legal"
+  },
+  "templates": {
+    "home": {
+      "name": "Homepage",
+      "routes": [
+        "/"
+      ],
+      "surface": "mixed (dark hero + orbit, then light sections)",
+      "evidenceLevel": "measured",
+      "source": "src/pages/Home.jsx",
+      "description": "Unique page shape. 7 body sections, in a fixed order, none optional and none repeatable. Three further CMS sections on this page carry hideSection:true and are DELIBERATELY unbuilt — they must not be recreated.",
+      "nodes": [
+        {
+          "section": "chrome.header",
+          "required": true,
+          "repeatable": false,
+          "scope": "chrome"
+        },
+        {
+          "section": "hero.two-column-masthead",
+          "required": true,
+          "repeatable": false,
+          "scope": "body"
+        },
+        {
+          "section": "showcase.orbit",
+          "required": true,
+          "repeatable": false,
+          "scope": "body"
+        },
+        {
+          "section": "feature.text-card-dashboard",
+          "required": true,
+          "repeatable": false,
+          "scope": "body"
+        },
+        {
+          "section": "social.press-banner",
+          "required": true,
+          "repeatable": false,
+          "scope": "body"
+        },
+        {
+          "section": "stats.grid",
+          "required": true,
+          "repeatable": false,
+          "scope": "body"
+        },
+        {
+          "section": "feature.asset-swap-pinned",
+          "required": true,
+          "repeatable": false,
+          "scope": "body"
+        },
+        {
+          "section": "integrations.paginated-panels",
+          "required": true,
+          "repeatable": false,
+          "scope": "body"
+        },
+        {
+          "section": "chrome.footer",
+          "required": true,
+          "repeatable": false,
+          "scope": "chrome"
+        },
+        {
+          "section": "chrome.cookie-notice",
+          "required": true,
+          "repeatable": false,
+          "scope": "chrome"
+        }
+      ],
+      "deliberatelyUnbuilt": [
+        "3 homepage CMS sections carry hideSection:true (CLONE_SPEC §4.8) and emit zero DOM. Intentional scope reduction — do NOT recreate them."
+      ]
+    },
+    "industry-page": {
+      "name": "Industry page (CMS pageBuilder)",
+      "routes": [
+        "/aerospace-and-defense",
+        "/chemicals",
+        "/energy-commodities",
+        "/engineering-construction",
+        "/shipping",
+        "/telecommunications"
+      ],
+      "surface": "light with one dark accordion section",
+      "evidenceLevel": "measured",
+      "source": "src/components/IndustryPage.jsx; src/data/industries.js",
+      "description": "ONE template, six content sets, TWO real compositions. See `compositionVariance` for the evidence and the decision.",
+      "nodes": [
+        {
+          "section": "chrome.header",
+          "required": true,
+          "repeatable": false,
+          "scope": "chrome"
+        },
+        {
+          "section": "industry.nav-masthead",
+          "required": true,
+          "repeatable": false,
+          "scope": "body"
+        },
+        {
+          "section": "industry.icon-slider",
+          "required": true,
+          "repeatable": false,
+          "scope": "body"
+        },
+        {
+          "section": "industry.text-card-asset",
+          "required": false,
+          "repeatable": false,
+          "scope": "body",
+          "note": "slot 1b — /shipping ONLY. Absent from the other five routes’ CMS sections[] array entirely, not merely hidden."
+        },
+        {
+          "section": "industry.feature-detail",
+          "required": false,
+          "repeatable": false,
+          "scope": "body",
+          "note": "slot 2 — /shipping ONLY. The slot EXISTS on all six routes but carries hideSection:true on five, and a hidden section emits zero DOM."
+        },
+        {
+          "section": "industry.feature-accordion",
+          "required": true,
+          "repeatable": false,
+          "scope": "body"
+        },
+        {
+          "section": "industry.logo-showcase",
+          "required": true,
+          "repeatable": false,
+          "scope": "body"
+        },
+        {
+          "section": "chrome.footer",
+          "required": true,
+          "repeatable": false,
+          "scope": "chrome"
+        },
+        {
+          "section": "chrome.cookie-notice",
+          "required": true,
+          "repeatable": false,
+          "scope": "chrome"
+        }
+      ],
+      "compositionVariance": {
+        "decision": "ONE template with two optional, route-restricted nodes — NOT a separate /shipping template.",
+        "method": "MASTER-GUIDE §3.22. Rather than trusting the grouping or the prose, a first-party classifier was written that imports the real src/data/industries.js module and reproduces src/components/IndustryPage.jsx’s own slot logic verbatim, then run against all six routes. Output recorded in extraction/measured-values.json#routeComposition.classifierOutput.",
+        "classifierResult": {
+          "5 routes (/aerospace-and-defense, /chemicals, /energy-commodities, /engineering-construction, /telecommunications)": [
+            "industry.nav-masthead",
+            "industry.icon-slider",
+            "industry.feature-accordion",
+            "industry.logo-showcase"
+          ],
+          "/shipping": [
+            "industry.nav-masthead",
+            "industry.icon-slider",
+            "industry.text-card-asset",
+            "industry.feature-detail",
+            "industry.feature-accordion",
+            "industry.logo-showcase"
+          ]
+        },
+        "sectionCounts": {
+          "five routes": 4,
+          "/shipping": 6
+        },
+        "whyOneTemplate": [
+          "The 4-node sequence is a strict ORDERED SUBSEQUENCE of the 6-node one, at the same relative positions. No node order, adjacency or position rule differs between the two — only presence does. That is optionality within one shape, not a second shape.",
+          "The CMS evidence agrees: all six routes are a single Sanity `pageBuilder` document type. The featureDetail slot exists in all six sections[] arrays and is hidden on five (hideSection:true). A hidden slot is the CMS’s own expression of an optional node.",
+          "A second template would duplicate 4 of 6 node contracts verbatim and add a second route-mapping surface to keep in sync, buying nothing: the shared featureAccordion and logoShowcase sections measure pixel-identical across all six routes."
+        ],
+        "riskClosed": "The obvious risk of the optional model is that a generated PageSpec could claim the extra slots on, say, /chemicals. That is closed three ways: (1) both section contracts carry `constraints.routeAllowlist: [\"/shipping\"]`; (2) schema/semantic_validate.py enforces the allowlist against the PageSpec’s own `route` field; (3) compatibility/graph.json rule INDUSTRY_OPTIONAL_SLOTS_SHIPPING_ONLY is severity \"error\". An adversarial case proves it rejects /chemicals + industry.feature-detail AND that the real /shipping spec still passes.",
+        "otherPerRouteDifferences": {
+          "hero asset kind": "/shipping = motion.rive-scene; the other five = illustration.industry-masthead. Modelled as the `hero-rive` / `hero-static` variants of industry.nav-masthead, NOT as a template split.",
+          "/chemicals": "differs from the other four static-hero routes by EXACTLY ONE token: industry.icon-slider background is `dustToWhite` instead of `white`. Modelled as the `bg-dust-to-white` variant. Not a shape difference."
+        }
+      },
+      "deliberatelyUnbuilt": [
+        "slot 4 `customerStoriesSlider` carries hideSection:true on ALL SIX routes.",
+        "slot 6 has `blocks: null` and emits no section at all.",
+        "`decoration.type: \"dune\"` has hasDecoration:false and renders nothing.",
+        "All of the above are intentional scope reductions. Do NOT recreate them."
+      ]
+    },
+    "platform": {
+      "name": "Platform",
+      "routes": [
+        "/platform"
+      ],
+      "surface": "light, with a black->white transition inside stacked-panels",
+      "evidenceLevel": "measured",
+      "source": "src/pages/Platform.jsx; src/data/platform.js",
+      "description": "Unique page shape with 3 block types that exist nowhere else on the site. Exactly 3 wrapper slots: no hideSection:true slot and no empty blocks:null slot.",
+      "nodes": [
+        {
+          "section": "chrome.header",
+          "required": true,
+          "repeatable": false,
+          "scope": "chrome"
+        },
+        {
+          "section": "platform.stacked-masthead",
+          "required": true,
+          "repeatable": false,
+          "scope": "body"
+        },
+        {
+          "section": "platform.stacked-panels",
+          "required": true,
+          "repeatable": false,
+          "scope": "body"
+        },
+        {
+          "section": "platform.feature-callout",
+          "required": true,
+          "repeatable": false,
+          "scope": "body"
+        },
+        {
+          "section": "chrome.footer",
+          "required": true,
+          "repeatable": false,
+          "scope": "chrome"
+        },
+        {
+          "section": "chrome.cookie-notice",
+          "required": true,
+          "repeatable": false,
+          "scope": "chrome"
+        }
+      ],
+      "anchors": {
+        "build": "platform.stacked-panels",
+        "security": "platform.feature-callout"
+      },
+      "knownUpstreamDefects": [
+        "`#integrations` is DELIBERATELY absent from this route — the footer link `/platform#integrations` is a dead anchor on the original too."
+      ]
+    },
+    "security": {
+      "name": "Security",
+      "routes": [
+        "/security"
+      ],
+      "surface": "dark",
+      "evidenceLevel": "measured",
+      "source": "src/pages/Security.jsx; src/data/security.js",
+      "description": "3 pageBuilder sections, all rendered, no hidden slots. Despite sharing a <title> with /platform (a CMS copy-paste mistake confirmed by recon), this is an UNRELATED document with zero overlap in block types. It also has no in-page anchors — none of its sections carries a sectionId.",
+      "nodes": [
+        {
+          "section": "chrome.header",
+          "required": true,
+          "repeatable": false,
+          "scope": "chrome"
+        },
+        {
+          "section": "security.feature-accordion",
+          "required": true,
+          "repeatable": false,
+          "scope": "body"
+        },
+        {
+          "section": "security.text-card",
+          "required": true,
+          "repeatable": false,
+          "scope": "body"
+        },
+        {
+          "section": "shared.icon-grid",
+          "required": true,
+          "repeatable": false,
+          "scope": "body",
+          "variant": "theme-light"
+        },
+        {
+          "section": "chrome.footer",
+          "required": true,
+          "repeatable": false,
+          "scope": "chrome"
+        },
+        {
+          "section": "chrome.cookie-notice",
+          "required": true,
+          "repeatable": false,
+          "scope": "chrome"
+        }
+      ],
+      "anchors": {}
+    },
+    "about": {
+      "name": "About",
+      "routes": [
+        "/about"
+      ],
+      "surface": "dark (flat #0F0C0B, not one gradient on the page)",
+      "evidenceLevel": "measured",
+      "source": "src/pages/About.jsx; src/data/about.js",
+      "description": "8 CMS pageBuilder slots, 6 rendered. THERE IS NO HERO: slot 0 (`arcMasthead`) is hideSection:true, so the page opens straight into the statementShowcase under pt-18 md:pt-24 lg:pt-40. Both hidden slots emit zero DOM; main > section is 6 at all four viewports.",
+      "noHero": true,
+      "nodes": [
+        {
+          "section": "chrome.header",
+          "required": true,
+          "repeatable": false,
+          "scope": "chrome"
+        },
+        {
+          "section": "about.statement-showcase",
+          "required": true,
+          "repeatable": false,
+          "scope": "body"
+        },
+        {
+          "section": "shared.icon-grid",
+          "required": true,
+          "repeatable": false,
+          "scope": "body",
+          "variant": "theme-dark"
+        },
+        {
+          "section": "about.numbered-list",
+          "required": true,
+          "repeatable": false,
+          "scope": "body"
+        },
+        {
+          "section": "about.employee-grid",
+          "required": true,
+          "repeatable": false,
+          "scope": "body"
+        },
+        {
+          "section": "about.sticky-aside-list",
+          "required": true,
+          "repeatable": false,
+          "scope": "body"
+        },
+        {
+          "section": "about.career-listings",
+          "required": true,
+          "repeatable": false,
+          "scope": "body"
+        },
+        {
+          "section": "chrome.footer",
+          "required": true,
+          "repeatable": false,
+          "scope": "chrome"
+        },
+        {
+          "section": "chrome.cookie-notice",
+          "required": true,
+          "repeatable": false,
+          "scope": "chrome"
+        }
+      ],
+      "deliberatelyUnbuilt": [
+        "slot 0 `arcMasthead` — hideSection:true. This is why the template has no hero; it is intentional, not a gap.",
+        "slot 6 `contentSlider` — hideSection:true. No carousel, and therefore no Embla anywhere on this page."
+      ]
+    },
+    "legal": {
+      "name": "Legal document",
+      "routes": [
+        "/terms-of-service",
+        "/cookie-policy"
+      ],
+      "surface": "dark",
+      "evidenceLevel": "measured",
+      "source": "src/components/LegalPage.jsx",
+      "description": "ONE template, two routes. Per CLONE_SPEC_LEGAL §0.1 the two routes are byte-for-byte the same wrapper markup; only the title, the \"Last updated\" line and the block array differ. Verified by the classifier: both routes resolve to the identical single-node sequence.",
+      "nodes": [
+        {
+          "section": "chrome.header",
+          "required": true,
+          "repeatable": false,
+          "scope": "chrome"
+        },
+        {
+          "section": "legal.prose-blocks",
+          "required": true,
+          "repeatable": false,
+          "scope": "body"
+        },
+        {
+          "section": "chrome.footer",
+          "required": true,
+          "repeatable": false,
+          "scope": "chrome"
+        },
+        {
+          "section": "chrome.cookie-notice",
+          "required": true,
+          "repeatable": false,
+          "scope": "chrome"
+        }
+      ],
+      "contentGate": "legal.prose-blocks requires `requiresOperatorSuppliedText: true`. The real text is another organisation’s legal instrument; the structure is reusable, the text is not."
+    },
+    "not-found": {
+      "name": "404 catch-all",
+      "routes": [
+        "*"
+      ],
+      "surface": "light",
+      "evidenceLevel": "STUB — NOT MEASURED",
+      "source": "src/pages/NotFound.jsx",
+      "description": "The react-router catch-all. HONEST EVIDENCE GAP: the real component is an explicit stub (\"STUB — awaiting recon measurements\"). Recon never visited the original’s 404 route. This template exists so route coverage is 1:1; it must not be read as measured.",
+      "nodes": [
+        {
+          "section": "chrome.header",
+          "required": true,
+          "repeatable": false,
+          "scope": "chrome"
+        },
+        {
+          "section": "system.not-found",
+          "required": true,
+          "repeatable": false,
+          "scope": "body"
+        },
+        {
+          "section": "chrome.footer",
+          "required": true,
+          "repeatable": false,
+          "scope": "chrome"
+        },
+        {
+          "section": "chrome.cookie-notice",
+          "required": true,
+          "repeatable": false,
+          "scope": "chrome"
+        }
+      ]
+    }
+  },
+  "routeCoverage": {
+    "realRoutes": 12,
+    "catchAll": 1,
+    "total": 13,
+    "deliberatelyAbsent": {
+      "/industries": "does NOT exist and must not be created — it 404s on the original.",
+      "/careers": "does NOT exist and must not be created — it 404s on the original."
+    },
+    "verification": "extraction/verify_all.py recomputes this map from `templates[*].routes` and fails on any gap or double-assignment."
+  }
+}

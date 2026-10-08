@@ -1,0 +1,35 @@
+{
+  "id": "component.icon-feature",
+  "kind": "component",
+  "source": "src/components/sections/IconGrid.jsx",
+  "evidenceKey": "component.icon-feature",
+  "description": "A 40x40 icon, a title, and one or more body lines. Light and dark variants use DISTINCT icon files (white-stroked vs dark-stroked), not CSS recolouring.",
+  "props": {
+    "icon": {
+      "type": "string"
+    },
+    "alt": {
+      "type": "string",
+      "maxWords": 4
+    },
+    "title": {
+      "type": "string",
+      "maxWords": 7
+    },
+    "lines": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "maxWords": 40
+      },
+      "minItems": 1,
+      "maxItems": 3
+    }
+  },
+  "theme": {
+    "enum": [
+      "light",
+      "dark"
+    ]
+  }
+}

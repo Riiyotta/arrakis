@@ -1,0 +1,16 @@
+{
+  "$id": "tokens/themes/dark-surface",
+  "theme": "dark-surface",
+  "description": "The dark surface mode. /security and /about are flat #0F0C0B end to end (not a single gradient or background transition on /about); both legal routes are flat #0F0C0B; the homepage hero is #0B0907 and the orbit section is a dark oklch gradient.",
+  "evidenceKey": "theme.dark-surface",
+  "usedBy": ["/security", "/about", "/terms-of-service", "/cookie-policy"],
+  "resolved": {
+    "text.primary":    "#FFFFFF",
+    "text.secondary":  "rgba(255,255,255,0.8)",
+    "text.accent":     "#FF8B3E",
+    "surface.page":    "#0F0C0B",
+    "surface.hero":    "#0B0907",
+    "border.hairline": "#54504E",
+    "border.hairline.subtle": "rgba(255,255,255,0.1)"
+  }
+}

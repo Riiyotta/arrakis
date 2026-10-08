@@ -1,0 +1,510 @@
+{
+  "$id": "motion/motion-spec",
+  "description": "The consolidated MEASURED motion ledger, generated from the per-section contracts in sections/*.json so the two cannot drift. Every number here was measured against the live original, not invented. A generated PageSpec cannot carry these fields: the PageSpec motion object is closed to exactly `pattern` + `reducedMotionFallback` (both const-locked per section type) — the detail lives here, in the design-repo, not in the instance.",
+  "patternCount": 19,
+  "sectionCount": 29,
+  "reducedMotionReality": "The real build implements prefers-reduced-motion for exactly ONE effect: a single CSS rule forcing .letter-reveal-char to opacity 1 (src/index.css). Every `reducedMotionFallback` below is a PRESCRIBED contract for generated pages, required by the schema so output cannot omit it — not a claim that the clone already implements it.",
+  "byPattern": {
+    "staggered-svg-reveal": [
+      "about.career-listings"
+    ],
+    "none": [
+      "about.employee-grid",
+      "about.numbered-list",
+      "feature.text-card-dashboard",
+      "industry.feature-detail",
+      "industry.nav-masthead",
+      "industry.text-card-asset",
+      "legal.prose-blocks",
+      "security.text-card",
+      "shared.icon-grid",
+      "system.not-found"
+    ],
+    "scroll-pinned-statement": [
+      "about.statement-showcase"
+    ],
+    "sticky-aside": [
+      "about.sticky-aside-list"
+    ],
+    "fade-in": [
+      "chrome.cookie-notice"
+    ],
+    "link-hover-fade": [
+      "chrome.footer"
+    ],
+    "header-theme-swap": [
+      "chrome.header"
+    ],
+    "scroll-pinned-stage": [
+      "feature.asset-swap-pinned"
+    ],
+    "hero-rotation": [
+      "hero.two-column-masthead"
+    ],
+    "auto-advance-accordion": [
+      "industry.feature-accordion",
+      "security.feature-accordion"
+    ],
+    "embla-friction-carousel": [
+      "industry.icon-slider"
+    ],
+    "discrete-step-marquee": [
+      "industry.logo-showcase"
+    ],
+    "vertical-marquee": [
+      "integrations.paginated-panels"
+    ],
+    "scroll-linked-rotation": [
+      "platform.feature-callout"
+    ],
+    "scroll-mapped-character-reveal": [
+      "platform.stacked-masthead"
+    ],
+    "background-colour-crossfade": [
+      "platform.stacked-panels"
+    ],
+    "scroll-letter-reveal": [
+      "showcase.orbit"
+    ],
+    "stagger-reveal": [
+      "social.press-banner"
+    ],
+    "counter-and-matrix-fill": [
+      "stats.grid"
+    ]
+  },
+  "bySection": {
+    "about.career-listings": {
+      "pattern": "staggered-svg-reveal",
+      "reducedMotionFallback": "final-state-static",
+      "source": "src/components/sections/CareerListings.jsx; src/data/about.js",
+      "detail": {
+        "trigger": "on enter view",
+        "layers": {
+          "dots": {
+            "delayMs": 0,
+            "durationMs": 300
+          },
+          "main": {
+            "delayMs": 0,
+            "durationMs": 900
+          },
+          "top": {
+            "delayMs": 250,
+            "durationMs": 650
+          },
+          "bottom": {
+            "delayMs": 380,
+            "durationMs": 670
+          },
+          "leftLine": {
+            "delayMs": 580,
+            "durationMs": 770
+          },
+          "rightLine": {
+            "delayMs": 730,
+            "durationMs": 920
+          }
+        },
+        "notes": "Six independently-delayed layers. The durations are fitted to the MEASURED asymptotic tails on the original, not chosen."
+      }
+    },
+    "about.employee-grid": {
+      "pattern": "none",
+      "reducedMotionFallback": "none",
+      "source": "src/components/sections/EmployeeGrid.jsx; src/data/about.js",
+      "detail": {}
+    },
+    "about.numbered-list": {
+      "pattern": "none",
+      "reducedMotionFallback": "none",
+      "source": "src/components/sections/NumberedList.jsx; src/data/about.js",
+      "detail": {}
+    },
+    "about.statement-showcase": {
+      "pattern": "scroll-pinned-statement",
+      "reducedMotionFallback": "final-state-static",
+      "source": "src/components/sections/StatementShowcase.jsx; src/data/about.js",
+      "detail": {
+        "spring": {
+          "stiffness": 90,
+          "damping": 28,
+          "mass": 1
+        }
+      }
+    },
+    "about.sticky-aside-list": {
+      "pattern": "sticky-aside",
+      "reducedMotionFallback": "no-sticky-static-stack",
+      "source": "src/components/sections/StickyAsideList.jsx; src/data/about.js",
+      "detail": {
+        "mechanism": "native position:sticky on the aside"
+      }
+    },
+    "chrome.cookie-notice": {
+      "pattern": "fade-in",
+      "reducedMotionFallback": "no-transition",
+      "source": "src/components/CookieNotice.jsx",
+      "detail": {
+        "duration": "250ms",
+        "easing": "cubic-bezier(.4,0,.2,1)"
+      }
+    },
+    "chrome.footer": {
+      "pattern": "link-hover-fade",
+      "reducedMotionFallback": "no-transition",
+      "source": "src/components/Footer.jsx",
+      "detail": {
+        "duration": "250ms",
+        "easing": "cubic-bezier(.4,0,.2,1)"
+      }
+    },
+    "chrome.header": {
+      "pattern": "header-theme-swap",
+      "reducedMotionFallback": "no-transition",
+      "source": "src/components/Header.jsx; src/components/MegaMenu.jsx; src/components/MobileDrawer.jsx; src/components/Layout.jsx",
+      "detail": {
+        "scrollThresholdPx": 300,
+        "duration": "250ms",
+        "easing": "cubic-bezier(.4,0,.2,1)",
+        "notes": "MEASURED: scrollY 300 = dark, 301 = white. The scrolled state swaps the Button variant outright rather than hovering it, and adds {elevation.lg}."
+      }
+    },
+    "feature.asset-swap-pinned": {
+      "pattern": "scroll-pinned-stage",
+      "reducedMotionFallback": "unpinned-stacked-list",
+      "source": "src/components/FeatureAssetSwap.jsx",
+      "detail": {
+        "pinMechanism": "native position:sticky inside an h-[400vh] track",
+        "pinnedAtMinWidthPx": 768,
+        "stageTransition": {
+          "duration": "300ms",
+          "easing": "cubic-bezier(.76,0,.24,1)",
+          "translateY": "52px"
+        },
+        "notes": "MEASURED: pinned at 768 (section 3976.56px), NOT pinned at 767 (section 1121.67px)."
+      }
+    },
+    "feature.text-card-dashboard": {
+      "pattern": "none",
+      "reducedMotionFallback": "none",
+      "source": "src/components/TextCardDashboard.jsx",
+      "detail": {
+        "notes": "No entrance motion. The Rive scene plays its own internal timeline; the section itself does not animate."
+      }
+    },
+    "hero.two-column-masthead": {
+      "pattern": "hero-rotation",
+      "reducedMotionFallback": "hold-first-clip-static",
+      "source": "src/components/Hero.jsx; src/components/LogoBanner.jsx",
+      "detail": {
+        "cycleMs": 8000,
+        "videoCrossfadeMs": 700,
+        "captionCrossfadeMs": 500,
+        "progressBar": {
+          "transform": "translateX(-100%) -> translateX(0)",
+          "duration": "8000ms",
+          "easing": "linear",
+          "restartedEachCycle": true
+        },
+        "logoBannerReveal": {
+          "from": {
+            "y": 40,
+            "opacity": 0,
+            "filter": "blur(4px)"
+          },
+          "to": {
+            "y": 0,
+            "opacity": 1,
+            "filter": "blur(0)"
+          },
+          "duration": "500ms",
+          "easing": "ease-out",
+          "staggerMs": 80,
+          "reversesOnExit": true
+        },
+        "logoBannerRotation": {
+          "periodMs": 3000,
+          "crossfadeMs": 500,
+          "note": "7 logos cycled through 5 slots; one slot swaps every 3000ms and incoming/outgoing coexist for the 500ms crossfade"
+        },
+        "notes": "The outgoing clip’s currentTime is reset to 0 only after the 700ms crossfade completes."
+      }
+    },
+    "industry.feature-accordion": {
+      "pattern": "auto-advance-accordion",
+      "reducedMotionFallback": "all-panels-open-no-autoplay",
+      "source": "src/components/industry/FeatureAccordion.jsx",
+      "detail": {
+        "autoAdvanceMs": 8000,
+        "panelHeight": {
+          "duration": "300ms",
+          "easing": "cubic-bezier(.76,0,.24,1)"
+        },
+        "panelOpacity": {
+          "duration": "0ms",
+          "delay": "300ms",
+          "note": "MEASURED: opacity does NOT interpolate. It holds 0 for the whole height tween and FLIPS to 1 on the same frame the height lands. Implemented as duration 0 with a 300ms delay. Do not tween it."
+        },
+        "progressBar": {
+          "transform": "translateX(-100%) -> translateX(0%)",
+          "duration": "8000ms",
+          "easing": "linear",
+          "fill": "both",
+          "iterations": 1,
+          "driver": "WAAPI, no CSS easing on the element"
+        },
+        "notes": "Auto-advance measured at exactly 8000ms on the industry pages."
+      }
+    },
+    "industry.feature-detail": {
+      "pattern": "none",
+      "reducedMotionFallback": "none",
+      "source": "src/components/industry/FeatureDetail.jsx",
+      "detail": {}
+    },
+    "industry.icon-slider": {
+      "pattern": "embla-friction-carousel",
+      "reducedMotionFallback": "no-autoplay-first-slide-only",
+      "source": "src/components/industry/IconSlider.jsx",
+      "detail": {
+        "autoplayMs": 6000,
+        "emblaDuration": 25,
+        "align": "start",
+        "containScroll": "trimSnaps",
+        "settleMs": "~1250-1300ms for one 456px step",
+        "pagerDot": {
+          "duration": "250ms",
+          "easing": "cubic-bezier(.4,0,.2,1)"
+        },
+        "notes": "Autoplay measured as delta 5971 / 6037ms -> 6000ms. Embla `duration: 25` reproduces the measured friction tween."
+      }
+    },
+    "industry.logo-showcase": {
+      "pattern": "discrete-step-marquee",
+      "reducedMotionFallback": "static-logo-row",
+      "source": "src/components/industry/LogoShowcase.jsx",
+      "detail": {
+        "stepPx": 248,
+        "stepComposition": "224px tile + 24px gutter",
+        "periodMs": 3000,
+        "moveMs": 1400,
+        "dwellMs": 1600,
+        "loopCopies": 3,
+        "loop": true,
+        "tabSwitch": {
+          "duration": "250ms",
+          "easing": "cubic-bezier(.4,0,.2,1)"
+        },
+        "notes": "MEASURED: the marquee is DISCRETE, not constant-velocity. Start-to-start period sampled at 2941 / 3043 / 2940 / 3034ms -> 3000ms. The move itself takes ~1400ms with asymptotic friction decay, leaving ~1600ms dwell. DISTINCT from integrations.paginated-panels’ 110px vertical marquee — do not conflate them."
+      }
+    },
+    "industry.nav-masthead": {
+      "pattern": "none",
+      "reducedMotionFallback": "none",
+      "source": "src/components/industry/NavMasthead.jsx; src/components/industry/EllipseDecoration.jsx",
+      "detail": {
+        "notes": "The static-SVG variant has no motion. The /shipping Rive variant plays its own internal timeline; the section wrapper still does not animate."
+      }
+    },
+    "industry.text-card-asset": {
+      "pattern": "none",
+      "reducedMotionFallback": "none",
+      "source": "src/components/industry/TextCardAsset.jsx",
+      "detail": {}
+    },
+    "integrations.paginated-panels": {
+      "pattern": "vertical-marquee",
+      "reducedMotionFallback": "static-logo-column",
+      "source": "src/components/Integrations.jsx",
+      "detail": {
+        "stepPx": 110,
+        "periodMs": 3000,
+        "autoplayDelayMs": 2000,
+        "speedMs": 1000,
+        "loopCopies": 3,
+        "pausedWhileOffscreen": true,
+        "pagerDot": {
+          "property": "opacity, background-color",
+          "duration": "250ms",
+          "easing": "ease-in-out",
+          "activeColor": "{color.sun}"
+        },
+        "notes": "Vertical Swiper. 15 slides = the 5 logos x 3 copies for looping; each slide is 110px tall. delay 2000 + speed 1000 = a 3000ms period. Paused by IntersectionObserver while offscreen. DISTINCT from industry.logo-showcase’s marquee (248px step) — do not conflate them."
+      }
+    },
+    "legal.prose-blocks": {
+      "pattern": "none",
+      "reducedMotionFallback": "none",
+      "source": "src/components/LegalPage.jsx; src/data/legal-terms.js; src/data/legal-cookie.js",
+      "detail": {
+        "notes": "MEASURED: document.getAnimations() is [] on the original and no element in the page body has a transition. Zero motion of any kind."
+      }
+    },
+    "platform.feature-callout": {
+      "pattern": "scroll-linked-rotation",
+      "reducedMotionFallback": "final-rotation-static",
+      "source": "src/components/platform/FeatureCallout.jsx; src/data/platform.js",
+      "detail": {
+        "shieldRotation": {
+          "property": "rotateY",
+          "from": "-45deg",
+          "to": "0deg",
+          "linearFit": "rotateY = -0.0668 x scrollHeightY + 23.92  =>  0deg at shY ~= 358, -45deg at shY ~= 1032",
+          "viewportForm": "rotateY = -45deg x (1 - clamp01((1.147*vh - shY) / (0.747*vh)))  — measured at vh 900 only"
+        },
+        "arrowLinkLabelSwap": {
+          "property": "opacity, translate",
+          "duration": "350ms",
+          "easing": "ease-in-out",
+          "outgoing": "translate-x-0 opacity-100 -> translate-x-2 opacity-0",
+          "incoming": "-translate-x-2 opacity-0 -> translate-x-0 opacity-100"
+        },
+        "notes": "The dominant motion is the scroll-linked shield rotation; the arrow-link label swap is a hover affordance on top of it."
+      }
+    },
+    "platform.stacked-masthead": {
+      "pattern": "scroll-mapped-character-reveal",
+      "reducedMotionFallback": "all-characters-opaque",
+      "source": "src/components/platform/StackedMasthead.jsx; src/data/platform.js",
+      "detail": {
+        "driver": "scroll position mapping only",
+        "perCharTransition": {
+          "duration": "0ms",
+          "note": "the spans carry NO transition, exactly as the original: the stagger comes from the scroll mapping, not from per-character delays"
+        },
+        "railFade": {
+          "property": "opacity",
+          "duration": "250ms",
+          "easing": "cubic-bezier(.4,0,.2,1)"
+        }
+      }
+    },
+    "platform.stacked-panels": {
+      "pattern": "background-colour-crossfade",
+      "reducedMotionFallback": "final-colour-static",
+      "source": "src/components/platform/StackedPanels.jsx; src/data/platform.js",
+      "detail": {
+        "backgroundTransition": {
+          "property": "background-color",
+          "duration": "1300ms",
+          "note": "driven by CSS transition-colors duration-1300; there is no JS tween"
+        },
+        "panelFade": {
+          "property": "opacity",
+          "duration": "250ms",
+          "easing": "cubic-bezier(.4,0,.2,1)"
+        }
+      }
+    },
+    "security.feature-accordion": {
+      "pattern": "auto-advance-accordion",
+      "reducedMotionFallback": "all-panels-open-no-autoplay",
+      "source": "src/components/sections/SecurityFeatureAccordion.jsx; src/data/security.js",
+      "detail": {
+        "autoAdvanceMs": 8000,
+        "panelHeight": {
+          "duration": "300ms",
+          "easing": "cubic-bezier(.76,0,.24,1)"
+        },
+        "panelOpacity": {
+          "duration": "0ms",
+          "delay": "300ms",
+          "note": "snaps at height-end, does not tween"
+        },
+        "progressBar": {
+          "transform": "translateX(-100%) -> translateX(0%)",
+          "duration": "8000ms",
+          "easing": "linear",
+          "fill": "both",
+          "iterations": 1,
+          "driver": "WAAPI, no CSS easing on the element"
+        },
+        "notes": "Auto-advance measured 7995ms / 7912ms two ways on /security -> 8000ms."
+      }
+    },
+    "security.text-card": {
+      "pattern": "none",
+      "reducedMotionFallback": "none",
+      "source": "src/components/sections/SecurityTextCard.jsx; src/data/security.js",
+      "detail": {}
+    },
+    "shared.icon-grid": {
+      "pattern": "none",
+      "reducedMotionFallback": "none",
+      "source": "src/components/sections/IconGrid.jsx; src/data/security.js; src/data/about.js",
+      "detail": {}
+    },
+    "showcase.orbit": {
+      "pattern": "scroll-letter-reveal",
+      "reducedMotionFallback": "all-characters-opaque",
+      "source": "src/components/OrbitShowcase.jsx",
+      "detail": {
+        "linearity": "LINEAR in scroll, not eased — constant chars/px across 16+ samples per viewport height.",
+        "startAt": "container top = 0.900 x vh",
+        "spanFormula": "0.34425 * vh + 87.9px (AFFINE in vh, not a fixed px length and not a fixed fraction of vh)",
+        "spanEvidence": "measured slopes 0.5782 / 0.4771 / 0.4075 chars-per-px at vh 700 / 900 / 1100; span/vh drifts monotonically (0.4694 / 0.4425 / 0.4239) which rules out a vh-proportional window; span grows 69.6px then 68.1px per 200px of vh, so growth is constant. Least-squares over the three heights gives sub-pixel residuals (-0.3 / +0.5 / -0.3 px).",
+        "spring": {
+          "stiffness": 120,
+          "damping": 30,
+          "evidence": "after an instant jump-scroll the lit count keeps climbing ~1.2s with no overshoot; residual decays with tau ~= 215ms. stiffness 120 / damping 30 has a dominant pole of 4.75 rad/s -> tau 210ms."
+        },
+        "perCharTransition": {
+          "property": "opacity",
+          "duration": "300ms"
+        },
+        "notes": "This affine span CANNOT be expressed as a framer `useScroll` offset pair (both offset forms are purely vh-relative); progress is driven from a measured container-top -> progress mapping re-read from the live rect each scroll frame. Do not remove the spring: without it the reveal snaps."
+      }
+    },
+    "social.press-banner": {
+      "pattern": "stagger-reveal",
+      "reducedMotionFallback": "all-slots-opaque",
+      "source": "src/components/PressBanner.jsx",
+      "detail": {
+        "duration": "500ms",
+        "easing": "ease-out",
+        "staggerMs": 80,
+        "notes": "4 logos in 4 slots means NO cycling — entrance animation only. Each slot keeps its own will-change-transform wrapper div."
+      }
+    },
+    "stats.grid": {
+      "pattern": "counter-and-matrix-fill",
+      "reducedMotionFallback": "final-values-static",
+      "source": "src/components/StatsGrid.jsx",
+      "detail": {
+        "counter": "@number-flow/react counts to the final value on enter",
+        "matrixFill": {
+          "property": "height",
+          "from": "0%",
+          "to": "6px",
+          "note": "22 cells; even-index cells fill from the top, odd-index from the bottom. Ships at height:0% (the original’s rest/SSR state)."
+        }
+      }
+    },
+    "system.not-found": {
+      "pattern": "none",
+      "reducedMotionFallback": "none",
+      "source": "src/pages/NotFound.jsx",
+      "detail": {}
+    }
+  },
+  "twoDistinctMarquees": {
+    "_why": "A real conflation risk. The site has TWO unrelated marquees with different geometry and they must not be merged.",
+    "integrations.paginated-panels": {
+      "axis": "vertical",
+      "stepPx": 110,
+      "periodMs": 3000,
+      "composition": "delay 2000 + speed 1000; 15 slides = 5 logos x 3 copies; each slide 110px tall",
+      "library": "swiper (vertical, Autoplay module)"
+    },
+    "industry.logo-showcase": {
+      "axis": "horizontal",
+      "stepPx": 248,
+      "periodMs": 3000,
+      "moveMs": 1400,
+      "dwellMs": 1600,
+      "composition": "224px tile + 24px gutter = a 248px discrete step; 3 copies of the active tab's logo set",
+      "library": "embla-carousel-react (loop)"
+    }
+  }
+}

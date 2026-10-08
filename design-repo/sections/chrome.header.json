@@ -1,0 +1,91 @@
+{
+  "id": "chrome.header",
+  "kind": "section",
+  "scope": "chrome",
+  "category": "chrome",
+  "evidenceKey": "section.chrome.header",
+  "source": "src/components/Header.jsx; src/components/MegaMenu.jsx; src/components/MobileDrawer.jsx; src/components/Layout.jsx",
+  "description": "The persistent sticky header. Rendered by Layout for every route, so it is a node on every template. Three states; the theme of the top state is per-route CMS data (`pageOptions.headerTheme`).",
+  "surface": "both",
+  "content": {
+    "required": [
+      "navItems",
+      "theme",
+      "cta"
+    ],
+    "additionalProperties": false,
+    "properties": {
+      "theme": {
+        "enum": [
+          "dark",
+          "white"
+        ],
+        "note": "`white` on /platform and all 6 industry routes; `dark` everywhere else, including /security (explicitly \"black\") and /about (pageOptions:null, falls through to the dark default)."
+      },
+      "navItems": {
+        "type": "array",
+        "minItems": 2,
+        "maxItems": 6,
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "label"
+          ],
+          "properties": {
+            "label": {
+              "type": "string",
+              "maxWords": 3
+            },
+            "href": {
+              "type": "string"
+            },
+            "megaMenu": {
+              "enum": [
+                "platform",
+                "industries"
+              ]
+            }
+          }
+        }
+      },
+      "cta": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "label"
+        ],
+        "properties": {
+          "label": {
+            "type": "string",
+            "maxWords": 4
+          },
+          "href": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "constraints": {
+    "onePerPage": true,
+    "chromePosition": "head"
+  },
+  "motion": {
+    "pattern": "header-theme-swap",
+    "reducedMotionFallback": "no-transition",
+    "scrollThresholdPx": 300,
+    "duration": "250ms",
+    "easing": "cubic-bezier(.4,0,.2,1)",
+    "notes": "MEASURED: scrollY 300 = dark, 301 = white. The scrolled state swaps the Button variant outright rather than hovering it, and adds {elevation.lg}."
+  },
+  "responsive": {
+    "base": "burger + MobileDrawer; header height 64px",
+    "sm640": "header height 86px (--header-height)",
+    "lg1024": "desktop nav appears, burger hides, mega-menu becomes horizontal"
+  },
+  "knownUpstreamDefects": [
+    "The Platform mega-menu panel renders a genuinely EMPTY <ul> — its CMS `linkList` is null. Reproduced on purpose.",
+    "The industries mega-menu entry \"Telecommunications \" carries a real trailing space in the label."
+  ]
+}

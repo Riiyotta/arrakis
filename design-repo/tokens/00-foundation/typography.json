@@ -1,0 +1,558 @@
+{
+  "$id": "tokens/00-foundation/typography",
+  "layer": "foundation",
+  "description": "27 type roles, emitted as COMPLETE utilities by a Tailwind plugin (tailwind.config.js:152-156), not as theme.fontSize entries \u2014 a v3 fontSize entry cannot set font-family, and porting them that way rendered every heading in the body face. Each role sets family + fluid clamp() font-size interpolating viewport 480->1280 + a unitless line-height ratio with a single optional step at 768px + weight + letter-spacing in em.",
+  "evidenceKey": "token.typography",
+  "generatedFrom": "tailwind.config.js ROLES table, parsed not retyped",
+  "families": {
+    "heading": {
+      "stack": [
+        "terraneSerif",
+        "terraneSerif Fallback",
+        "ui-serif",
+        "Georgia",
+        "Cambria",
+        "Times New Roman",
+        "Times",
+        "serif"
+      ],
+      "webfontWeights": [
+        300,
+        400
+      ],
+      "files": [
+        "/assets/fonts/terrane-serif-300.woff2",
+        "/assets/fonts/terrane-serif-400.woff2"
+      ],
+      "licence": "COMMERCIAL \u2014 see assets/asset-roles.json#fonts"
+    },
+    "body": {
+      "stack": [
+        "terraneSans",
+        "terraneSans Fallback",
+        "ui-sans-serif",
+        "system-ui",
+        "sans-serif",
+        "Apple Color Emoji",
+        "Segoe UI Emoji",
+        "Segoe UI Symbol",
+        "Noto Color Emoji"
+      ],
+      "webfontWeights": [
+        300,
+        400
+      ],
+      "files": [
+        "/assets/fonts/terrane-sans-300.woff2",
+        "/assets/fonts/terrane-sans-400.woff2"
+      ],
+      "licence": "COMMERCIAL \u2014 see assets/asset-roles.json#fonts"
+    },
+    "mono": {
+      "stack": [
+        "pxGrotesk",
+        "pxGrotesk Fallback",
+        "ui-monospace",
+        "SFMono-Regular",
+        "Menlo",
+        "Monaco",
+        "Consolas",
+        "Liberation Mono",
+        "Courier New",
+        "monospace"
+      ],
+      "webfontWeights": [
+        400
+      ],
+      "files": [
+        "/assets/fonts/px-grotesk-400.woff2"
+      ],
+      "licence": "COMMERCIAL \u2014 see assets/asset-roles.json#fonts"
+    }
+  },
+  "weightScale": {
+    "available": [
+      300,
+      400
+    ],
+    "note": "There is NO bold/500/600/700 webfont. `btn-link` declares weight 500 and <strong> resolves to `font-weight: bolder`; both SYNTHESISE, which is what the original does too. Never add font-bold expecting a real face."
+  },
+  "lineHeightModel": {
+    "form": "unitless ratio",
+    "breakpoints": [
+      768
+    ],
+    "stepCount": 6,
+    "steppingRoles": [
+      "heading-80",
+      "heading-56",
+      "heading-48",
+      "heading-32",
+      "submenu-heading",
+      "mono-s"
+    ],
+    "correction": "CLONE_SPEC.md \u00a72.4 presents a single line-height column; that column is the MOBILE value only. The real line-height is a unitless ratio with one step at 768px, and only 6 of 27 roles step."
+  },
+  "roleCount": 27,
+  "roles": {
+    "heading-80": {
+      "fontFamilyRole": "heading",
+      "fontSize": {
+        "at480": "48px",
+        "at1280": "80px",
+        "css": "clamp(48px, calc(48px + 32 * (100vw - 480px) / 800), 80px)",
+        "fluid": true
+      },
+      "lineHeight": {
+        "base": 1.1,
+        "at768": 0.9,
+        "unit": "unitless-ratio",
+        "steps": true
+      },
+      "fontWeight": 300,
+      "letterSpacing": "-0.03em"
+    },
+    "heading-56": {
+      "fontFamilyRole": "heading",
+      "fontSize": {
+        "at480": "36px",
+        "at1280": "56px",
+        "css": "clamp(36px, calc(36px + 20 * (100vw - 480px) / 800), 56px)",
+        "fluid": true
+      },
+      "lineHeight": {
+        "base": 1.1,
+        "at768": 0.98,
+        "unit": "unitless-ratio",
+        "steps": true
+      },
+      "fontWeight": 300,
+      "letterSpacing": "-0.03em"
+    },
+    "heading-48": {
+      "fontFamilyRole": "heading",
+      "fontSize": {
+        "at480": "28px",
+        "at1280": "48px",
+        "css": "clamp(28px, calc(28px + 20 * (100vw - 480px) / 800), 48px)",
+        "fluid": true
+      },
+      "lineHeight": {
+        "base": 1.1,
+        "at768": 1.05,
+        "unit": "unitless-ratio",
+        "steps": true
+      },
+      "fontWeight": 300,
+      "letterSpacing": "-0.03em"
+    },
+    "heading-40": {
+      "fontFamilyRole": "heading",
+      "fontSize": {
+        "at480": "26px",
+        "at1280": "40px",
+        "css": "clamp(26px, calc(26px + 14 * (100vw - 480px) / 800), 40px)",
+        "fluid": true
+      },
+      "lineHeight": {
+        "base": 1.1,
+        "at768": null,
+        "unit": "unitless-ratio",
+        "steps": false
+      },
+      "fontWeight": 300,
+      "letterSpacing": "-0.03em"
+    },
+    "heading-404": {
+      "fontFamilyRole": "heading",
+      "fontSize": {
+        "at480": "32px",
+        "at1280": "40px",
+        "css": "clamp(32px, calc(32px + 8 * (100vw - 480px) / 800), 40px)",
+        "fluid": true
+      },
+      "lineHeight": {
+        "base": 1.1,
+        "at768": null,
+        "unit": "unitless-ratio",
+        "steps": false
+      },
+      "fontWeight": 300,
+      "letterSpacing": "-0.03em"
+    },
+    "heading-32": {
+      "fontFamilyRole": "heading",
+      "fontSize": {
+        "at480": "24px",
+        "at1280": "32px",
+        "css": "clamp(24px, calc(24px + 8 * (100vw - 480px) / 800), 32px)",
+        "fluid": true
+      },
+      "lineHeight": {
+        "base": 1.25,
+        "at768": 1.15,
+        "unit": "unitless-ratio",
+        "steps": true
+      },
+      "fontWeight": 300,
+      "letterSpacing": "-0.03em"
+    },
+    "heading-28": {
+      "fontFamilyRole": "heading",
+      "fontSize": {
+        "at480": "22px",
+        "at1280": "28px",
+        "css": "clamp(22px, calc(22px + 6 * (100vw - 480px) / 800), 28px)",
+        "fluid": true
+      },
+      "lineHeight": {
+        "base": 1.15,
+        "at768": null,
+        "unit": "unitless-ratio",
+        "steps": false
+      },
+      "fontWeight": 300,
+      "letterSpacing": "-0.03em"
+    },
+    "heading-24": {
+      "fontFamilyRole": "heading",
+      "fontSize": {
+        "at480": "20px",
+        "at1280": "24px",
+        "css": "clamp(20px, calc(20px + 4 * (100vw - 480px) / 800), 24px)",
+        "fluid": true
+      },
+      "lineHeight": {
+        "base": 1.2,
+        "at768": null,
+        "unit": "unitless-ratio",
+        "steps": false
+      },
+      "fontWeight": 300,
+      "letterSpacing": "-0.03em"
+    },
+    "stat-56": {
+      "fontFamilyRole": "heading",
+      "fontSize": {
+        "at480": "40px",
+        "at1280": "56px",
+        "css": "clamp(40px, calc(40px + 16 * (100vw - 480px) / 800), 56px)",
+        "fluid": true
+      },
+      "lineHeight": {
+        "base": 1,
+        "at768": null,
+        "unit": "unitless-ratio",
+        "steps": false
+      },
+      "fontWeight": 300,
+      "letterSpacing": "-0.03em"
+    },
+    "stat-48": {
+      "fontFamilyRole": "heading",
+      "fontSize": {
+        "at480": "36px",
+        "at1280": "48px",
+        "css": "clamp(36px, calc(36px + 12 * (100vw - 480px) / 800), 48px)",
+        "fluid": true
+      },
+      "lineHeight": {
+        "base": 1,
+        "at768": null,
+        "unit": "unitless-ratio",
+        "steps": false
+      },
+      "fontWeight": 300,
+      "letterSpacing": "-0.03em"
+    },
+    "body-22-light": {
+      "fontFamilyRole": "body",
+      "fontSize": {
+        "at480": "18px",
+        "at1280": "22px",
+        "css": "clamp(18px, calc(18px + 4 * (100vw - 480px) / 800), 22px)",
+        "fluid": true
+      },
+      "lineHeight": {
+        "base": 1.3,
+        "at768": null,
+        "unit": "unitless-ratio",
+        "steps": false
+      },
+      "fontWeight": 300,
+      "letterSpacing": "normal"
+    },
+    "body-20-regular": {
+      "fontFamilyRole": "body",
+      "fontSize": {
+        "at480": "17px",
+        "at1280": "20px",
+        "css": "clamp(17px, calc(17px + 3 * (100vw - 480px) / 800), 20px)",
+        "fluid": true
+      },
+      "lineHeight": {
+        "base": 1.3,
+        "at768": null,
+        "unit": "unitless-ratio",
+        "steps": false
+      },
+      "fontWeight": 400,
+      "letterSpacing": "normal"
+    },
+    "body-20-light": {
+      "fontFamilyRole": "body",
+      "fontSize": {
+        "at480": "17px",
+        "at1280": "20px",
+        "css": "clamp(17px, calc(17px + 3 * (100vw - 480px) / 800), 20px)",
+        "fluid": true
+      },
+      "lineHeight": {
+        "base": 1.3,
+        "at768": null,
+        "unit": "unitless-ratio",
+        "steps": false
+      },
+      "fontWeight": 300,
+      "letterSpacing": "normal"
+    },
+    "body-18-regular": {
+      "fontFamilyRole": "body",
+      "fontSize": {
+        "at480": "16px",
+        "at1280": "18px",
+        "css": "clamp(16px, calc(16px + 2 * (100vw - 480px) / 800), 18px)",
+        "fluid": true
+      },
+      "lineHeight": {
+        "base": 1.5,
+        "at768": null,
+        "unit": "unitless-ratio",
+        "steps": false
+      },
+      "fontWeight": 400,
+      "letterSpacing": "normal"
+    },
+    "body-18-light": {
+      "fontFamilyRole": "body",
+      "fontSize": {
+        "at480": "16px",
+        "at1280": "18px",
+        "css": "clamp(16px, calc(16px + 2 * (100vw - 480px) / 800), 18px)",
+        "fluid": true
+      },
+      "lineHeight": {
+        "base": 1.5,
+        "at768": null,
+        "unit": "unitless-ratio",
+        "steps": false
+      },
+      "fontWeight": 300,
+      "letterSpacing": "normal"
+    },
+    "body-16-regular": {
+      "fontFamilyRole": "body",
+      "fontSize": {
+        "at480": "15px",
+        "at1280": "16px",
+        "css": "clamp(15px, calc(15px + 1 * (100vw - 480px) / 800), 16px)",
+        "fluid": true
+      },
+      "lineHeight": {
+        "base": 1.5,
+        "at768": null,
+        "unit": "unitless-ratio",
+        "steps": false
+      },
+      "fontWeight": 400,
+      "letterSpacing": "0.01em"
+    },
+    "body-16-light": {
+      "fontFamilyRole": "body",
+      "fontSize": {
+        "at480": "15px",
+        "at1280": "16px",
+        "css": "clamp(15px, calc(15px + 1 * (100vw - 480px) / 800), 16px)",
+        "fluid": true
+      },
+      "lineHeight": {
+        "base": 1.5,
+        "at768": null,
+        "unit": "unitless-ratio",
+        "steps": false
+      },
+      "fontWeight": 300,
+      "letterSpacing": "0.01em"
+    },
+    "body-15-regular": {
+      "fontFamilyRole": "body",
+      "fontSize": {
+        "at480": "15px",
+        "at1280": "15px",
+        "css": "15px",
+        "fluid": false
+      },
+      "lineHeight": {
+        "base": 1.5,
+        "at768": null,
+        "unit": "unitless-ratio",
+        "steps": false
+      },
+      "fontWeight": 400,
+      "letterSpacing": "0.01em"
+    },
+    "body-15-light": {
+      "fontFamilyRole": "body",
+      "fontSize": {
+        "at480": "15px",
+        "at1280": "15px",
+        "css": "15px",
+        "fluid": false
+      },
+      "lineHeight": {
+        "base": 1.5,
+        "at768": null,
+        "unit": "unitless-ratio",
+        "steps": false
+      },
+      "fontWeight": 300,
+      "letterSpacing": "0.01em"
+    },
+    "body-15-banner": {
+      "fontFamilyRole": "body",
+      "fontSize": {
+        "at480": "14px",
+        "at1280": "15px",
+        "css": "clamp(14px, calc(14px + 1 * (100vw - 480px) / 800), 15px)",
+        "fluid": true
+      },
+      "lineHeight": {
+        "base": 1.5,
+        "at768": null,
+        "unit": "unitless-ratio",
+        "steps": false
+      },
+      "fontWeight": 300,
+      "letterSpacing": "0.01em"
+    },
+    "nav-link": {
+      "fontFamilyRole": "body",
+      "fontSize": {
+        "at480": "14px",
+        "at1280": "15px",
+        "css": "clamp(14px, calc(14px + 1 * (100vw - 480px) / 800), 15px)",
+        "fluid": true
+      },
+      "lineHeight": {
+        "base": 1.2,
+        "at768": null,
+        "unit": "unitless-ratio",
+        "steps": false
+      },
+      "fontWeight": 400,
+      "letterSpacing": "normal"
+    },
+    "btn-link": {
+      "fontFamilyRole": "body",
+      "fontSize": {
+        "at480": "14px",
+        "at1280": "15px",
+        "css": "clamp(14px, calc(14px + 1 * (100vw - 480px) / 800), 15px)",
+        "fluid": true
+      },
+      "lineHeight": {
+        "base": 1.2,
+        "at768": null,
+        "unit": "unitless-ratio",
+        "steps": false
+      },
+      "fontWeight": 500,
+      "letterSpacing": "0.01em"
+    },
+    "mobile-nav-link": {
+      "fontFamilyRole": "body",
+      "fontSize": {
+        "at480": "18px",
+        "at1280": "18px",
+        "css": "18px",
+        "fluid": false
+      },
+      "lineHeight": {
+        "base": 1.2,
+        "at768": null,
+        "unit": "unitless-ratio",
+        "steps": false
+      },
+      "fontWeight": 300,
+      "letterSpacing": "-0.01em"
+    },
+    "submenu-heading": {
+      "fontFamilyRole": "body",
+      "fontSize": {
+        "at480": "16px",
+        "at1280": "18px",
+        "css": "clamp(16px, calc(16px + 2 * (100vw - 480px) / 800), 18px)",
+        "fluid": true
+      },
+      "lineHeight": {
+        "base": 1.5,
+        "at768": 1.2,
+        "unit": "unitless-ratio",
+        "steps": true
+      },
+      "fontWeight": 400,
+      "letterSpacing": "normal"
+    },
+    "legal-meta": {
+      "fontFamilyRole": "body",
+      "fontSize": {
+        "at480": "16px",
+        "at1280": "16px",
+        "css": "16px",
+        "fluid": false
+      },
+      "lineHeight": {
+        "base": 1.5,
+        "at768": null,
+        "unit": "unitless-ratio",
+        "steps": false
+      },
+      "fontWeight": 400,
+      "letterSpacing": "normal"
+    },
+    "mono-s": {
+      "fontFamilyRole": "mono",
+      "fontSize": {
+        "at480": "12px",
+        "at1280": "12px",
+        "css": "12px",
+        "fluid": false
+      },
+      "lineHeight": {
+        "base": 1.15,
+        "at768": 1,
+        "unit": "unitless-ratio",
+        "steps": true
+      },
+      "fontWeight": 400,
+      "letterSpacing": "0.05em"
+    },
+    "mono-l": {
+      "fontFamilyRole": "mono",
+      "fontSize": {
+        "at480": "14px",
+        "at1280": "15px",
+        "css": "clamp(14px, calc(14px + 1 * (100vw - 480px) / 800), 15px)",
+        "fluid": true
+      },
+      "lineHeight": {
+        "base": 1,
+        "at768": null,
+        "unit": "unitless-ratio",
+        "steps": false
+      },
+      "fontWeight": 400,
+      "letterSpacing": "-0.02em"
+    }
+  }
+}

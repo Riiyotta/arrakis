@@ -1,0 +1,54 @@
+{
+  "id": "chrome.cookie-notice",
+  "kind": "section",
+  "scope": "chrome",
+  "category": "chrome",
+  "evidenceKey": "section.chrome.cookie-notice",
+  "source": "src/components/CookieNotice.jsx",
+  "description": "A dismissible consent panel on {color.midnight}. Rendered by Layout for every route. NOT a <section> element — it is fixed-position chrome.",
+  "surface": "dark",
+  "content": {
+    "required": [
+      "body",
+      "accept"
+    ],
+    "additionalProperties": false,
+    "properties": {
+      "body": {
+        "type": "string",
+        "maxWords": 40
+      },
+      "accept": {
+        "type": "string",
+        "maxWords": 3
+      },
+      "decline": {
+        "type": "string",
+        "maxWords": 3
+      },
+      "policyLink": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "label": {
+            "type": "string",
+            "maxWords": 4
+          },
+          "href": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "constraints": {
+    "onePerPage": true,
+    "chromePosition": "tail"
+  },
+  "motion": {
+    "pattern": "fade-in",
+    "reducedMotionFallback": "no-transition",
+    "duration": "250ms",
+    "easing": "cubic-bezier(.4,0,.2,1)"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "id": "component.stat-block",
+  "kind": "component",
+  "source": "src/components/StatsGrid.jsx",
+  "evidenceKey": "component.stat-block",
+  "description": "A counter plus a one-line description, stacked with a 6px/10px gap.",
+  "composes": [
+    "primitive.stat-counter"
+  ],
+  "props": {
+    "value": {
+      "type": "number"
+    },
+    "suffix": {
+      "enum": [
+        "+",
+        "%",
+        "x",
+        ""
+      ]
+    },
+    "description": {
+      "type": "string",
+      "maxWords": 8
+    }
+  },
+  "gap": "space-y-1.5 sm:space-y-2.5"
+}

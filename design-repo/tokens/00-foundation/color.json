@@ -1,0 +1,159 @@
+{
+  "$id": "tokens/00-foundation/color",
+  "layer": "foundation",
+  "description": "All 19 colors declared by the real build. Extracted verbatim from tailwind.config.js theme.extend.colors. No color appears here that is not in that file.",
+  "evidenceKey": "token.color",
+  "tokens": {
+    "black": {
+      "$type": "color",
+      "$value": "#0F0C0B",
+      "usage": "page background on /security, /about, both legal routes; default text on light sections"
+    },
+    "white": {
+      "$type": "color",
+      "$value": "#FFFFFF",
+      "usage": "light page background, light text on dark sections"
+    },
+    "day": {
+      "$type": "color",
+      "$value": "#FFFFFF",
+      "usage": "alias of white, used only by the Button `heroSolid`/`day` variants",
+      "aliasOf": "white"
+    },
+    "night": {
+      "$type": "color",
+      "$value": "#1B1613",
+      "usage": "html root color; Button light/scrolled label color; Button dark hover background"
+    },
+    "sun": {
+      "$type": "color",
+      "$value": "#FF8B3E",
+      "usage": "accent — mega-menu hover arrow, integrations active pager dot"
+    },
+    "dawn": {
+      "$type": "color",
+      "$value": "#7993E2",
+      "declaredButUnusedOnHome": true,
+      "usage": "Used ONLY by the /platform stackedMasthead rail gradient (`from-dawn`/`via-dawn`). Zero uses on the homepage. 2 utility references total in src/."
+    },
+    "dust": {
+      "$type": "color",
+      "$value": "#FBF6EC",
+      "usage": "press-banner background; stats-grid gradient endpoint; Button light background; dustToWhite gradient start"
+    },
+    "sand": {
+      "$type": "color",
+      "$value": "#FBEFD6",
+      "usage": "Button light/day hover background; career-listing CTA hover"
+    },
+    "dusk": {
+      "$type": "color",
+      "$value": "#3F3630",
+      "usage": "Button dark border; platform masthead de-emphasised heading span (text-dusk/60)"
+    },
+    "midnight": {
+      "$type": "color",
+      "$value": "#27221F",
+      "usage": "Button `dark` variant background, and the cookie-notice panel background. 2 utility references in src/."
+    },
+    "desert": {
+      "$type": "color",
+      "$value": "#FFDBAD",
+      "declaredButUnusedOnHome": true,
+      "usage": "Blur ellipse decoration fill: the /platform featureCallout top ellipse and the industry navMasthead hero ellipse layer A. 2 utility references in src/. Zero uses on the homepage."
+    },
+    "bone": {
+      "$type": "color",
+      "$value": "#FFF6E5",
+      "declaredButUnusedOnHome": true,
+      "usage": "DECLARED ONLY. 0 utility references anywhere in src/ (verified by an exhaustive grep over bg-/text-/border-/fill-/from-/to-/via-/decoration-/ring-/shadow-/outline- prefixes). NOT promoted to any semantic role."
+    },
+    "twilight": {
+      "$type": "color",
+      "$value": "#15203D",
+      "usage": "mega-menu feature-card background (bg-twilight)"
+    },
+    "stroke-1": {
+      "$type": "color",
+      "$value": "#DFD8D3",
+      "usage": "hairline/bracket colour on LIGHT surfaces (square-bracket currentColor)"
+    },
+    "stroke-2": {
+      "$type": "color",
+      "$value": "#B1ACA6",
+      "usage": "secondary hairline on light surfaces"
+    },
+    "stroke-3": {
+      "$type": "color",
+      "$value": "#54504E",
+      "usage": "hairline/bracket colour on DARK surfaces (square-bracket currentColor)"
+    },
+    "ink": {
+      "$type": "color",
+      "$value": "#0B0907",
+      "adHoc": true,
+      "usage": "hero section background. Ad-hoc hex in the original markup, promoted to a named token by the clone."
+    },
+    "panel": {
+      "$type": "color",
+      "$value": "#FDFAF6",
+      "adHoc": true,
+      "usage": "integrations panel card background and its two edge-mask gradient endpoints."
+    },
+    "matrix": {
+      "$type": "color",
+      "$value": "#191614",
+      "adHoc": true,
+      "usage": "stats-grid decorative 2x11 bar matrix border + fill."
+    }
+  },
+  "gradients": {
+    "note": "Every gradient on the site interpolates `in oklab` (and two use oklch stops). Tailwind v3 cannot emit either, so all of them ship as inline `style` backgroundImage strings. They are recorded here because they are real design values, but they are NOT Tailwind utilities.",
+    "G1.orbit-section": {
+      "$value": "linear-gradient(180deg, oklch(0.1415 0.0060 70.62) 58%, oklch(0.3898 0.1135 266.05) 100%)"
+    },
+    "G2.textcard-section": {
+      "$value": "linear-gradient(to bottom in oklab, #FFFFFF 0%, #FBF6EC 100%)"
+    },
+    "G3.stats-section": {
+      "$value": "linear-gradient(to bottom in oklab, #FBF6EC 0%, #FFFFFF 100%)"
+    },
+    "G4.orbit-glow": {
+      "$value": "radial-gradient(ellipse at center, #FFFFFF 0%, #FFFFFF 55%, transparent 85%)"
+    },
+    "G6.dashboard-fade": {
+      "$value": "linear-gradient(to top in oklab, #FBF6EC 0%, transparent 100%)"
+    },
+    "G9.integrations-mask-top": {
+      "$value": "linear-gradient(to bottom in oklab, #FDFAF6 0%, transparent 100%)"
+    },
+    "I2.dust-to-white": {
+      "$value": "linear-gradient(to bottom in oklab, rgb(251,246,236) 0px, rgb(255,255,255) 100%)"
+    },
+    "I4.logoshowcase-mask-left": {
+      "$value": "linear-gradient(to right in oklab, rgb(255,255,255) 0px, rgba(0,0,0,0) 100%)"
+    },
+    "I5.logoshowcase-mask-right": {
+      "$value": "linear-gradient(to left in oklab, rgb(255,255,255) 0px, rgba(0,0,0,0) 100%)"
+    }
+  },
+  "utilityUsageCounts": {
+    "black": 31,
+    "white": 45,
+    "day": 12,
+    "night": 16,
+    "sun": 20,
+    "dawn": 2,
+    "dust": 24,
+    "sand": 5,
+    "dusk": 9,
+    "midnight": 2,
+    "desert": 2,
+    "bone": 0,
+    "twilight": 5,
+    "stroke-1": 33,
+    "stroke-2": 5,
+    "stroke-3": 28,
+    "_method": "grep -rohE '(bg|text|border|fill|from|to|via|decoration|ring|shadow|outline)-<name>(/[0-9]+)?\\b' over src/ — ink/panel/matrix are applied as raw hexes inline and so are not countable this way."
+  }
+}

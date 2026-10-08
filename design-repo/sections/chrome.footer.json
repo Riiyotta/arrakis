@@ -1,0 +1,137 @@
+{
+  "id": "chrome.footer",
+  "kind": "section",
+  "scope": "chrome",
+  "category": "chrome",
+  "evidenceKey": "section.chrome.footer",
+  "source": "src/components/Footer.jsx",
+  "description": "The persistent footer. Rendered by Layout for every route.",
+  "surface": "dark",
+  "content": {
+    "required": [
+      "columns",
+      "contact"
+    ],
+    "additionalProperties": false,
+    "properties": {
+      "columns": {
+        "type": "array",
+        "minItems": 2,
+        "maxItems": 4,
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "heading",
+            "links"
+          ],
+          "properties": {
+            "heading": {
+              "type": "string",
+              "maxWords": 3
+            },
+            "links": {
+              "type": "array",
+              "minItems": 2,
+              "maxItems": 8,
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "label",
+                  "href"
+                ],
+                "properties": {
+                  "label": {
+                    "type": "string",
+                    "maxWords": 4
+                  },
+                  "href": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "contact": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "email": {
+            "type": "string",
+            "assetRolePolicy": "nonAssetContentBans.realContactEmails (must-not-reuse)"
+          },
+          "social": {
+            "type": "array",
+            "minItems": 0,
+            "maxItems": 3,
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "background": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "assetRole",
+          "alt",
+          "provenance"
+        ],
+        "properties": {
+          "assetRole": {
+            "enum": [
+              "decoration.texture"
+            ]
+          },
+          "alt": {
+            "type": "string",
+            "maxWords": 6
+          },
+          "src": {
+            "type": "string"
+          },
+          "intrinsicWidth": {
+            "type": "integer"
+          },
+          "intrinsicHeight": {
+            "type": "integer"
+          },
+          "provenance": {
+            "enum": [
+              "source-original",
+              "operator-supplied",
+              "generated"
+            ],
+            "note": "Provenance of this asset in the page being specified. `generated` is FORBIDDEN for any assetRole whose generationPolicy is must-not-fabricate-real-brand or must-not-fabricate-compliance-claim, and for must-reuse-exact roles. Enforced by compatibility/graph.json#ASSET_PROVENANCE_POLICY and schema/semantic_validate.py."
+          },
+          "aspectRatio": {
+            "type": "string",
+            "note": "CSS aspect-ratio for the wrapper box (e.g. \"799/617\"). Used by Rive assets, which have no intrinsic pixel size, INSTEAD of intrinsicWidth/Height."
+          }
+        }
+      }
+    }
+  },
+  "constraints": {
+    "onePerPage": true,
+    "chromePosition": "tail"
+  },
+  "motion": {
+    "pattern": "link-hover-fade",
+    "reducedMotionFallback": "no-transition",
+    "duration": "250ms",
+    "easing": "cubic-bezier(.4,0,.2,1)"
+  },
+  "responsive": {
+    "base": "link grid 2-col",
+    "lg1024": "grid-flow-col, 3-col"
+  },
+  "knownUpstreamDefects": [
+    "FOUR separate footer links all point at the same anchor `/platform#build` (Consolidate, Build, Control, Scale).",
+    "A fifth, `Integrations -> /platform#integrations`, is a DEAD anchor: no `#integrations` element exists on /platform (the id lives on the homepage instead)."
+  ]
+}

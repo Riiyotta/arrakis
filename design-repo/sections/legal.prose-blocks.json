@@ -1,0 +1,82 @@
+{
+  "id": "legal.prose-blocks",
+  "kind": "section",
+  "scope": "body",
+  "category": "legal",
+  "evidenceKey": "section.legal.prose-blocks",
+  "source": "src/components/LegalPage.jsx; src/data/legal-terms.js; src/data/legal-cookie.js",
+  "description": "The whole body of both legal routes, in ONE <section>. Block 0 is a meta line + h1 with no body; every later block is an h2 + an HTML body.",
+  "surface": "dark",
+  "content": {
+    "required": [
+      "title",
+      "lastUpdated",
+      "sections",
+      "requiresOperatorSuppliedText"
+    ],
+    "additionalProperties": false,
+    "properties": {
+      "title": {
+        "type": "string",
+        "maxWords": 4
+      },
+      "lastUpdated": {
+        "type": "string",
+        "maxWords": 5
+      },
+      "requiresOperatorSuppliedText": {
+        "const": true,
+        "note": "HARD GATE. The real text is another organisation’s legal instrument (see assets/asset-roles.json#nonAssetContentBans.realLegalText). The STRUCTURE is reusable; the TEXT must be replaced wholesale, never reused or paraphrased."
+      },
+      "sections": {
+        "type": "array",
+        "minItems": 7,
+        "maxItems": 23,
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "heading",
+            "content"
+          ],
+          "properties": {
+            "heading": {
+              "type": "string",
+              "maxWords": 10
+            },
+            "content": {
+              "type": "string",
+              "maxWords": 900,
+              "format": "html-fragment"
+            }
+          }
+        }
+      }
+    }
+  },
+  "constraints": {
+    "onePerPage": true,
+    "mustBeFirst": true,
+    "mustBeLast": true
+  },
+  "motion": {
+    "pattern": "none",
+    "reducedMotionFallback": "none",
+    "notes": "MEASURED: document.getAnimations() is [] on the original and no element in the page body has a transition. Zero motion of any kind."
+  },
+  "responsive": {
+    "base": "pt-18 pb-14, block gap 48px, heading->body gap 12px",
+    "md768": "pt-24 pb-18, gap 64px / 16px",
+    "lg1024": "pt-40 pb-30, gap 72px / 20px"
+  },
+  "knownUpstreamDefects": [
+    "BOTH legal routes still ship the unmodified Next.js/Sanity starter boilerplate as their meta description: \"A statically generated blog example using Next.js and Sanity.\" The original never replaced it. Reproduced on purpose."
+  ],
+  "notes": [
+    "There is NO prose/typography system. All vertical rhythm comes from exactly two flex row-gaps. Paragraph margins, list markers, list indentation and li gaps are all 0 via Tailwind preflight. Do NOT add `prose`, `space-y-*`, `list-disc` or `pl-*`.",
+    "No borders, brackets, buttons, gradients, radii or shadows anywhere on these routes.",
+    "<strong> is styled only by preflight `b,strong{font-weight:bolder}`, which against the surrounding weight 300 resolves to the real terraneSans 400 face. Never use font-bold here — there is no 500/600/700 webfont.",
+    "The original ships `<p class=\"text-body-18-light\">` wrapping further <p>/<ul> children — invalid nesting the browser unnests anyway. The clone uses a <div> wrapper, which is visually identical.",
+    "Block counts: /terms-of-service = 24 blocks (title + 23 sections); /cookie-policy = 8 blocks (title + 7 sections)."
+  ]
+}

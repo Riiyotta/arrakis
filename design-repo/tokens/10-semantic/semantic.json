@@ -1,0 +1,32 @@
+{
+  "$id": "tokens/10-semantic/semantic",
+  "layer": "semantic",
+  "description": "Semantic roles built ONLY from foundation colors with >=5 real utility references. `dawn` (2), `desert` (2), `midnight` (2) and `bone` (0) are deliberately NOT promoted: they are decorative one-offs or unused, and giving them a semantic role would invite a generator to use them systemically where the real site never does.",
+  "evidenceKey": "token.semantic",
+  "notPromoted": {
+    "dawn":  "2 uses, both the /platform rail gradient. Decorative one-off.",
+    "desert":"2 uses, both blur-ellipse decorations. Decorative one-off.",
+    "bone":  "0 uses. Declared only.",
+    "midnight":"2 uses (Button dark bg, cookie-notice panel). Exposed as a COMPONENT token instead — see tokens/20-component/component.json."
+  },
+  "roles": {
+    "text.primary.onLight":   { "value": "{color.black}",    "hex": "#0F0C0B" },
+    "text.primary.onDark":    { "value": "{color.white}",    "hex": "#FFFFFF" },
+    "text.root":              { "value": "{color.night}",    "hex": "#1B1613", "note": "the html-element default color; most sections override it" },
+    "text.secondary.onLight": { "value": "{color.black}",    "hex": "#0F0C0B", "opacity": 0.8, "note": "the site has no separate muted colour — secondary text is primary at opacity 80%" },
+    "text.secondary.onDark":  { "value": "{color.white}",    "hex": "#FFFFFF", "opacity": 0.8 },
+    "text.deemphasised":      { "value": "{color.dusk}",     "hex": "#3F3630", "opacity": 0.6, "note": "platform masthead heading span" },
+    "text.accent":            { "value": "{color.sun}",      "hex": "#FF8B3E" },
+    "surface.page.light":     { "value": "{color.white}",    "hex": "#FFFFFF" },
+    "surface.page.dark":      { "value": "{color.black}",    "hex": "#0F0C0B" },
+    "surface.warm":           { "value": "{color.dust}",     "hex": "#FBF6EC" },
+    "surface.warm.hover":     { "value": "{color.sand}",     "hex": "#FBEFD6" },
+    "surface.hero":           { "value": "{color.ink}",      "hex": "#0B0907" },
+    "surface.panel":          { "value": "{color.panel}",    "hex": "#FDFAF6" },
+    "surface.feature-card":   { "value": "{color.twilight}", "hex": "#15203D", "note": "mega-menu feature card only" },
+    "border.hairline.onLight":{ "value": "{color.stroke-1}", "hex": "#DFD8D3", "note": "the square-bracket primitive's currentColor on light surfaces" },
+    "border.hairline.onDark": { "value": "{color.stroke-3}", "hex": "#54504E", "note": "the square-bracket primitive's currentColor on dark surfaces" },
+    "border.hairline.strong": { "value": "{color.stroke-2}", "hex": "#B1ACA6" },
+    "decoration.matrix":      { "value": "{color.matrix}",   "hex": "#191614", "note": "stats-grid bar matrix only" }
+  }
+}

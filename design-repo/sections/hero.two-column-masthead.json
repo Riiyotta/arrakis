@@ -1,0 +1,223 @@
+{
+  "id": "hero.two-column-masthead",
+  "kind": "section",
+  "scope": "body",
+  "category": "hero",
+  "evidenceKey": "section.hero.two-column-masthead",
+  "source": "src/components/Hero.jsx; src/components/LogoBanner.jsx",
+  "description": "The homepage hero: a `twoColumnMasthead` block plus a `logoBanner` row, in ONE <section>. First section after the sticky 86px header; it has no top padding of its own. Background {color.ink} #0B0907.",
+  "surface": "dark",
+  "content": {
+    "required": [
+      "heading",
+      "supporting",
+      "cta",
+      "videoRotation",
+      "logoBanner"
+    ],
+    "additionalProperties": false,
+    "properties": {
+      "heading": {
+        "type": "string",
+        "maxWords": 10
+      },
+      "supporting": {
+        "type": "string",
+        "maxWords": 40
+      },
+      "cta": {
+        "type": "array",
+        "minItems": 1,
+        "maxItems": 2,
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "label",
+            "variant"
+          ],
+          "properties": {
+            "label": {
+              "type": "string",
+              "maxWords": 4
+            },
+            "href": {
+              "type": "string"
+            },
+            "variant": {
+              "enum": [
+                "dark",
+                "light",
+                "day"
+              ]
+            }
+          }
+        }
+      },
+      "videoRotation": {
+        "type": "array",
+        "minItems": 3,
+        "maxItems": 5,
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "media",
+            "caption"
+          ],
+          "properties": {
+            "media": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "assetRole",
+                "alt",
+                "provenance"
+              ],
+              "properties": {
+                "assetRole": {
+                  "enum": [
+                    "media.hero-video"
+                  ]
+                },
+                "alt": {
+                  "type": "string",
+                  "maxWords": 6
+                },
+                "src": {
+                  "type": "string"
+                },
+                "intrinsicWidth": {
+                  "type": "integer"
+                },
+                "intrinsicHeight": {
+                  "type": "integer"
+                },
+                "provenance": {
+                  "enum": [
+                    "source-original",
+                    "operator-supplied",
+                    "generated"
+                  ],
+                  "note": "Provenance of this asset in the page being specified. `generated` is FORBIDDEN for any assetRole whose generationPolicy is must-not-fabricate-real-brand or must-not-fabricate-compliance-claim, and for must-reuse-exact roles. Enforced by compatibility/graph.json#ASSET_PROVENANCE_POLICY and schema/semantic_validate.py."
+                },
+                "aspectRatio": {
+                  "type": "string",
+                  "note": "CSS aspect-ratio for the wrapper box (e.g. \"799/617\"). Used by Rive assets, which have no intrinsic pixel size, INSTEAD of intrinsicWidth/Height."
+                }
+              }
+            },
+            "caption": {
+              "type": "string",
+              "maxWords": 12
+            }
+          }
+        }
+      },
+      "logoBanner": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "slots",
+          "logos"
+        ],
+        "properties": {
+          "slots": {
+            "const": 5
+          },
+          "logos": {
+            "type": "array",
+            "minItems": 5,
+            "maxItems": 8,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "assetRole",
+                "alt",
+                "provenance"
+              ],
+              "properties": {
+                "assetRole": {
+                  "enum": [
+                    "brand.investor-logo"
+                  ]
+                },
+                "alt": {
+                  "type": "string",
+                  "maxWords": 6
+                },
+                "src": {
+                  "type": "string"
+                },
+                "intrinsicWidth": {
+                  "type": "integer"
+                },
+                "intrinsicHeight": {
+                  "type": "integer"
+                },
+                "provenance": {
+                  "enum": [
+                    "source-original",
+                    "operator-supplied",
+                    "generated"
+                  ],
+                  "note": "Provenance of this asset in the page being specified. `generated` is FORBIDDEN for any assetRole whose generationPolicy is must-not-fabricate-real-brand or must-not-fabricate-compliance-claim, and for must-reuse-exact roles. Enforced by compatibility/graph.json#ASSET_PROVENANCE_POLICY and schema/semantic_validate.py."
+                },
+                "aspectRatio": {
+                  "type": "string",
+                  "note": "CSS aspect-ratio for the wrapper box (e.g. \"799/617\"). Used by Rive assets, which have no intrinsic pixel size, INSTEAD of intrinsicWidth/Height."
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "constraints": {
+    "onePerPage": true,
+    "mustBeFirst": true,
+    "homeRouteOnly": true
+  },
+  "motion": {
+    "pattern": "hero-rotation",
+    "reducedMotionFallback": "hold-first-clip-static",
+    "cycleMs": 8000,
+    "videoCrossfadeMs": 700,
+    "captionCrossfadeMs": 500,
+    "progressBar": {
+      "transform": "translateX(-100%) -> translateX(0)",
+      "duration": "8000ms",
+      "easing": "linear",
+      "restartedEachCycle": true
+    },
+    "logoBannerReveal": {
+      "from": {
+        "y": 40,
+        "opacity": 0,
+        "filter": "blur(4px)"
+      },
+      "to": {
+        "y": 0,
+        "opacity": 1,
+        "filter": "blur(0)"
+      },
+      "duration": "500ms",
+      "easing": "ease-out",
+      "staggerMs": 80,
+      "reversesOnExit": true
+    },
+    "logoBannerRotation": {
+      "periodMs": 3000,
+      "crossfadeMs": 500,
+      "note": "7 logos cycled through 5 slots; one slot swaps every 3000ms and incoming/outgoing coexist for the 500ms crossfade"
+    },
+    "notes": "The outgoing clip’s currentTime is reset to 0 only after the 700ms crossfade completes."
+  },
+  "responsive": {
+    "base": "single column, logo row wraps",
+    "md768": "two columns",
+    "note": "the hero itself is not pinned at any width"
+  }
+}

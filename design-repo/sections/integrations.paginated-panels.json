@@ -1,0 +1,120 @@
+{
+  "id": "integrations.paginated-panels",
+  "kind": "section",
+  "scope": "body",
+  "category": "integrations",
+  "evidenceKey": "section.integrations.paginated-panels",
+  "source": "src/components/Integrations.jsx",
+  "description": "`#integrations`, a `paginatedPanels` block: a {color.panel} card with a vertical logo marquee and a dot-paginated copy rail.",
+  "surface": "light",
+  "content": {
+    "required": [
+      "panels",
+      "logos"
+    ],
+    "additionalProperties": false,
+    "properties": {
+      "heading": {
+        "type": "string",
+        "maxWords": 12
+      },
+      "panels": {
+        "type": "array",
+        "minItems": 3,
+        "maxItems": 3,
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "heading",
+            "body"
+          ],
+          "properties": {
+            "heading": {
+              "type": "string",
+              "maxWords": 5
+            },
+            "body": {
+              "type": "string",
+              "maxWords": 20
+            }
+          }
+        }
+      },
+      "logos": {
+        "type": "array",
+        "minItems": 5,
+        "maxItems": 5,
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "assetRole",
+            "alt",
+            "provenance"
+          ],
+          "properties": {
+            "assetRole": {
+              "enum": [
+                "brand.partner-logo"
+              ]
+            },
+            "alt": {
+              "type": "string",
+              "maxWords": 6
+            },
+            "src": {
+              "type": "string"
+            },
+            "intrinsicWidth": {
+              "type": "integer"
+            },
+            "intrinsicHeight": {
+              "type": "integer"
+            },
+            "provenance": {
+              "enum": [
+                "source-original",
+                "operator-supplied",
+                "generated"
+              ],
+              "note": "Provenance of this asset in the page being specified. `generated` is FORBIDDEN for any assetRole whose generationPolicy is must-not-fabricate-real-brand or must-not-fabricate-compliance-claim, and for must-reuse-exact roles. Enforced by compatibility/graph.json#ASSET_PROVENANCE_POLICY and schema/semantic_validate.py."
+            },
+            "aspectRatio": {
+              "type": "string",
+              "note": "CSS aspect-ratio for the wrapper box (e.g. \"799/617\"). Used by Rive assets, which have no intrinsic pixel size, INSTEAD of intrinsicWidth/Height."
+            }
+          }
+        }
+      }
+    }
+  },
+  "constraints": {
+    "onePerPage": true
+  },
+  "motion": {
+    "pattern": "vertical-marquee",
+    "reducedMotionFallback": "static-logo-column",
+    "stepPx": 110,
+    "periodMs": 3000,
+    "autoplayDelayMs": 2000,
+    "speedMs": 1000,
+    "loopCopies": 3,
+    "pausedWhileOffscreen": true,
+    "pagerDot": {
+      "property": "opacity, background-color",
+      "duration": "250ms",
+      "easing": "ease-in-out",
+      "activeColor": "{color.sun}"
+    },
+    "notes": "Vertical Swiper. 15 slides = the 5 logos x 3 copies for looping; each slide is 110px tall. delay 2000 + speed 1000 = a 3000ms period. Paused by IntersectionObserver while offscreen. DISTINCT from industry.logo-showcase’s marquee (248px step) — do not conflate them."
+  },
+  "responsive": {
+    "base": "panel flex-col, dot-nav HIDDEN (max-lg:hidden)",
+    "lg1024": "panel flex-row, dot-nav visible, panel min-h-[35rem]"
+  },
+  "knownUpstreamDefects": [
+    "The `#integrations` id lives HERE, on the homepage — while the footer link that targets it points at `/platform#integrations`, which does not exist. Reproduced on purpose."
+  ],
+  "anchorId": "integrations"
+}

@@ -1,0 +1,33 @@
+{
+  "$id": "tokens/00-foundation/spacing",
+  "layer": "foundation",
+  "description": "15 BESPOKE spacing steps added on top of the Tailwind v3 default 0.25rem scale. These are the only non-default steps; everything else in src/ uses stock Tailwind numbers.",
+  "evidenceKey": "token.spacing",
+  "baseScale": "Tailwind v3 default (1 unit = 0.25rem = 4px at the 16px root)",
+  "rootFontSize": "16px (set explicitly on html, src/index.css)",
+  "bespokeSteps": {
+    "4.5":   { "$value": "1.125rem", "px": 18 },
+    "9.5":   { "$value": "2.375rem", "px": 38 },
+    "15":    { "$value": "3.75rem",  "px": 60 },
+    "17":    { "$value": "4.25rem",  "px": 68 },
+    "18":    { "$value": "4.5rem",   "px": 72 },
+    "30":    { "$value": "7.5rem",   "px": 120 },
+    "42":    { "$value": "10.5rem",  "px": 168 },
+    "50":    { "$value": "12.5rem",  "px": 200 },
+    "53":    { "$value": "13.25rem", "px": 212 },
+    "72.5":  { "$value": "18.125rem","px": 290 },
+    "92":    { "$value": "23rem",    "px": 368 },
+    "100":   { "$value": "25rem",    "px": 400 },
+    "102":   { "$value": "25.5rem",  "px": 408 },
+    "177.5": { "$value": "44.375rem","px": 710 },
+    "194":   { "$value": "48.5rem",  "px": 776 }
+  },
+  "stepCount": 15,
+  "sectionRhythm": {
+    "description": "The dominant vertical rhythm. Every page-level <section> uses the same three-step padding ramp, verified identical across LegalPage, StatsGrid, TextCardAsset and FeatureDetail.",
+    "paddingTop":    { "base": "pt-18 (72px)", "md": "pt-24 (96px)", "lg": "pt-40 (160px)" },
+    "paddingBottom": { "base": "pb-18 (72px)", "md": "pb-28 (112px)", "lg": "pb-40 (160px)" },
+    "blockGap":      { "base": "gap-y-12 (48px)", "md": "gap-y-16 (64px)", "lg": "gap-y-18 (72px)" },
+    "headingToBodyGap": { "base": "gap-y-3 (12px)", "sm": "gap-y-4 (16px)", "md": "gap-y-5 (20px)" }
+  }
+}

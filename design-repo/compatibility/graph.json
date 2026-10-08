@@ -1,0 +1,213 @@
+{
+  "$id": "compatibility/graph",
+  "description": "Rhythm, position and policy rules that JSON Schema cannot express. Every rule below was checked against the real templates/templates.json node sequences AT THE MOMENT IT WAS WRITTEN (MASTER-GUIDE §3.18), not only at final verification — the pre-check output is recorded in extraction/measured-values.json#graphRulePreCheck. Every rule carries an explicit severity; schema/semantic_validate.py implements each one and MUST agree with the prose here.",
+  "evidenceKey": "graph",
+  "severityLegend": {
+    "error": "hard failure — the PageSpec is rejected",
+    "warn": "non-fatal notice — reported, exit code unaffected"
+  },
+  "rules": [
+    {
+      "id": "TEMPLATE_NODE_SEQUENCE_MATCH",
+      "severity": "error",
+      "statement": "A PageSpec’s `nodes[]` must match the node list of the template named in its own `template` field: same order, every `required:true` node present, no node that the template does not declare, and `repeatable:false` nodes appearing at most once.",
+      "why": "MASTER-GUIDE §3.3 — the single most repeated bug class across prior builds is a validator that checks `nodes[]` in isolation and never cross-references the declared `template`, letting a PageSpec contradict its own template and still pass.",
+      "exception": "None.",
+      "implementedIn": "schema/semantic_validate.py#check_template_node_sequence"
+    },
+    {
+      "id": "ONE_HERO_PER_PAGE",
+      "severity": "error",
+      "statement": "At most one section of category `hero` per page.",
+      "heroSections": [
+        "hero.two-column-masthead",
+        "industry.nav-masthead",
+        "platform.stacked-masthead"
+      ],
+      "exception": "FOUR templates legitimately have NO hero and are exempt from any \"a hero is required\" reading of this rule: security, about, legal, not-found. /about’s heroless-ness is load-bearing and intentional — its CMS slot 0 `arcMasthead` is hideSection:true. This rule caps heroes at one; it never requires one.",
+      "noHeroTemplates": [
+        "security",
+        "about",
+        "legal",
+        "not-found"
+      ],
+      "implementedIn": "schema/semantic_validate.py#check_one_hero"
+    },
+    {
+      "id": "CHROME_POSITION",
+      "severity": "error",
+      "statement": "`chrome.header` must be the first node of every PageSpec and `chrome.footer` then `chrome.cookie-notice` the last two, in that order. Chrome nodes are excluded from every body-relative rule.",
+      "why": "src/components/Layout.jsx renders Header, <main>{Outlet}</main>, Footer and CookieNotice for EVERY route — there is no route without them.",
+      "exception": "None.",
+      "implementedIn": "schema/semantic_validate.py#check_chrome_position"
+    },
+    {
+      "id": "BODY_POSITION_FLAGS",
+      "severity": "error",
+      "statement": "A section declaring `constraints.mustBeFirst` must be the first BODY node; `mustBeLast` must be the last BODY node; `mustPrecedeFooter` must be the last body node. Position is measured over the body subsequence, never over the full node list.",
+      "exception": "None.",
+      "implementedIn": "schema/semantic_validate.py#check_position_flags"
+    },
+    {
+      "id": "ONE_PER_PAGE_BY_SECTION_AND_VARIANT",
+      "severity": "error",
+      "statement": "A section with `constraints.onePerPage` or `maxPerPage` is counted by the pair (section, variant), not by the bare section id.",
+      "why": "MASTER-GUIDE §3.3 corollary. `shared.icon-grid` is the one section id used by two different templates, with a different variant on each (`theme-light` on /security, `theme-dark` on /about). A check keyed on the bare id false-positives the moment a section legitimately appears twice with different variants.",
+      "exception": "None.",
+      "implementedIn": "schema/semantic_validate.py#check_per_page_caps"
+    },
+    {
+      "id": "ROUTE_ALLOWLIST",
+      "severity": "error",
+      "statement": "A section declaring `constraints.routeAllowlist` may only appear in a PageSpec whose `route` is in that list. A section declaring `constraints.homeRouteOnly` may only appear on `/`.",
+      "exception": "None.",
+      "implementedIn": "schema/semantic_validate.py#check_route_restrictions"
+    },
+    {
+      "id": "VARIANT_ROUTE_ALLOWLIST",
+      "severity": "error",
+      "statement": "A section declaring `constraints.variantRouteAllowlist` may only use a given variant on a route that variant is pinned to. The check is keyed on (section, variant).",
+      "why": "Three real variant pairs are route-scoped and the distinction is load-bearing: industry.nav-masthead hero-rive is /shipping-only (the other five use a static SVG); industry.icon-slider bg-dust-to-white is /chemicals-only (and is the ONLY thing that distinguishes /chemicals from the other four static-hero routes); shared.icon-grid is theme-light on /security and theme-dark on /about. Without this rule a PageSpec could claim /chemicals’ background on /shipping, or /shipping’s Rive hero on /telecommunications, and pass.",
+      "exception": "None.",
+      "implementedIn": "schema/semantic_validate.py#check_variant_routes"
+    },
+    {
+      "id": "INDUSTRY_OPTIONAL_SLOTS_SHIPPING_ONLY",
+      "severity": "error",
+      "statement": "`industry.text-card-asset` and `industry.feature-detail` may appear ONLY on route `/shipping`. They are the two optional nodes of the single `industry-page` template.",
+      "evidence": "Settled by running a first-party classifier (importing the real src/data/industries.js and reproducing src/components/IndustryPage.jsx’s own slot logic) against all six industry routes: five produce a 4-section sequence, /shipping produces a 6-section sequence. See templates/templates.json#templates.industry-page.compositionVariance.",
+      "bothDirections": "schema/tests/adversarial_test.py proves (a) /chemicals + industry.feature-detail is REJECTED and (b) the real /shipping 6-node sequence is ACCEPTED. A rule is only correct if it works in both directions.",
+      "exception": "None — /shipping is the allowlist, not an exception to it.",
+      "implementedIn": "schema/semantic_validate.py#check_route_restrictions"
+    },
+    {
+      "id": "NO_ADJACENT_SAME_CATEGORY",
+      "severity": "warn",
+      "statement": "Two adjacent body sections should not share the same `category`.",
+      "exception": "NAMED EXCEPTIONS, both verified against real node sequences: ['industry-page', 'platform']. `industry-page` legitimately runs FOUR consecutive `feature` sections on /shipping (icon-slider, text-card-asset, feature-detail, feature-accordion) and TWO on the other five routes. `platform` legitimately runs two consecutive `feature` sections (stacked-panels, feature-callout). Without these exceptions the rule would reject the real, correct site — which is exactly the failure MASTER-GUIDE §3.3 warns about.",
+      "exemptTemplates": [
+        "industry-page",
+        "platform"
+      ],
+      "implementedIn": "schema/semantic_validate.py#check_adjacent_category"
+    },
+    {
+      "id": "NO_CONSECUTIVE_SCROLL_STAGES",
+      "severity": "error",
+      "statement": "Two body sections whose motion pattern is a scroll-driven stage must not be adjacent.",
+      "scrollStagePatterns": [
+        "scroll-letter-reveal",
+        "scroll-pinned-stage",
+        "scroll-mapped-character-reveal",
+        "scroll-pinned-statement"
+      ],
+      "evidence": "Verified true of the real site: the homepage’s two scroll stages sit at body indices 1 (showcase.orbit) and 5 (feature.asset-swap-pinned); /platform’s single stage is at index 0; /about’s is at index 0 and is followed by a motionless icon-grid. No real template violates it, so no exception is needed.",
+      "exception": "None.",
+      "implementedIn": "schema/semantic_validate.py#check_scroll_stages"
+    },
+    {
+      "id": "MOTION_BUDGET_AUTOPLAY",
+      "severity": "warn",
+      "statement": "A page should carry at most 3 sections with a self-advancing (autoplaying) motion pattern.",
+      "autoplayPatterns": [
+        "hero-rotation",
+        "auto-advance-accordion",
+        "embla-friction-carousel",
+        "discrete-step-marquee",
+        "vertical-marquee"
+      ],
+      "evidence": "Real counts per template: {'home': 2, 'industry-page': 3, 'platform': 0, 'security': 1, 'about': 0, 'legal': 0, 'not-found': 0}. The real maximum is 3 (`industry-page`: icon-slider 6000ms, feature-accordion 8000ms, logo-showcase 3000ms). The threshold is therefore set AT the real maximum, not below it — a budget of 2 would have rejected every industry route.",
+      "exception": "None needed; the threshold is calibrated to the real ceiling.",
+      "implementedIn": "schema/semantic_validate.py#check_motion_budget"
+    },
+    {
+      "id": "REDUCED_MOTION_FALLBACK_REQUIRED",
+      "severity": "error",
+      "statement": "Every node’s `motion` object must carry a non-empty `reducedMotionFallback`, and the value must be one the declaring section contract allows.",
+      "honestNote": "The real build implements prefers-reduced-motion for exactly ONE effect (the orbit letter reveal, via a single CSS rule in src/index.css). This rule is a PRESCRIPTION for generated pages, not a description of existing source behaviour — see tokens/00-foundation/motion.json#reducedMotion.gap.",
+      "exception": "None.",
+      "implementedIn": "schema/semantic_validate.py#check_reduced_motion"
+    },
+    {
+      "id": "MOTION_FIELDS_CLOSED",
+      "severity": "error",
+      "statement": "A node’s `motion` object is `additionalProperties: false` against the real, evidence-grounded field set. An invented motion field cannot be smuggled into a valid PageSpec.",
+      "why": "MASTER-GUIDE §3.7 — Craft shipped `additionalProperties: true` on motion, so a generated PageSpec could add `inventedAnimation` and still validate.",
+      "exception": "None.",
+      "implementedIn": "schema/pagespec.schema.json#definitions.motion"
+    },
+    {
+      "id": "ANCHOR_ID_UNIQUE",
+      "severity": "error",
+      "statement": "Within one PageSpec, no two nodes may declare the same `anchorId`.",
+      "realAnchors": {
+        "home": [
+          "orbitshowcase",
+          "integrations"
+        ],
+        "industry-page": [],
+        "platform": [
+          "build",
+          "security"
+        ],
+        "security": [],
+        "about": [],
+        "legal": [],
+        "not-found": []
+      },
+      "exception": "None.",
+      "implementedIn": "schema/semantic_validate.py#check_anchors"
+    },
+    {
+      "id": "ASSET_PROVENANCE_POLICY",
+      "severity": "error",
+      "statement": "Every media object carries a required `provenance` (source-original | operator-supplied | generated). `provenance: \"generated\"` is FORBIDDEN for any assetRole whose generationPolicy is `must-not-fabricate-real-brand`, `must-not-fabricate-compliance-claim` or `must-reuse-exact`.",
+      "why": "The source is a REAL, LIVE company’s site. Reproducing or synthesising a third-party trademark, an audited compliance mark, or a product screenshot is a compliance problem, not a style one. See assets/asset-roles.json.",
+      "exception": "None.",
+      "implementedIn": "schema/semantic_validate.py#check_asset_provenance"
+    },
+    {
+      "id": "ASSET_ROLE_CLOSED",
+      "severity": "error",
+      "statement": "Every media field’s `assetRole` must be a member of assets/asset-roles.json#roleEnum. There is no bare `image`/`src` media field anywhere in the schema.",
+      "exception": "None.",
+      "implementedIn": "schema/pagespec.schema.json#definitions.media"
+    },
+    {
+      "id": "LEGAL_TEXT_GATE",
+      "severity": "error",
+      "statement": "A PageSpec containing `legal.prose-blocks` must set `content.requiresOperatorSuppliedText: true`.",
+      "why": "/terms-of-service and /cookie-policy reproduce the REAL company’s real legal text verbatim. The template’s structure is reusable; its text is another organisation’s legal instrument and is factually wrong for any other operator.",
+      "exception": "None.",
+      "implementedIn": "schema/semantic_validate.py#check_legal_gate"
+    },
+    {
+      "id": "MAX_WORDS",
+      "severity": "error",
+      "statement": "Every text-bearing field is word-counted against its contract’s `maxWords` budget, per instance — not only against the bundled example.",
+      "budgetDerivation": "Each budget is the measured longest real string for that field rounded up with ~20% headroom; the real counts are recorded in extraction/measured-values.json#copyBudgets.",
+      "exception": "None.",
+      "implementedIn": "schema/semantic_validate.py#check_max_words"
+    },
+    {
+      "id": "DELIBERATELY_UNBUILT_NOT_RECREATED",
+      "severity": "error",
+      "statement": "No PageSpec may reference a section id listed in `forbiddenSectionIds`, and no route in `forbiddenRoutes` may be specified.",
+      "forbiddenSectionIds": [
+        "cms.arc-masthead",
+        "cms.content-slider",
+        "cms.customer-stories-slider",
+        "cms.feature-detail-hidden",
+        "industry.dune-decoration"
+      ],
+      "forbiddenRoutes": [
+        "/industries",
+        "/careers"
+      ],
+      "why": "These are DELIBERATE scope reductions in the real build, not gaps. 3 homepage CMS sections, `featureDetail` on 5 of 6 industry routes, `customerStoriesSlider` on all 6, and `contentSlider` + `arcMasthead` on /about all carry hideSection:true and emit zero DOM. /industries and /careers both 404 on the original. Recreating any of them is a regression, not an improvement.",
+      "exception": "None.",
+      "implementedIn": "schema/semantic_validate.py#check_forbidden"
+    }
+  ],
+  "ruleCount": 19
+}

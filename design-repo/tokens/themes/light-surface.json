@@ -1,0 +1,17 @@
+{
+  "$id": "tokens/themes/light-surface",
+  "theme": "light-surface",
+  "description": "The site has NO light/dark theme switcher and no prefers-color-scheme handling anywhere in src/. What it has is two SURFACE MODES that alternate section by section within one theme. This instance resolves every semantic role for a light-surface section (white / dust / panel / gradient backgrounds).",
+  "evidenceKey": "theme.light-surface",
+  "usedBy": ["/", "/platform", "/aerospace-and-defense", "/chemicals", "/energy-commodities", "/engineering-construction", "/shipping", "/telecommunications"],
+  "resolved": {
+    "text.primary":    "#0F0C0B",
+    "text.secondary":  "rgba(15,12,11,0.8)",
+    "text.accent":     "#FF8B3E",
+    "surface.page":    "#FFFFFF",
+    "surface.warm":    "#FBF6EC",
+    "surface.panel":   "#FDFAF6",
+    "border.hairline": "#DFD8D3",
+    "border.hairline.strong": "#B1ACA6"
+  }
+}

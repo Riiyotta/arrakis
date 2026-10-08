@@ -1,0 +1,45 @@
+{
+  "$id": "tokens/20-component/component",
+  "layer": "component",
+  "description": "Component-scoped overrides. Every value here is read from the real component file named in `source`.",
+  "evidenceKey": "token.component",
+  "button": {
+    "source": "src/components/Button.jsx",
+    "shape": { "radius": "{radius.xs}", "paddingX": "0.875rem (px-3.5)", "paddingY": "0.5625rem", "border": "1px", "type": "{typography.nav-link}" },
+    "variants": {
+      "dark":     { "bg": "{color.midnight}", "border": "{color.dusk}", "text": "{color.white}", "hoverBg": "{color.night}" },
+      "light":    { "bg": "{color.dust}",     "border": "{color.dust}", "text": "{color.night}", "hoverBg": "{color.sand}" },
+      "scrolled": { "bg": "{color.white}",    "border": "rgb(229,223,219)", "text": "{color.night}", "note": "the header's scrolled state SWAPS variant outright; this is not a hover state" },
+      "heroSolid":{ "bg": "{color.black}",    "border": "none", "text": "{color.day}", "note": "carries NO border, which is why it measures 36px tall rather than the usual 38px — the border is load-bearing on height" },
+      "day":      { "bg": "{color.day}",      "border": "{color.day}", "text": "{color.night}", "hoverBg": "{color.sand}" }
+    },
+    "variantCount": 5
+  },
+  "header": {
+    "source": "src/components/Header.jsx",
+    "height": { "base": "4rem (64px)", "sm640": "5.375rem (86px)", "cssVar": "--header-height" },
+    "states": {
+      "top-dark":  { "bg": "transparent", "note": "default start state" },
+      "top-white": { "bg": "transparent", "note": "CMS pageOptions headerTheme:white — /platform + the 6 industry routes" },
+      "scrolled":  { "bg": "{color.white}", "height": "64px", "shadow": "{elevation.lg}", "threshold": "window.scrollY > 300 (300 = dark, 301 = white)" }
+    }
+  },
+  "squareBracket": {
+    "source": "src/index.css",
+    "description": "The site's signature primitive, ~40 call sites. A 1px horizontal hairline with a 1px vertical end-tick at each end, drawn in currentColor.",
+    "hairlineHeight": { "base": "8px", "sm640": "12px", "linesLg": "12px / 16px at 640", "forceLg": "16px !important" },
+    "sideWidth": { "base": "12px", "sideLinesLg@640": "16px" },
+    "tickWidth": "1px"
+  },
+  "numberFlow": {
+    "source": "src/index.css",
+    "prefixSuffixFontSize": "0.7143em",
+    "prefixMarginRight": "0.25rem",
+    "suffixMarginLeft": "0.25rem",
+    "lineHeightTrap": "The `stat-56`/`stat-48` roles declare line-height 1 even though the shipped CSS says 1.1. The roles are only ever applied to the <number-flow-react> custom element, whose shadow-root styles force line-height:1 on the host, so 1.1 never takes effect. Measured live: 56/56 @1440, 45.76/45.76 @768, 40/40 @390. Do NOT 'restore' 1.1 — CLONE_SPEC §4.5's stats-section heights encode the 1.1 error."
+  },
+  "cookieNotice": {
+    "source": "src/components/CookieNotice.jsx",
+    "bg": "{color.midnight}"
+  }
+}

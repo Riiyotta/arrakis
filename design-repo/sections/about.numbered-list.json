@@ -1,0 +1,112 @@
+{
+  "id": "about.numbered-list",
+  "kind": "section",
+  "scope": "body",
+  "category": "process",
+  "evidenceKey": "section.about.numbered-list",
+  "source": "src/components/sections/NumberedList.jsx; src/data/about.js",
+  "description": "/about slot 3: a 4-step numbered list beside an image.",
+  "surface": "dark",
+  "content": {
+    "required": [
+      "heading",
+      "items",
+      "image"
+    ],
+    "additionalProperties": false,
+    "properties": {
+      "heading": {
+        "type": "string",
+        "maxWords": 8
+      },
+      "image": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "assetRole",
+          "alt",
+          "provenance"
+        ],
+        "properties": {
+          "assetRole": {
+            "enum": [
+              "media.product-screenshot"
+            ]
+          },
+          "alt": {
+            "type": "string",
+            "maxWords": 6
+          },
+          "src": {
+            "type": "string"
+          },
+          "intrinsicWidth": {
+            "type": "integer"
+          },
+          "intrinsicHeight": {
+            "type": "integer"
+          },
+          "provenance": {
+            "enum": [
+              "source-original",
+              "operator-supplied",
+              "generated"
+            ],
+            "note": "Provenance of this asset in the page being specified. `generated` is FORBIDDEN for any assetRole whose generationPolicy is must-not-fabricate-real-brand or must-not-fabricate-compliance-claim, and for must-reuse-exact roles. Enforced by compatibility/graph.json#ASSET_PROVENANCE_POLICY and schema/semantic_validate.py."
+          },
+          "aspectRatio": {
+            "type": "string",
+            "note": "CSS aspect-ratio for the wrapper box (e.g. \"799/617\"). Used by Rive assets, which have no intrinsic pixel size, INSTEAD of intrinsicWidth/Height."
+          }
+        }
+      },
+      "items": {
+        "type": "array",
+        "minItems": 4,
+        "maxItems": 4,
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "index",
+            "title",
+            "description"
+          ],
+          "properties": {
+            "index": {
+              "type": "string",
+              "pattern": "^[0-9]{2}$"
+            },
+            "title": {
+              "type": "string",
+              "maxWords": 5
+            },
+            "description": {
+              "type": "string",
+              "maxWords": 22
+            }
+          }
+        }
+      }
+    }
+  },
+  "constraints": {
+    "onePerPage": true,
+    "routeAllowlist": [
+      "/about"
+    ]
+  },
+  "motion": {
+    "pattern": "none",
+    "reducedMotionFallback": "none"
+  },
+  "responsive": {
+    "base": "flex-col-reverse — the IMAGE sits ABOVE the list",
+    "lg1024": "flex-row, list left / image right"
+  },
+  "notes": [
+    "Intrinsic 1548x1280 comes from the Sanity asset id, not from the file: Chromium reports naturalWidth/Height as 0,0 for the source HEIF.",
+    "Step 2’s description contains a real double space (\"within weeks,  not months.\"); step 4’s CMS value contains a real newline that collapses to a single space in HTML (no <br> is emitted)."
+  ],
+  "copyBudgetDerivation": "Each maxWords budget is max(measured+2, ceil(measured*1.25)). The measured maxima were computed by importing the real src/data/*.js modules and word-counting every string for that field across every route. See extraction/measured-values.json#copyBudgets."
+}

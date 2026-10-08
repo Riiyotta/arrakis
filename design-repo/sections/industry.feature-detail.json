@@ -1,0 +1,184 @@
+{
+  "id": "industry.feature-detail",
+  "kind": "section",
+  "scope": "body",
+  "category": "feature",
+  "evidenceKey": "section.industry.feature-detail",
+  "source": "src/components/industry/FeatureDetail.jsx",
+  "description": "Slot 2: three bordered hero cards, each a 2-col copy/image split. The slot EXISTS on all six routes but carries `hideSection: true` on five of them, and a hidden section emits zero DOM — so it renders on /shipping only.",
+  "surface": "light",
+  "content": {
+    "required": [
+      "items"
+    ],
+    "additionalProperties": false,
+    "properties": {
+      "items": {
+        "type": "array",
+        "minItems": 3,
+        "maxItems": 3,
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "heading",
+            "content",
+            "asset",
+            "summary",
+            "list"
+          ],
+          "properties": {
+            "subheading": {
+              "type": "string",
+              "maxWords": 3,
+              "note": "item 3 stores a single space \" \" in the CMS, producing an EMPTY h6 of height 0 that still contributes its 24px mb-6 — so that card’s copy sits 24px lower than items 1-2. Deliberate; keep it."
+            },
+            "heading": {
+              "type": "string",
+              "maxWords": 7
+            },
+            "content": {
+              "type": "string",
+              "maxWords": 28
+            },
+            "hasBackgroundColor": {
+              "type": "boolean",
+              "note": "true paints the card bg-[#FCFAF5]"
+            },
+            "asset": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "assetRole",
+                "alt",
+                "provenance"
+              ],
+              "properties": {
+                "assetRole": {
+                  "enum": [
+                    "media.product-screenshot",
+                    "illustration.industry-masthead"
+                  ]
+                },
+                "alt": {
+                  "type": "string",
+                  "maxWords": 6
+                },
+                "src": {
+                  "type": "string"
+                },
+                "intrinsicWidth": {
+                  "type": "integer"
+                },
+                "intrinsicHeight": {
+                  "type": "integer"
+                },
+                "provenance": {
+                  "enum": [
+                    "source-original",
+                    "operator-supplied",
+                    "generated"
+                  ],
+                  "note": "Provenance of this asset in the page being specified. `generated` is FORBIDDEN for any assetRole whose generationPolicy is must-not-fabricate-real-brand or must-not-fabricate-compliance-claim, and for must-reuse-exact roles. Enforced by compatibility/graph.json#ASSET_PROVENANCE_POLICY and schema/semantic_validate.py."
+                },
+                "aspectRatio": {
+                  "type": "string",
+                  "note": "CSS aspect-ratio for the wrapper box (e.g. \"799/617\"). Used by Rive assets, which have no intrinsic pixel size, INSTEAD of intrinsicWidth/Height."
+                }
+              }
+            },
+            "summary": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "icon",
+                "content"
+              ],
+              "properties": {
+                "icon": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "assetRole",
+                    "alt",
+                    "provenance"
+                  ],
+                  "properties": {
+                    "assetRole": {
+                      "enum": [
+                        "illustration.feature-icon"
+                      ]
+                    },
+                    "alt": {
+                      "type": "string",
+                      "maxWords": 6
+                    },
+                    "provenance": {
+                      "enum": [
+                        "source-original",
+                        "operator-supplied",
+                        "generated"
+                      ],
+                      "note": "`generated` is FORBIDDEN for any assetRole whose generationPolicy is must-not-fabricate-real-brand or must-not-fabricate-compliance-claim, and for must-reuse-exact roles. Enforced by compatibility/graph.json#ASSET_PROVENANCE_POLICY and schema/semantic_validate.py."
+                    },
+                    "src": {
+                      "type": "string"
+                    },
+                    "intrinsicWidth": {
+                      "type": "integer"
+                    },
+                    "intrinsicHeight": {
+                      "type": "integer"
+                    },
+                    "aspectRatio": {
+                      "type": "string",
+                      "note": "CSS aspect-ratio for the wrapper box (e.g. \"799/617\"). Used by Rive assets, which have no intrinsic pixel size, INSTEAD of intrinsicWidth/Height."
+                    }
+                  }
+                },
+                "content": {
+                  "type": "string",
+                  "maxWords": 14,
+                  "note": "item 2’s CMS value carries a real TRAILING NEWLINE"
+                }
+              },
+              "note": "The stats strip, which overlaps the hero card by 1px via -mt-px."
+            },
+            "list": {
+              "type": "array",
+              "minItems": 4,
+              "maxItems": 4,
+              "items": {
+                "type": "string",
+                "maxWords": 17,
+                "note": "item 2’s third bullet carries a real TRAILING SPACE"
+              },
+              "note": "4 bullets, rendered in a 2-col grid at EVERY viewport, each in its own square-bracket cell with a {color.sun} 6px dot."
+            }
+          }
+        }
+      }
+    }
+  },
+  "constraints": {
+    "onePerPage": true,
+    "routeAllowlist": [
+      "/shipping"
+    ]
+  },
+  "motion": {
+    "pattern": "none",
+    "reducedMotionFallback": "none"
+  },
+  "responsive": {
+    "base": "card copy/image stacked, copy px-6 py-7 pb-0",
+    "sm640": "p-10",
+    "md768": "grid-cols-2",
+    "blockGap": "gap-y-16 / md gap-y-20 / lg gap-y-40"
+  },
+  "notes": [
+    "`mt-3!` is an important override in the original: the paragraph margin-top is 12px at EVERY viewport and the sm:mt-4 / lg:mt-6 that follow it are dead. Ported as `!mt-3`.",
+    "The bullet dot carries both md:top-[0.4375rem] and md:top-[0.5625rem] in the original; the latter wins -> top: 9px."
+  ],
+  "copyBudgetDerivation": "Each maxWords budget is max(measured+2, ceil(measured*1.25)). The measured maxima were computed by importing the real src/data/*.js modules and word-counting every string for that field across every route. See extraction/measured-values.json#copyBudgets."
+}

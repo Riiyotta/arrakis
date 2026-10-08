@@ -1,0 +1,789 @@
+{
+  "$id": "tokens/llm/component-allowlist",
+  "version": "1.0.0",
+  "versionEnforcement": "MACHINE-CHECKED. extraction/verify_all.py fails the run if this version does not equal registry.manifest.json#allowlistVersion.",
+  "description": "The CLOSED list of what an AI may set. Every entry has a matching contract file and every contract file has an entry — extraction/verify_all.py enforces parity in BOTH directions and the check is proven to catch drift by a scratch-copy injection test. `settableProperties` is DERIVED from each contract's own schema by walking its `properties`, not hand-copied, so it cannot go stale.",
+  "generationRules": [
+    "You may set only the properties listed under an entry's settableProperties.",
+    "You may NOT introduce a color, type role, radius, spacing step, duration or easing curve that is not in tokens/.",
+    "You may NOT add a section, template or route that is not in sections/ or templates/templates.json.",
+    "Every media field needs an assetRole from assets/asset-roles.json#roleEnum plus a provenance. provenance \"generated\" is forbidden for must-not-fabricate-* and must-reuse-exact roles.",
+    "Every node needs a motion object with a reducedMotionFallback, and both values are const-locked to the section type.",
+    "Respect every maxWords budget. The budgets are measured, not padded guesses.",
+    "Never reproduce a real third-party logo, the real company wordmark, a compliance badge, the real legal text, a real stat, or a real contact email. See assets/asset-roles.json."
+  ],
+  "entryCount": 45,
+  "entries": {
+    "about.career-listings": {
+      "kind": "section",
+      "contractFile": "sections/about.career-listings.json",
+      "settableProperties": [
+        "content.cta",
+        "content.cta.href",
+        "content.cta.label",
+        "content.cta.variant",
+        "content.eyebrow",
+        "content.heading",
+        "motion.pattern",
+        "motion.reducedMotionFallback"
+      ],
+      "allowedVariants": []
+    },
+    "about.employee-grid": {
+      "kind": "section",
+      "contractFile": "sections/about.employee-grid.json",
+      "settableProperties": [
+        "content.heading",
+        "motion.pattern",
+        "motion.reducedMotionFallback"
+      ],
+      "allowedVariants": []
+    },
+    "about.numbered-list": {
+      "kind": "section",
+      "contractFile": "sections/about.numbered-list.json",
+      "settableProperties": [
+        "content.heading",
+        "content.image",
+        "content.image.alt",
+        "content.image.aspectRatio",
+        "content.image.assetRole",
+        "content.image.intrinsicHeight",
+        "content.image.intrinsicWidth",
+        "content.image.provenance",
+        "content.image.src",
+        "content.items",
+        "content.items[].description",
+        "content.items[].index",
+        "content.items[].title",
+        "motion.pattern",
+        "motion.reducedMotionFallback"
+      ],
+      "allowedVariants": []
+    },
+    "about.statement-showcase": {
+      "kind": "section",
+      "contractFile": "sections/about.statement-showcase.json",
+      "settableProperties": [
+        "content.eyebrow",
+        "content.heading",
+        "content.lede",
+        "content.steps",
+        "content.steps[].description",
+        "content.steps[].title",
+        "motion.pattern",
+        "motion.reducedMotionFallback"
+      ],
+      "allowedVariants": []
+    },
+    "about.sticky-aside-list": {
+      "kind": "section",
+      "contractFile": "sections/about.sticky-aside-list.json",
+      "settableProperties": [
+        "content.heading",
+        "content.items",
+        "content.items[].description",
+        "content.items[].image",
+        "content.items[].image.alt",
+        "content.items[].image.aspectRatio",
+        "content.items[].image.assetRole",
+        "content.items[].image.intrinsicHeight",
+        "content.items[].image.intrinsicWidth",
+        "content.items[].image.provenance",
+        "content.items[].image.src",
+        "content.items[].title",
+        "motion.pattern",
+        "motion.reducedMotionFallback"
+      ],
+      "allowedVariants": []
+    },
+    "chrome.cookie-notice": {
+      "kind": "section",
+      "contractFile": "sections/chrome.cookie-notice.json",
+      "settableProperties": [
+        "content.accept",
+        "content.body",
+        "content.decline",
+        "content.policyLink",
+        "content.policyLink.href",
+        "content.policyLink.label",
+        "motion.pattern",
+        "motion.reducedMotionFallback"
+      ],
+      "allowedVariants": []
+    },
+    "chrome.footer": {
+      "kind": "section",
+      "contractFile": "sections/chrome.footer.json",
+      "settableProperties": [
+        "content.background",
+        "content.background.alt",
+        "content.background.aspectRatio",
+        "content.background.assetRole",
+        "content.background.intrinsicHeight",
+        "content.background.intrinsicWidth",
+        "content.background.provenance",
+        "content.background.src",
+        "content.columns",
+        "content.columns[].heading",
+        "content.columns[].links",
+        "content.columns[].links[].href",
+        "content.columns[].links[].label",
+        "content.contact",
+        "content.contact.email",
+        "content.contact.social",
+        "motion.pattern",
+        "motion.reducedMotionFallback"
+      ],
+      "allowedVariants": []
+    },
+    "chrome.header": {
+      "kind": "section",
+      "contractFile": "sections/chrome.header.json",
+      "settableProperties": [
+        "content.cta",
+        "content.cta.href",
+        "content.cta.label",
+        "content.navItems",
+        "content.navItems[].href",
+        "content.navItems[].label",
+        "content.navItems[].megaMenu",
+        "content.theme",
+        "motion.pattern",
+        "motion.reducedMotionFallback"
+      ],
+      "allowedVariants": []
+    },
+    "feature.asset-swap-pinned": {
+      "kind": "section",
+      "contractFile": "sections/feature.asset-swap-pinned.json",
+      "settableProperties": [
+        "content.centerGraphic",
+        "content.centerGraphic.alt",
+        "content.centerGraphic.aspectRatio",
+        "content.centerGraphic.assetRole",
+        "content.centerGraphic.intrinsicHeight",
+        "content.centerGraphic.intrinsicWidth",
+        "content.centerGraphic.provenance",
+        "content.centerGraphic.src",
+        "content.cta",
+        "content.cta.href",
+        "content.cta.label",
+        "content.cta.variant",
+        "content.items",
+        "content.items[].asset",
+        "content.items[].asset.alt",
+        "content.items[].asset.aspectRatio",
+        "content.items[].asset.assetRole",
+        "content.items[].asset.intrinsicHeight",
+        "content.items[].asset.intrinsicWidth",
+        "content.items[].asset.provenance",
+        "content.items[].asset.src",
+        "content.items[].content",
+        "content.items[].label",
+        "motion.pattern",
+        "motion.reducedMotionFallback"
+      ],
+      "allowedVariants": []
+    },
+    "feature.text-card-dashboard": {
+      "kind": "section",
+      "contractFile": "sections/feature.text-card-dashboard.json",
+      "settableProperties": [
+        "content.asset",
+        "content.asset.alt",
+        "content.asset.aspectRatio",
+        "content.asset.assetRole",
+        "content.asset.intrinsicHeight",
+        "content.asset.intrinsicWidth",
+        "content.asset.provenance",
+        "content.asset.src",
+        "content.heading",
+        "content.supporting",
+        "motion.pattern",
+        "motion.reducedMotionFallback"
+      ],
+      "allowedVariants": []
+    },
+    "hero.two-column-masthead": {
+      "kind": "section",
+      "contractFile": "sections/hero.two-column-masthead.json",
+      "settableProperties": [
+        "content.cta",
+        "content.cta[].href",
+        "content.cta[].label",
+        "content.cta[].variant",
+        "content.heading",
+        "content.logoBanner",
+        "content.logoBanner.logos",
+        "content.logoBanner.logos[].alt",
+        "content.logoBanner.logos[].aspectRatio",
+        "content.logoBanner.logos[].assetRole",
+        "content.logoBanner.logos[].intrinsicHeight",
+        "content.logoBanner.logos[].intrinsicWidth",
+        "content.logoBanner.logos[].provenance",
+        "content.logoBanner.logos[].src",
+        "content.logoBanner.slots",
+        "content.supporting",
+        "content.videoRotation",
+        "content.videoRotation[].caption",
+        "content.videoRotation[].media",
+        "content.videoRotation[].media.alt",
+        "content.videoRotation[].media.aspectRatio",
+        "content.videoRotation[].media.assetRole",
+        "content.videoRotation[].media.intrinsicHeight",
+        "content.videoRotation[].media.intrinsicWidth",
+        "content.videoRotation[].media.provenance",
+        "content.videoRotation[].media.src",
+        "motion.pattern",
+        "motion.reducedMotionFallback"
+      ],
+      "allowedVariants": []
+    },
+    "industry.feature-accordion": {
+      "kind": "section",
+      "contractFile": "sections/industry.feature-accordion.json",
+      "settableProperties": [
+        "content.asset",
+        "content.asset.alt",
+        "content.asset.aspectRatio",
+        "content.asset.assetRole",
+        "content.asset.intrinsicHeight",
+        "content.asset.intrinsicWidth",
+        "content.asset.provenance",
+        "content.asset.src",
+        "content.heading",
+        "content.items",
+        "content.items[].content",
+        "content.items[].index",
+        "content.items[].subheading",
+        "motion.pattern",
+        "motion.reducedMotionFallback"
+      ],
+      "allowedVariants": []
+    },
+    "industry.feature-detail": {
+      "kind": "section",
+      "contractFile": "sections/industry.feature-detail.json",
+      "settableProperties": [
+        "content.items",
+        "content.items[].asset",
+        "content.items[].asset.alt",
+        "content.items[].asset.aspectRatio",
+        "content.items[].asset.assetRole",
+        "content.items[].asset.intrinsicHeight",
+        "content.items[].asset.intrinsicWidth",
+        "content.items[].asset.provenance",
+        "content.items[].asset.src",
+        "content.items[].content",
+        "content.items[].hasBackgroundColor",
+        "content.items[].heading",
+        "content.items[].list",
+        "content.items[].subheading",
+        "content.items[].summary",
+        "content.items[].summary.content",
+        "content.items[].summary.icon",
+        "content.items[].summary.icon.alt",
+        "content.items[].summary.icon.aspectRatio",
+        "content.items[].summary.icon.assetRole",
+        "content.items[].summary.icon.intrinsicHeight",
+        "content.items[].summary.icon.intrinsicWidth",
+        "content.items[].summary.icon.provenance",
+        "content.items[].summary.icon.src",
+        "motion.pattern",
+        "motion.reducedMotionFallback"
+      ],
+      "allowedVariants": []
+    },
+    "industry.icon-slider": {
+      "kind": "section",
+      "contractFile": "sections/industry.icon-slider.json",
+      "settableProperties": [
+        "content.background",
+        "content.icons",
+        "content.icons[].alt",
+        "content.icons[].aspectRatio",
+        "content.icons[].assetRole",
+        "content.icons[].intrinsicHeight",
+        "content.icons[].intrinsicWidth",
+        "content.icons[].provenance",
+        "content.icons[].src",
+        "content.items",
+        "content.supportingText",
+        "motion.pattern",
+        "motion.reducedMotionFallback",
+        "variant"
+      ],
+      "allowedVariants": [
+        "bg-dust-to-white",
+        "bg-white"
+      ]
+    },
+    "industry.logo-showcase": {
+      "kind": "section",
+      "contractFile": "sections/industry.logo-showcase.json",
+      "settableProperties": [
+        "content.heading",
+        "content.tabs",
+        "content.tabs[].label",
+        "content.tabs[].logos",
+        "content.tabs[].logos[].alt",
+        "content.tabs[].logos[].aspectRatio",
+        "content.tabs[].logos[].assetRole",
+        "content.tabs[].logos[].intrinsicHeight",
+        "content.tabs[].logos[].intrinsicWidth",
+        "content.tabs[].logos[].provenance",
+        "content.tabs[].logos[].src",
+        "motion.pattern",
+        "motion.reducedMotionFallback"
+      ],
+      "allowedVariants": []
+    },
+    "industry.nav-masthead": {
+      "kind": "section",
+      "contractFile": "sections/industry.nav-masthead.json",
+      "settableProperties": [
+        "content.cta",
+        "content.cta.href",
+        "content.cta.label",
+        "content.cta.variant",
+        "content.heading",
+        "content.heading.emphasis",
+        "content.heading.lead",
+        "content.hero",
+        "content.hero.alt",
+        "content.hero.aspectRatio",
+        "content.hero.assetRole",
+        "content.hero.intrinsicHeight",
+        "content.hero.intrinsicWidth",
+        "content.hero.provenance",
+        "content.hero.src",
+        "content.navItems",
+        "content.navItems[].href",
+        "content.navItems[].label",
+        "motion.pattern",
+        "motion.reducedMotionFallback",
+        "variant"
+      ],
+      "allowedVariants": [
+        "hero-rive",
+        "hero-static"
+      ]
+    },
+    "industry.text-card-asset": {
+      "kind": "section",
+      "contractFile": "sections/industry.text-card-asset.json",
+      "settableProperties": [
+        "content.asset",
+        "content.asset.alt",
+        "content.asset.aspectRatio",
+        "content.asset.assetRole",
+        "content.asset.intrinsicHeight",
+        "content.asset.intrinsicWidth",
+        "content.asset.provenance",
+        "content.asset.src",
+        "content.heading",
+        "content.maxWidth",
+        "motion.pattern",
+        "motion.reducedMotionFallback"
+      ],
+      "allowedVariants": []
+    },
+    "integrations.paginated-panels": {
+      "kind": "section",
+      "contractFile": "sections/integrations.paginated-panels.json",
+      "settableProperties": [
+        "anchorId",
+        "content.heading",
+        "content.logos",
+        "content.logos[].alt",
+        "content.logos[].aspectRatio",
+        "content.logos[].assetRole",
+        "content.logos[].intrinsicHeight",
+        "content.logos[].intrinsicWidth",
+        "content.logos[].provenance",
+        "content.logos[].src",
+        "content.panels",
+        "content.panels[].body",
+        "content.panels[].heading",
+        "motion.pattern",
+        "motion.reducedMotionFallback"
+      ],
+      "allowedVariants": []
+    },
+    "legal.prose-blocks": {
+      "kind": "section",
+      "contractFile": "sections/legal.prose-blocks.json",
+      "settableProperties": [
+        "content.lastUpdated",
+        "content.requiresOperatorSuppliedText",
+        "content.sections",
+        "content.sections[].content",
+        "content.sections[].heading",
+        "content.title",
+        "motion.pattern",
+        "motion.reducedMotionFallback"
+      ],
+      "allowedVariants": []
+    },
+    "platform.feature-callout": {
+      "kind": "section",
+      "contractFile": "sections/platform.feature-callout.json",
+      "settableProperties": [
+        "anchorId",
+        "content.decoration",
+        "content.decoration.color",
+        "content.decoration.position",
+        "content.decoration.type",
+        "content.heading",
+        "content.image",
+        "content.image.alt",
+        "content.image.aspectRatio",
+        "content.image.assetRole",
+        "content.image.intrinsicHeight",
+        "content.image.intrinsicWidth",
+        "content.image.provenance",
+        "content.image.src",
+        "content.link",
+        "content.link.href",
+        "content.link.title",
+        "content.tableItems",
+        "motion.pattern",
+        "motion.reducedMotionFallback"
+      ],
+      "allowedVariants": []
+    },
+    "platform.stacked-masthead": {
+      "kind": "section",
+      "contractFile": "sections/platform.stacked-masthead.json",
+      "settableProperties": [
+        "content.flare",
+        "content.flare.alt",
+        "content.flare.aspectRatio",
+        "content.flare.assetRole",
+        "content.flare.intrinsicHeight",
+        "content.flare.intrinsicWidth",
+        "content.flare.provenance",
+        "content.flare.src",
+        "content.heading",
+        "content.paragraphGrouping",
+        "content.railOpacities",
+        "content.rive",
+        "content.rive.alt",
+        "content.rive.aspectRatio",
+        "content.rive.assetRole",
+        "content.rive.intrinsicHeight",
+        "content.rive.intrinsicWidth",
+        "content.rive.provenance",
+        "content.rive.src",
+        "content.subheading",
+        "content.supportingLines",
+        "motion.pattern",
+        "motion.reducedMotionFallback"
+      ],
+      "allowedVariants": []
+    },
+    "platform.stacked-panels": {
+      "kind": "section",
+      "contractFile": "sections/platform.stacked-panels.json",
+      "settableProperties": [
+        "anchorId",
+        "content.panels",
+        "content.panels[].content",
+        "content.panels[].heading",
+        "content.panels[].label",
+        "content.panels[].rive",
+        "content.panels[].rive.alt",
+        "content.panels[].rive.aspectRatio",
+        "content.panels[].rive.assetRole",
+        "content.panels[].rive.intrinsicHeight",
+        "content.panels[].rive.intrinsicWidth",
+        "content.panels[].rive.provenance",
+        "content.panels[].rive.src",
+        "motion.pattern",
+        "motion.reducedMotionFallback"
+      ],
+      "allowedVariants": []
+    },
+    "security.feature-accordion": {
+      "kind": "section",
+      "contractFile": "sections/security.feature-accordion.json",
+      "settableProperties": [
+        "content.asset",
+        "content.asset.alt",
+        "content.asset.aspectRatio",
+        "content.asset.assetRole",
+        "content.asset.intrinsicHeight",
+        "content.asset.intrinsicWidth",
+        "content.asset.provenance",
+        "content.asset.src",
+        "content.heading",
+        "content.items",
+        "content.items[].content",
+        "content.items[].index",
+        "content.items[].subheading",
+        "motion.pattern",
+        "motion.reducedMotionFallback"
+      ],
+      "allowedVariants": []
+    },
+    "security.text-card": {
+      "kind": "section",
+      "contractFile": "sections/security.text-card.json",
+      "settableProperties": [
+        "content.content",
+        "content.contentMaxWidth",
+        "content.heading",
+        "content.sectionMaxWidth",
+        "motion.pattern",
+        "motion.reducedMotionFallback"
+      ],
+      "allowedVariants": []
+    },
+    "shared.icon-grid": {
+      "kind": "section",
+      "contractFile": "sections/shared.icon-grid.json",
+      "settableProperties": [
+        "content.heading",
+        "content.items",
+        "content.items[].icon",
+        "content.items[].icon.alt",
+        "content.items[].icon.aspectRatio",
+        "content.items[].icon.assetRole",
+        "content.items[].icon.intrinsicHeight",
+        "content.items[].icon.intrinsicWidth",
+        "content.items[].icon.provenance",
+        "content.items[].icon.src",
+        "content.items[].lines",
+        "content.items[].title",
+        "content.theme",
+        "motion.pattern",
+        "motion.reducedMotionFallback",
+        "variant"
+      ],
+      "allowedVariants": [
+        "theme-dark",
+        "theme-light"
+      ]
+    },
+    "showcase.orbit": {
+      "kind": "section",
+      "contractFile": "sections/showcase.orbit.json",
+      "settableProperties": [
+        "anchorId",
+        "content.arcs",
+        "content.arcs[].pathId",
+        "content.lede",
+        "content.rive",
+        "content.rive.alt",
+        "content.rive.aspectRatio",
+        "content.rive.assetRole",
+        "content.rive.intrinsicHeight",
+        "content.rive.intrinsicWidth",
+        "content.rive.provenance",
+        "content.rive.src",
+        "motion.pattern",
+        "motion.reducedMotionFallback"
+      ],
+      "allowedVariants": []
+    },
+    "social.press-banner": {
+      "kind": "section",
+      "contractFile": "sections/social.press-banner.json",
+      "settableProperties": [
+        "content.heading",
+        "content.logos",
+        "content.logos[].href",
+        "content.logos[].media",
+        "content.logos[].media.alt",
+        "content.logos[].media.aspectRatio",
+        "content.logos[].media.assetRole",
+        "content.logos[].media.intrinsicHeight",
+        "content.logos[].media.intrinsicWidth",
+        "content.logos[].media.provenance",
+        "content.logos[].media.src",
+        "motion.pattern",
+        "motion.reducedMotionFallback"
+      ],
+      "allowedVariants": []
+    },
+    "stats.grid": {
+      "kind": "section",
+      "contractFile": "sections/stats.grid.json",
+      "settableProperties": [
+        "content.decoration",
+        "content.decoration.barMatrix",
+        "content.decoration.cells",
+        "content.heading",
+        "content.stats",
+        "content.stats[].description",
+        "content.stats[].suffix",
+        "content.stats[].value",
+        "motion.pattern",
+        "motion.reducedMotionFallback"
+      ],
+      "allowedVariants": []
+    },
+    "system.not-found": {
+      "kind": "section",
+      "contractFile": "sections/system.not-found.json",
+      "settableProperties": [
+        "content.body",
+        "content.heading",
+        "motion.pattern",
+        "motion.reducedMotionFallback"
+      ],
+      "allowedVariants": []
+    },
+    "primitive.button": {
+      "kind": "primitive",
+      "contractFile": "primitives/button.json",
+      "settableProperties": [
+        "as",
+        "fullWidth",
+        "label",
+        "variant"
+      ]
+    },
+    "primitive.corner-brackets": {
+      "kind": "primitive",
+      "contractFile": "primitives/corner-brackets.json",
+      "settableProperties": [
+        "color",
+        "inset"
+      ]
+    },
+    "primitive.link-hover-fade": {
+      "kind": "primitive",
+      "contractFile": "primitives/link-hover-fade.json",
+      "settableProperties": [
+        "hoverOpacity",
+        "restOpacity"
+      ]
+    },
+    "primitive.logo-mark": {
+      "kind": "primitive",
+      "contractFile": "primitives/logo-mark.json",
+      "settableProperties": [
+        "color",
+        "variant"
+      ]
+    },
+    "primitive.pager-dots": {
+      "kind": "primitive",
+      "contractFile": "primitives/pager-dots.json",
+      "settableProperties": [
+        "activeIndex",
+        "count",
+        "geometry"
+      ]
+    },
+    "primitive.rive-canvas": {
+      "kind": "primitive",
+      "contractFile": "primitives/rive-canvas.json",
+      "settableProperties": [
+        "aspectRatio",
+        "className",
+        "src"
+      ]
+    },
+    "primitive.square-bracket": {
+      "kind": "primitive",
+      "contractFile": "primitives/square-bracket.json",
+      "settableProperties": [
+        "color",
+        "edge",
+        "forceLg",
+        "hideBottom",
+        "hideTop",
+        "linesLg"
+      ]
+    },
+    "primitive.stat-counter": {
+      "kind": "primitive",
+      "contractFile": "primitives/stat-counter.json",
+      "settableProperties": [
+        "prefix",
+        "suffix",
+        "value"
+      ]
+    },
+    "component.accordion-item": {
+      "kind": "component",
+      "contractFile": "components/accordion-item.json",
+      "settableProperties": [
+        "content",
+        "index",
+        "subheading"
+      ]
+    },
+    "component.card-base": {
+      "kind": "component",
+      "contractFile": "components/card-base.json",
+      "settableProperties": [
+        "hairlineColor",
+        "mergeHairlines",
+        "padding"
+      ]
+    },
+    "component.icon-feature": {
+      "kind": "component",
+      "contractFile": "components/icon-feature.json",
+      "settableProperties": [
+        "alt",
+        "icon",
+        "lines",
+        "title"
+      ]
+    },
+    "component.logo-row": {
+      "kind": "component",
+      "contractFile": "components/logo-row.json",
+      "settableProperties": [
+        "logoCount",
+        "rotates",
+        "slots"
+      ]
+    },
+    "component.media-frame": {
+      "kind": "component",
+      "contractFile": "components/media-frame.json",
+      "settableProperties": [
+        "alt",
+        "assetRole",
+        "cornerBrackets",
+        "intrinsicHeight",
+        "intrinsicWidth",
+        "kind"
+      ]
+    },
+    "component.numbered-step": {
+      "kind": "component",
+      "contractFile": "components/numbered-step.json",
+      "settableProperties": [
+        "description",
+        "index",
+        "title"
+      ]
+    },
+    "component.stat-block": {
+      "kind": "component",
+      "contractFile": "components/stat-block.json",
+      "settableProperties": [
+        "description",
+        "suffix",
+        "value"
+      ]
+    },
+    "component.text-column": {
+      "kind": "component",
+      "contractFile": "components/text-column.json",
+      "settableProperties": [
+        "align",
+        "bodyRole",
+        "headingRole",
+        "maxWidth"
+      ]
+    }
+  }
+}

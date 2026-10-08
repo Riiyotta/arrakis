@@ -1,0 +1,144 @@
+{
+  "id": "platform.feature-callout",
+  "kind": "section",
+  "scope": "body",
+  "category": "feature",
+  "evidenceKey": "section.platform.feature-callout",
+  "source": "src/components/platform/FeatureCallout.jsx; src/data/platform.js",
+  "description": "/platform slot 2: `featureCallout`, `id=\"security\"`. ONE callout — a centred h2, a shield image, a 3-row compliance table and an arrow link. Wrapper: dustToWhite, paddingTop 144 (pt-16 md:pt-20 lg:pt-36) and paddingBottom 144 (pb-16 md:pb-24 lg:pb-36) — deliberately ASYMMETRIC at 768 (80 top vs 96 bottom) because the two utilities pick different `md:` steps. hasDecoration true, decoration {type: ellipse, ellipseColor: desert, position: top}.",
+  "surface": "light",
+  "content": {
+    "required": [
+      "heading",
+      "image",
+      "tableItems",
+      "link"
+    ],
+    "additionalProperties": false,
+    "properties": {
+      "heading": {
+        "type": "string",
+        "maxWords": 8
+      },
+      "image": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "assetRole",
+          "alt",
+          "provenance"
+        ],
+        "properties": {
+          "assetRole": {
+            "enum": [
+              "illustration.feature-icon",
+              "decoration.texture"
+            ]
+          },
+          "alt": {
+            "type": "string",
+            "maxWords": 6
+          },
+          "provenance": {
+            "enum": [
+              "source-original",
+              "operator-supplied",
+              "generated"
+            ]
+          },
+          "src": {
+            "type": "string"
+          },
+          "intrinsicWidth": {
+            "type": "integer"
+          },
+          "intrinsicHeight": {
+            "type": "integer"
+          },
+          "aspectRatio": {
+            "type": "string"
+          }
+        }
+      },
+      "tableItems": {
+        "type": "array",
+        "minItems": 3,
+        "maxItems": 3,
+        "items": {
+          "type": "string",
+          "maxWords": 4
+        },
+        "note": "The real values are the compliance names SOC 2 / ISO 27001 / GDPR. They are NOT badge images here — see assets/asset-roles.json#compliance.badge: a generated page must not assert a certification it does not hold."
+      },
+      "link": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "title"
+        ],
+        "properties": {
+          "title": {
+            "type": "string",
+            "maxWords": 6
+          },
+          "href": {
+            "type": "string"
+          }
+        }
+      },
+      "decoration": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "type": {
+            "const": "ellipse"
+          },
+          "color": {
+            "const": "desert"
+          },
+          "position": {
+            "const": "top"
+          }
+        }
+      }
+    }
+  },
+  "constraints": {
+    "onePerPage": true,
+    "mustPrecedeFooter": true,
+    "routeAllowlist": [
+      "/platform"
+    ]
+  },
+  "motion": {
+    "pattern": "scroll-linked-rotation",
+    "reducedMotionFallback": "final-rotation-static",
+    "shieldRotation": {
+      "property": "rotateY",
+      "from": "-45deg",
+      "to": "0deg",
+      "linearFit": "rotateY = -0.0668 x scrollHeightY + 23.92  =>  0deg at shY ~= 358, -45deg at shY ~= 1032",
+      "viewportForm": "rotateY = -45deg x (1 - clamp01((1.147*vh - shY) / (0.747*vh)))  — measured at vh 900 only"
+    },
+    "arrowLinkLabelSwap": {
+      "property": "opacity, translate",
+      "duration": "350ms",
+      "easing": "ease-in-out",
+      "outgoing": "translate-x-0 opacity-100 -> translate-x-2 opacity-0",
+      "incoming": "-translate-x-2 opacity-0 -> translate-x-0 opacity-100"
+    },
+    "notes": "The dominant motion is the scroll-linked shield rotation; the arrow-link label swap is a hover affordance on top of it."
+  },
+  "responsive": {
+    "base": "items stack",
+    "md768": "3 across"
+  },
+  "knownUpstreamDefects": [
+    "`link.href` is the original’s dead `/#` placeholder."
+  ],
+  "anchorId": "security",
+  "notes": [
+    "The arrow-link is the shared button/arrow-link pattern, built inline here because the project has no extracted primitive for the bracket + double-arrow variant.",
+    "The 12x12 arrow glyph path is identical to the Footer and MegaMenu one."
+  ]
+}

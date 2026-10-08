@@ -1,0 +1,46 @@
+{
+  "id": "primitive.button",
+  "kind": "primitive",
+  "source": "src/components/Button.jsx",
+  "evidenceKey": "primitive.button",
+  "description": "The one button component on the site. Renders as <a> by default. Inner markup is always an empty hover-effect layer span + the label span; the empty span is visually inert but kept for structural parity with the original.",
+  "props": {
+    "as": {
+      "enum": [
+        "a",
+        "button"
+      ],
+      "default": "a"
+    },
+    "variant": {
+      "enum": [
+        "dark",
+        "light",
+        "scrolled",
+        "heroSolid",
+        "day"
+      ],
+      "default": "dark"
+    },
+    "fullWidth": {
+      "type": "boolean",
+      "default": false
+    },
+    "label": {
+      "type": "string",
+      "maxWords": 5
+    }
+  },
+  "tokens": [
+    "{component.button}"
+  ],
+  "motion": {
+    "property": "background-color",
+    "duration": "{motion.duration.DEFAULT}",
+    "easing": "{motion.easing.DEFAULT}"
+  },
+  "notes": [
+    "heroSolid has no border and therefore measures 36px tall, not 38px.",
+    "There is no disabled state and no icon slot anywhere in the real source."
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "$id": "tokens/00-foundation/motion",
+  "layer": "foundation",
+  "description": "Duration and easing tokens as declared in tailwind.config.js. Per-section MEASURED motion lives in motion/motion-spec.json — these are only the reusable primitives.",
+  "evidenceKey": "token.motion",
+  "duration": {
+    "DEFAULT": { "$value": "250ms", "usage": "every link/state hover on the site; header theme swap; mega-menu panel" },
+    "350":     { "$value": "350ms", "usage": "platform featureCallout link label swap (opacity + translate)" },
+    "1300":    { "$value": "1300ms", "usage": "platform stackedPanels background transition-colors" }
+  },
+  "easing": {
+    "DEFAULT":     { "$value": "cubic-bezier(.4,0,.2,1)", "alias": "ease-in-out", "usage": "site default; header, mega-menu, every hover" },
+    "ease-out":    { "$value": "cubic-bezier(0,0,.2,1)", "usage": "logo-banner reveal, mega-menu panel + hover arrow" },
+    "ease-in-out": { "$value": "cubic-bezier(.4,0,.2,1)", "aliasOf": "DEFAULT" },
+    "expressive":  { "$value": "cubic-bezier(.76,0,.24,1)", "declaredIn": "component code, not the Tailwind theme", "usage": "accordion panel height, pinned-section stage transitions — the site's one 'expressive' curve" }
+  },
+  "springs": {
+    "orbit-letter-reveal":   { "stiffness": 120, "damping": 30, "measured": "after an instant jump-scroll the lit count keeps climbing ~1.2s with no overshoot; residual decays with tau ~= 215ms. Dominant pole 4.75 rad/s -> tau 210ms." },
+    "about-statement-pin":   { "stiffness": 90, "damping": 28, "mass": 1 },
+    "megamenu-accent-dot":   { "type": "spring", "duration": "550ms", "bounce": 0 }
+  },
+  "reducedMotion": {
+    "mechanism": "A single global CSS rule: `@media (prefers-reduced-motion: reduce) { .letter-reveal-char { opacity: 1 !important } }`. That is the ONLY reduced-motion handling in the real source.",
+    "gap": "HONEST GAP: the real build implements reduced-motion for exactly one effect (the orbit letter reveal). Every other section's `reducedMotionFallback` in this design-repo is a PRESCRIBED contract for generated pages, not a description of existing source behaviour. It is required by the schema so generated output cannot omit it; it is not a claim that the clone already does it."
+  }
+}

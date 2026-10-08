@@ -1,0 +1,44 @@
+{
+  "id": "system.not-found",
+  "kind": "section",
+  "scope": "body",
+  "category": "system",
+  "evidenceKey": "section.system.not-found",
+  "source": "src/pages/NotFound.jsx",
+  "description": "The catch-all 404 body.",
+  "surface": "light",
+  "content": {
+    "required": [
+      "heading"
+    ],
+    "additionalProperties": false,
+    "properties": {
+      "heading": {
+        "type": "string",
+        "maxWords": 6
+      },
+      "body": {
+        "type": "string",
+        "maxWords": 20
+      }
+    }
+  },
+  "constraints": {
+    "onePerPage": true,
+    "mustBeFirst": true,
+    "mustBeLast": true
+  },
+  "motion": {
+    "pattern": "none",
+    "reducedMotionFallback": "none"
+  },
+  "responsive": {
+    "base": "pt-40 pb-40 at every width"
+  },
+  "evidenceLevel": "STUB — NOT MEASURED",
+  "notes": [
+    "HONEST EVIDENCE GAP. src/pages/NotFound.jsx carries the comment \"STUB — awaiting recon measurements. Replaced by the page build pass.\" and renders placeholder copy (\"This route is scaffolded; its content has not been built yet.\"). Recon never visited the original’s 404 route, so none of this section’s geometry, copy or type roles is measured.",
+    "The only measured fact about this route is its <title>: Layout’s FALLBACK_TITLE \"Page not found | Arrakis\", used for any path with no TITLES entry.",
+    "This contract exists so route coverage is 1:1 with no gaps. It must NOT be treated as having the same evidence level as the other 28 sections. Do not let the measured industry/home family launder evidence for it."
+  ]
+}

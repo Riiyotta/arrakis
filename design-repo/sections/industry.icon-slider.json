@@ -1,0 +1,138 @@
+{
+  "id": "industry.icon-slider",
+  "kind": "section",
+  "scope": "body",
+  "category": "feature",
+  "evidenceKey": "section.industry.icon-slider",
+  "source": "src/components/industry/IconSlider.jsx",
+  "description": "Slot 1: an Embla carousel of 5 icon cards with a supporting paragraph and a 5-dot pager. Background is `white` on five routes and the `dustToWhite` gradient (I2) on /chemicals only.",
+  "surface": "light",
+  "content": {
+    "required": [
+      "supportingText",
+      "items",
+      "background",
+      "icons"
+    ],
+    "additionalProperties": false,
+    "properties": {
+      "supportingText": {
+        "type": "string",
+        "maxWords": 24
+      },
+      "background": {
+        "enum": [
+          "white",
+          "dustToWhite"
+        ]
+      },
+      "items": {
+        "type": "array",
+        "minItems": 5,
+        "maxItems": 5,
+        "items": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 2,
+          "items": {
+            "type": "string",
+            "maxWords": 15
+          }
+        },
+        "note": "The REAL shape: 5 cards, each an array of 1-2 copy runs (the CMS splits a card’s text across runs; several carry a trailing space on the first run). Card 5 is the byte-identical CONTROL_CARD on all six routes."
+      },
+      "icons": {
+        "type": "array",
+        "minItems": 5,
+        "maxItems": 5,
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "assetRole",
+            "alt",
+            "provenance"
+          ],
+          "properties": {
+            "assetRole": {
+              "enum": [
+                "illustration.feature-icon"
+              ]
+            },
+            "alt": {
+              "type": "string",
+              "maxWords": 6
+            },
+            "provenance": {
+              "enum": [
+                "source-original",
+                "operator-supplied",
+                "generated"
+              ]
+            },
+            "src": {
+              "type": "string"
+            },
+            "intrinsicWidth": {
+              "type": "integer"
+            },
+            "intrinsicHeight": {
+              "type": "integer"
+            },
+            "aspectRatio": {
+              "type": "string",
+              "note": "CSS aspect-ratio for the wrapper box (e.g. \"799/617\"). Used by Rive assets, which have no intrinsic pixel size, INSTEAD of intrinsicWidth/Height."
+            }
+          }
+        },
+        "note": "Icons are a SHARED, index-matched list (src/data/industries.js ICON_SLIDER_ICONS), byte-identical on all six routes — they are not per-item fields."
+      }
+    }
+  },
+  "constraints": {
+    "onePerPage": true,
+    "variantRouteAllowlist": {
+      "bg-dust-to-white": [
+        "/chemicals"
+      ],
+      "bg-white": [
+        "/aerospace-and-defense",
+        "/energy-commodities",
+        "/engineering-construction",
+        "/shipping",
+        "/telecommunications"
+      ]
+    },
+    "_variantRouteAllowlistNote": "Each variant is pinned to the exact routes that really use it, read off the real content data. Enforced by compatibility/graph.json#VARIANT_ROUTE_ALLOWLIST at severity \"error\", keyed on (section, variant) — not on the bare section id."
+  },
+  "variants": {
+    "bg-white": "background = white (5 routes)",
+    "bg-dust-to-white": "background = dustToWhite (/chemicals ONLY — the single differentiator between /chemicals and the other four static-hero routes)"
+  },
+  "motion": {
+    "pattern": "embla-friction-carousel",
+    "reducedMotionFallback": "no-autoplay-first-slide-only",
+    "autoplayMs": 6000,
+    "emblaDuration": 25,
+    "align": "start",
+    "containScroll": "trimSnaps",
+    "settleMs": "~1250-1300ms for one 456px step",
+    "pagerDot": {
+      "duration": "250ms",
+      "easing": "cubic-bezier(.4,0,.2,1)"
+    },
+    "notes": "Autoplay measured as delta 5971 / 6037ms -> 6000ms. Embla `duration: 25` reproduces the measured friction tween."
+  },
+  "responsive": {
+    "base": "cards px-6 py-3.5, gap-y-16",
+    "sm640": "px-8 py-5, gap-y-24",
+    "lg1024": "gap-y-[12.5rem]"
+  },
+  "knownUpstreamDefects": [
+    "The pager renders FIVE dots while only the first three snaps are reachable, and the counter denominator is the ITEM count (5) rather than the snap count. Reproduced on purpose."
+  ],
+  "notes": [
+    "The supportingText on /shipping carries a real TRAILING SPACE."
+  ],
+  "copyBudgetDerivation": "Each maxWords budget is max(measured+2, ceil(measured*1.25)). The measured maxima were computed by importing the real src/data/*.js modules and word-counting every string for that field across every route. See extraction/measured-values.json#copyBudgets."
+}

@@ -1,0 +1,132 @@
+{
+  "id": "security.feature-accordion",
+  "kind": "section",
+  "scope": "body",
+  "category": "feature",
+  "evidenceKey": "section.security.feature-accordion",
+  "source": "src/components/sections/SecurityFeatureAccordion.jsx; src/data/security.js",
+  "description": "/security slot 0: a dark auto-advancing 4-item accordion beside a product screenshot. `hasDecoration:false` on this page, so there is no ellipse and no dune — the only decoration is a pair of hard-coded overlay layers in the component.",
+  "surface": "dark",
+  "content": {
+    "required": [
+      "heading",
+      "items",
+      "asset"
+    ],
+    "additionalProperties": false,
+    "properties": {
+      "heading": {
+        "type": "string",
+        "maxWords": 7
+      },
+      "asset": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "assetRole",
+          "alt",
+          "provenance"
+        ],
+        "properties": {
+          "assetRole": {
+            "enum": [
+              "media.product-screenshot"
+            ]
+          },
+          "alt": {
+            "type": "string",
+            "maxWords": 6
+          },
+          "src": {
+            "type": "string"
+          },
+          "intrinsicWidth": {
+            "type": "integer"
+          },
+          "intrinsicHeight": {
+            "type": "integer"
+          },
+          "provenance": {
+            "enum": [
+              "source-original",
+              "operator-supplied",
+              "generated"
+            ],
+            "note": "Provenance of this asset in the page being specified. `generated` is FORBIDDEN for any assetRole whose generationPolicy is must-not-fabricate-real-brand or must-not-fabricate-compliance-claim, and for must-reuse-exact roles. Enforced by compatibility/graph.json#ASSET_PROVENANCE_POLICY and schema/semantic_validate.py."
+          },
+          "aspectRatio": {
+            "type": "string",
+            "note": "CSS aspect-ratio for the wrapper box (e.g. \"799/617\"). Used by Rive assets, which have no intrinsic pixel size, INSTEAD of intrinsicWidth/Height."
+          }
+        },
+        "note": "intrinsic 2328x1326 (ratio 1.7557) is load-bearing: there is no aspect-ratio wrapper, so the intrinsic ratio sets the image height"
+      },
+      "items": {
+        "type": "array",
+        "minItems": 4,
+        "maxItems": 4,
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "index",
+            "subheading",
+            "content"
+          ],
+          "properties": {
+            "index": {
+              "type": "string",
+              "pattern": "^[0-9]{2}$"
+            },
+            "subheading": {
+              "type": "string",
+              "maxWords": 5
+            },
+            "content": {
+              "type": "string",
+              "maxWords": 44
+            }
+          }
+        }
+      }
+    }
+  },
+  "constraints": {
+    "onePerPage": true,
+    "mustBeFirst": true,
+    "routeAllowlist": [
+      "/security"
+    ]
+  },
+  "motion": {
+    "pattern": "auto-advance-accordion",
+    "reducedMotionFallback": "all-panels-open-no-autoplay",
+    "autoAdvanceMs": 8000,
+    "panelHeight": {
+      "duration": "300ms",
+      "easing": "cubic-bezier(.76,0,.24,1)"
+    },
+    "panelOpacity": {
+      "duration": "0ms",
+      "delay": "300ms",
+      "note": "snaps at height-end, does not tween"
+    },
+    "progressBar": {
+      "transform": "translateX(-100%) -> translateX(0%)",
+      "duration": "8000ms",
+      "easing": "linear",
+      "fill": "both",
+      "iterations": 1,
+      "driver": "WAAPI, no CSS easing on the element"
+    },
+    "notes": "Auto-advance measured 7995ms / 7912ms two ways on /security -> 8000ms."
+  },
+  "responsive": {
+    "base": "accordion above asset",
+    "lg1024": "two columns"
+  },
+  "knownUpstreamDefects": [
+    "A stray `hello` class sits on each item’s bottom bracket."
+  ],
+  "copyBudgetDerivation": "Each maxWords budget is max(measured+2, ceil(measured*1.25)). The measured maxima were computed by importing the real src/data/*.js modules and word-counting every string for that field across every route. See extraction/measured-values.json#copyBudgets."
+}

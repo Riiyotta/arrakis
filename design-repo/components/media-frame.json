@@ -1,0 +1,40 @@
+{
+  "id": "component.media-frame",
+  "kind": "component",
+  "source": "src/components/industry/TextCardAsset.jsx; src/components/sections/SecurityFeatureAccordion.jsx",
+  "evidenceKey": "component.media-frame",
+  "description": "A relative overflow-hidden wrapper around an <img> or a RiveCanvas. There is usually NO aspect-ratio wrapper: the asset’s INTRINSIC ratio sets the section height, so width/height attributes are load-bearing, not decorative.",
+  "composes": [
+    "primitive.rive-canvas",
+    "primitive.corner-brackets"
+  ],
+  "props": {
+    "kind": {
+      "enum": [
+        "image",
+        "rive",
+        "video"
+      ]
+    },
+    "intrinsicWidth": {
+      "type": "integer"
+    },
+    "intrinsicHeight": {
+      "type": "integer"
+    },
+    "assetRole": {
+      "$ref": "../assets/asset-roles.json#/roleEnum"
+    },
+    "alt": {
+      "type": "string",
+      "maxWords": 6
+    },
+    "cornerBrackets": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "notes": [
+    "Source HEIFs were transcoded to WebP because HEIF does not decode in browsers; Chromium reports naturalWidth/Height as 0,0 for the HEIF, so the intrinsic size must be supplied explicitly."
+  ]
+}

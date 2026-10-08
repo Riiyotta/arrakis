@@ -1,0 +1,153 @@
+{
+  "id": "industry.nav-masthead",
+  "kind": "section",
+  "scope": "body",
+  "category": "hero",
+  "evidenceKey": "section.industry.nav-masthead",
+  "source": "src/components/industry/NavMasthead.jsx; src/components/industry/EllipseDecoration.jsx",
+  "description": "Slot 0 of the industry pageBuilder: the industry hero, with a heading split into a lead run and an emphasis run, an industry switcher dropdown, and a hero asset. A {color.desert} blur-ellipse decoration sits behind it.",
+  "surface": "light",
+  "content": {
+    "required": [
+      "heading",
+      "hero",
+      "navItems"
+    ],
+    "additionalProperties": false,
+    "properties": {
+      "heading": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "lead",
+          "emphasis"
+        ],
+        "properties": {
+          "lead": {
+            "type": "string",
+            "maxWords": 8
+          },
+          "emphasis": {
+            "type": "string",
+            "maxWords": 7
+          }
+        }
+      },
+      "hero": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "assetRole",
+          "alt",
+          "provenance"
+        ],
+        "properties": {
+          "assetRole": {
+            "enum": [
+              "illustration.industry-masthead",
+              "motion.rive-scene"
+            ]
+          },
+          "alt": {
+            "type": "string",
+            "maxWords": 6
+          },
+          "src": {
+            "type": "string"
+          },
+          "intrinsicWidth": {
+            "type": "integer"
+          },
+          "intrinsicHeight": {
+            "type": "integer"
+          },
+          "provenance": {
+            "enum": [
+              "source-original",
+              "operator-supplied",
+              "generated"
+            ],
+            "note": "Provenance of this asset in the page being specified. `generated` is FORBIDDEN for any assetRole whose generationPolicy is must-not-fabricate-real-brand or must-not-fabricate-compliance-claim, and for must-reuse-exact roles. Enforced by compatibility/graph.json#ASSET_PROVENANCE_POLICY and schema/semantic_validate.py."
+          },
+          "aspectRatio": {
+            "type": "string",
+            "note": "Used by the Rive variant instead of intrinsicWidth/Height (/shipping: \"666/670\")."
+          }
+        }
+      },
+      "navItems": {
+        "type": "array",
+        "minItems": 6,
+        "maxItems": 6,
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "label",
+            "href"
+          ],
+          "properties": {
+            "label": {
+              "type": "string",
+              "maxWords": 5
+            },
+            "href": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "cta": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "label": {
+            "type": "string",
+            "maxWords": 4
+          },
+          "href": {
+            "type": "string"
+          },
+          "variant": {
+            "const": "heroSolid"
+          }
+        }
+      }
+    }
+  },
+  "constraints": {
+    "onePerPage": true,
+    "mustBeFirst": true,
+    "variantRouteAllowlist": {
+      "hero-rive": [
+        "/shipping"
+      ],
+      "hero-static": [
+        "/aerospace-and-defense",
+        "/chemicals",
+        "/energy-commodities",
+        "/engineering-construction",
+        "/telecommunications"
+      ]
+    },
+    "_variantRouteAllowlistNote": "Each variant is pinned to the exact routes that really use it, read off the real content data. Enforced by compatibility/graph.json#VARIANT_ROUTE_ALLOWLIST at severity \"error\", keyed on (section, variant) — not on the bare section id."
+  },
+  "variants": {
+    "hero-static": "hero.assetRole = illustration.industry-masthead (5 routes: /aerospace-and-defense, /chemicals, /energy-commodities, /engineering-construction, /telecommunications)",
+    "hero-rive": "hero.assetRole = motion.rive-scene (/shipping only)"
+  },
+  "motion": {
+    "pattern": "none",
+    "reducedMotionFallback": "none",
+    "notes": "The static-SVG variant has no motion. The /shipping Rive variant plays its own internal timeline; the section wrapper still does not animate."
+  },
+  "responsive": {
+    "base": "heading + dropdown stacked above the asset",
+    "md768": "two columns"
+  },
+  "knownUpstreamDefects": [
+    "/shipping’s stored switcher list is broken in the CMS: all SIX hrefs are the `/#` placeholder and item 5 reads \"Manufacturing\" instead of \"Engineering and Construction\". Reproduced verbatim; the dropdown therefore matches on LABEL, not href.",
+    "The hero CTA on the industry pages is `href=\"/#\"`."
+  ],
+  "copyBudgetDerivation": "Each maxWords budget is max(measured+2, ceil(measured*1.25)). The measured maxima were computed by importing the real src/data/*.js modules and word-counting every string for that field across every route. See extraction/measured-values.json#copyBudgets."
+}

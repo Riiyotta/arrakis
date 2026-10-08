@@ -1,0 +1,25 @@
+{
+  "id": "primitive.rive-canvas",
+  "kind": "primitive",
+  "source": "src/components/RiveCanvas.jsx",
+  "evidenceKey": "primitive.rive-canvas",
+  "description": "Thin React wrapper over the raw @rive-app/webgl2 runtime: one Rive instance per mount, destroyed on unmount, drawing surface resized to the measured box via ResizeObserver. 11 .riv files ship in public/assets/rive/.",
+  "props": {
+    "src": {
+      "type": "string",
+      "pattern": "^/assets/rive/[0-9a-f]{40}\\.riv$"
+    },
+    "aspectRatio": {
+      "type": "string",
+      "note": "CSS aspect-ratio on the wrapper box, e.g. \"1344/573\""
+    },
+    "className": {
+      "type": "string"
+    }
+  },
+  "assetRole": "motion.rive-scene",
+  "notes": [
+    "The wasm binary is resolved out of the installed package via a Vite `?url` import rather than the unpkg URL the original uses, so the clone makes no third-party runtime request. The runtime’s own jsdelivr fallback stays in place.",
+    "Rive scenes are opaque binaries; they cannot be regenerated. See assetRole motion.rive-scene (must-reuse-exact)."
+  ]
+}

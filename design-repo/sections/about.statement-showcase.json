@@ -1,0 +1,81 @@
+{
+  "id": "about.statement-showcase",
+  "kind": "section",
+  "scope": "body",
+  "category": "statement",
+  "evidenceKey": "section.about.statement-showcase",
+  "source": "src/components/sections/StatementShowcase.jsx; src/data/about.js",
+  "description": "/about slot 1 and the page’s FIRST rendered section — /about has NO HERO. CMS slot 0 (`arcMasthead`) is hideSection:true, so the page opens straight into this section under pt-18 md:pt-24 lg:pt-40.",
+  "surface": "dark",
+  "content": {
+    "required": [
+      "eyebrow",
+      "heading",
+      "lede",
+      "steps"
+    ],
+    "additionalProperties": false,
+    "properties": {
+      "eyebrow": {
+        "type": "string",
+        "maxWords": 4,
+        "note": "the real value \"WHY ARRAKIS \" carries a real trailing space"
+      },
+      "heading": {
+        "type": "string",
+        "maxWords": 7
+      },
+      "lede": {
+        "type": "string",
+        "maxWords": 40
+      },
+      "steps": {
+        "type": "array",
+        "minItems": 4,
+        "maxItems": 4,
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "title",
+            "description"
+          ],
+          "properties": {
+            "title": {
+              "type": "string",
+              "maxWords": 7
+            },
+            "description": {
+              "type": "string",
+              "maxWords": 33
+            }
+          }
+        }
+      }
+    }
+  },
+  "constraints": {
+    "onePerPage": true,
+    "mustBeFirst": true,
+    "routeAllowlist": [
+      "/about"
+    ]
+  },
+  "motion": {
+    "pattern": "scroll-pinned-statement",
+    "reducedMotionFallback": "final-state-static",
+    "spring": {
+      "stiffness": 90,
+      "damping": 28,
+      "mass": 1
+    }
+  },
+  "responsive": {
+    "base": "steps stack",
+    "md768": "steps in a row"
+  },
+  "knownUpstreamDefects": [
+    "A broken class `justify-center-scale-y-100` (a missing space between `justify-center` and `scale-y-100`) produces a 6px bracket overflow. Reproduced on purpose."
+  ],
+  "copyBudgetDerivation": "Each maxWords budget is max(measured+2, ceil(measured*1.25)). The measured maxima were computed by importing the real src/data/*.js modules and word-counting every string for that field across every route. See extraction/measured-values.json#copyBudgets."
+}

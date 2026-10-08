@@ -1,0 +1,88 @@
+{
+  "id": "industry.text-card-asset",
+  "kind": "section",
+  "scope": "body",
+  "category": "feature",
+  "evidenceKey": "section.industry.text-card-asset",
+  "source": "src/components/industry/TextCardAsset.jsx",
+  "description": "Slot 1b: a centred textCard capped at a literal CMS `section_max_width` px value, over a full-width product image. On the I2 dustToWhite gradient. THIS SLOT EXISTS ON /shipping ONLY — it is absent from the other five routes’ CMS `sections[]` array entirely (not merely hidden).",
+  "surface": "light",
+  "content": {
+    "required": [
+      "heading",
+      "asset",
+      "maxWidth"
+    ],
+    "additionalProperties": false,
+    "properties": {
+      "heading": {
+        "type": "string",
+        "maxWords": 8
+      },
+      "maxWidth": {
+        "type": "integer",
+        "note": "literal CMS options.section_max_width; 480 on /shipping"
+      },
+      "asset": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "assetRole",
+          "alt",
+          "provenance"
+        ],
+        "properties": {
+          "assetRole": {
+            "enum": [
+              "media.product-screenshot"
+            ]
+          },
+          "alt": {
+            "type": "string",
+            "maxWords": 6
+          },
+          "src": {
+            "type": "string"
+          },
+          "intrinsicWidth": {
+            "type": "integer"
+          },
+          "intrinsicHeight": {
+            "type": "integer"
+          },
+          "provenance": {
+            "enum": [
+              "source-original",
+              "operator-supplied",
+              "generated"
+            ],
+            "note": "Provenance of this asset in the page being specified. `generated` is FORBIDDEN for any assetRole whose generationPolicy is must-not-fabricate-real-brand or must-not-fabricate-compliance-claim, and for must-reuse-exact roles. Enforced by compatibility/graph.json#ASSET_PROVENANCE_POLICY and schema/semantic_validate.py."
+          },
+          "aspectRatio": {
+            "type": "string",
+            "note": "CSS aspect-ratio for the wrapper box (e.g. \"799/617\"). Used by Rive assets, which have no intrinsic pixel size, INSTEAD of intrinsicWidth/Height."
+          }
+        }
+      }
+    }
+  },
+  "constraints": {
+    "onePerPage": true,
+    "routeAllowlist": [
+      "/shipping"
+    ]
+  },
+  "motion": {
+    "pattern": "none",
+    "reducedMotionFallback": "none"
+  },
+  "responsive": {
+    "base": "pt-18 pb-18",
+    "md768": "pt-24 pb-28",
+    "lg1024": "pt-40 pb-40"
+  },
+  "notes": [
+    "The asset’s 2690/1034 intrinsic ratio is load-bearing: there is no aspect-ratio wrapper, so it sets the section height (1009.39px @1440)."
+  ],
+  "copyBudgetDerivation": "Each maxWords budget is max(measured+2, ceil(measured*1.25)). The measured maxima were computed by importing the real src/data/*.js modules and word-counting every string for that field across every route. See extraction/measured-values.json#copyBudgets."
+}

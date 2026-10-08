@@ -1,0 +1,38 @@
+{
+  "id": "component.card-base",
+  "kind": "component",
+  "source": "src/components/StatsGrid.jsx; src/components/industry/IconSlider.jsx; src/components/platform/StackedPanels.jsx",
+  "evidenceKey": "component.card-base",
+  "description": "The universal cell: a top square-bracket hairline, a padded body, a bottom square-bracket hairline, in a justify-between flex column. Cells in a grid overlap by 1px so adjacent hairlines merge into one rule.",
+  "composes": [
+    "primitive.square-bracket"
+  ],
+  "props": {
+    "padding": {
+      "enum": [
+        "stats",
+        "icon-slider",
+        "panel"
+      ],
+      "default": "stats"
+    },
+    "hairlineColor": {
+      "enum": [
+        "text-stroke-1",
+        "text-stroke-3",
+        "text-white/10"
+      ],
+      "default": "text-stroke-1"
+    },
+    "mergeHairlines": {
+      "type": "boolean",
+      "default": true,
+      "note": "emits -mr-px -mb-px on all but the last cell"
+    }
+  },
+  "paddingValues": {
+    "stats": "px-4 sm:px-6 lg:px-8 py-3 sm:py-4 xl:py-6",
+    "icon-slider": "px-6 py-3.5 sm:px-8 sm:py-5",
+    "panel": "p-10"
+  }
+}

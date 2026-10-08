@@ -1,0 +1,12 @@
+{
+  "$id": "tokens/00-foundation/radius",
+  "layer": "foundation",
+  "description": "4 radii. The whole site uses radius extremely sparingly: `rounded-xs` on the Button and `rounded-[inherit]` on its inner hover layer are the only radius utilities in src/. There are no shadows or radii anywhere on the legal pages at all.",
+  "evidenceKey": "token.radius",
+  "tokens": {
+    "xs": { "$type": "dimension", "$value": "2px", "usage": "Button (the only radius in real use)" },
+    "sm": { "$type": "dimension", "$value": "4px", "usage": "declared, no utility reference found in src/" },
+    "md": { "$type": "dimension", "$value": "6px", "usage": "declared, no utility reference found in src/" },
+    "lg": { "$type": "dimension", "$value": "8px", "usage": "declared, no utility reference found in src/" }
+  }
+}

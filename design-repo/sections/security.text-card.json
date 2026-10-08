@@ -1,0 +1,53 @@
+{
+  "id": "security.text-card",
+  "kind": "section",
+  "scope": "body",
+  "category": "statement",
+  "evidenceKey": "section.security.text-card",
+  "source": "src/components/sections/SecurityTextCard.jsx; src/data/security.js",
+  "description": "/security slot 1: a centred statement card. Options differ from the /shipping textCard: centred, 1000px section cap, heading_font_size 56 on a <span>, 300px content cap.",
+  "surface": "dark",
+  "content": {
+    "required": [
+      "heading",
+      "content"
+    ],
+    "additionalProperties": false,
+    "properties": {
+      "heading": {
+        "type": "string",
+        "maxWords": 7
+      },
+      "content": {
+        "type": "string",
+        "maxWords": 22
+      },
+      "sectionMaxWidth": {
+        "type": "integer",
+        "note": "1000 on /security"
+      },
+      "contentMaxWidth": {
+        "type": "integer",
+        "note": "300 on /security"
+      }
+    }
+  },
+  "constraints": {
+    "onePerPage": true,
+    "routeAllowlist": [
+      "/security"
+    ]
+  },
+  "motion": {
+    "pattern": "none",
+    "reducedMotionFallback": "none"
+  },
+  "responsive": {
+    "base": "full width",
+    "md768": "capped at sectionMaxWidth"
+  },
+  "knownUpstreamDefects": [
+    "The CMS value for `content` is the malformed string `<h3>...sentence...<h3>` — BOTH tags are OPENING tags. The browser nests them inside the renderer’s <p>, producing one filled <h3> with the same box as the <p> plus a second, EMPTY <h3> of height 0. Reproduced on purpose, which means React emits a `validateDOMNesting` dev warning on this route. That warning is EXPECTED; it is the price of structural parity. Do not \"fix\" it."
+  ],
+  "copyBudgetDerivation": "Each maxWords budget is max(measured+2, ceil(measured*1.25)). The measured maxima were computed by importing the real src/data/*.js modules and word-counting every string for that field across every route. See extraction/measured-values.json#copyBudgets."
+}
