@@ -1,0 +1,58 @@
+{
+  "$id": "tokens/llm/token-policy",
+  "version": "1.0.0",
+  "description": "Rules governing how an AI may use tokens in tokens/llm/token-catalog.json. Companion to component-allowlist.json (which closes WHAT may be set); this closes WHICH VALUES may be used.",
+  "catalog": "tokens/llm/token-catalog.json",
+  "rules": [
+    {
+      "id": "TOKEN_CLOSED",
+      "level": "error",
+      "rule": "Every color, type role, radius, shadow, spacing step, breakpoint, duration, easing and spring must be a catalog entry. Never introduce a new one."
+    },
+    {
+      "id": "NO_RAW_VALUES",
+      "level": "error",
+      "rule": "Reference tokens by name; never write raw hex, px, rem, ms or cubic-bezier literals in generated output."
+    },
+    {
+      "id": "SEMANTIC_FIRST",
+      "level": "error",
+      "rule": "Prefer semantic roles over foundation colors wherever a semantic role exists."
+    },
+    {
+      "id": "NO_UNPROMOTED_COLORS",
+      "level": "error",
+      "rule": "dawn, desert, midnight and bone are decorative one-offs or unused and must not be used systemically (see semantic.json#notPromoted).",
+      "tokens": [
+        "color.dawn",
+        "color.desert",
+        "color.midnight",
+        "color.bone"
+      ]
+    },
+    {
+      "id": "NO_ALIAS_DRIFT",
+      "level": "warn",
+      "rule": "Use `white` rather than its alias `day`, except inside the Button day/heroSolid variants.",
+      "tokens": [
+        "color.day"
+      ]
+    },
+    {
+      "id": "MOTION_REDUCED",
+      "level": "error",
+      "rule": "Every duration/easing/spring use must have a reducedMotionFallback (see motion/motion-spec.json)."
+    },
+    {
+      "id": "NO_NEW_FONTS",
+      "level": "error",
+      "rule": "Only the families in typography.json may be used; they are licensed, non-redistributable and must not be substituted with invented families."
+    },
+    {
+      "id": "NO_TOKEN_MUTATION",
+      "level": "error",
+      "rule": "Generated output may not modify, override or redefine any token value."
+    }
+  ],
+  "ruleCount": 8
+}

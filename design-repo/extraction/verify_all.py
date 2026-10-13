@@ -87,6 +87,7 @@ REQUIRED = [
     "tokens/30-layout/layout.json",
     "tokens/themes/light-surface.json", "tokens/themes/dark-surface.json",
     "tokens/llm/component-allowlist.json",
+    "tokens/llm/token-catalog.json", "tokens/llm/token-policy.json",
     "templates/templates.json", "compatibility/graph.json",
     "assets/asset-roles.json", "motion/motion-spec.json",
     "schema/pagespec.schema.json", "schema/example.pagespec.json",
